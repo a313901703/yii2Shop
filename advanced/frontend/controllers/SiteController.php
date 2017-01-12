@@ -59,8 +59,8 @@ class SiteController extends Controller
     {
         return [
             'error' => [
-                'class' => 'frontend\components\ErrorAction',
-                //'class' => 'yii\web\ErrorAction',
+                //'class' => 'frontend\components\ErrorAction',
+                'class' => 'yii\web\ErrorAction',
             ],
             'captcha' => [
                 'class' => 'yii\captcha\CaptchaAction',
@@ -86,7 +86,7 @@ class SiteController extends Controller
      */
     public function actionLogin()
     {
-        $this->layout = 'login';
+        //$this->layout = 'login';
         if (!Yii::$app->user->isGuest) {
             return $this->goHome();
         }

@@ -10,7 +10,7 @@ AppAsset::addScript($this,Yii::$app->request->baseUrl."/js/index.js");
 AppAsset::addScript($this,Yii::$app->request->baseUrl."/js/easypiechart/dist/easypiechart.min.js");
 AppAsset::addScript($this,Yii::$app->request->baseUrl."/js/easypiechart/dist/jquery.easypiechart.min.js");
 ?>
-<div >
+<div class="content">
     <div class="row">
         <!-- section 1  -->
         <div class="col-xs-12 col-md-6 col-lg-3">
@@ -19,7 +19,7 @@ AppAsset::addScript($this,Yii::$app->request->baseUrl."/js/easypiechart/dist/jqu
                     <i class="fa fa-shopping-cart fa-4x"></i>
                 </div>
                 <div class="widget-right">
-                    <div class="widget-title"><h3 style="margin: 0">100</h3></div>
+                    <div class="widget-title"><h3>100</h3></div>
                     <div class="widget-info"><span>订单</span></div>
                 </div>
             </div> 

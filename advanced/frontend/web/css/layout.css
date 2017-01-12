@@ -1,157 +1,38 @@
-/*初始化*/
-html,body,ol,ul,h1,h2,h3,h4,h5,h6,p,th,td,dl,dd,fieldset,legend,textarea,select{margin:0;padding:0} 
-body{font:14px"Arial","Arial Narrow",HELVETICA;background:#fff;-webkit-text-size-adjust:100%;} 
-body{background-color: rgb(235,235,235);background-image: url(../imgs/back.png);}
-a,a:hover,a:active,a:visited,a:link{
-    text-decoration:none;
-}
-em{font-style:normal} 
-li{list-style:none} 
-img{border:0;vertical-align:middle} 
-table{border-collapse:collapse;border-spacing:0} 
-p{word-wrap:break-word}
-/*定义盒子布局*/
-html,body{
-    height:100%;
-}
-.wrap{
-    min-height:100%;
-    display: flex;
-    display: -webkit-flex;
-    margin: 0;
-    padding: 0;
-}
-.left-Menu{
-    color:#fff;
-    background-color:rgb(46,64,81);
-    border:1px solid #ddd;
-    width: 200px;
-    height:auto;
-}
-.left-Menu > div{
-    display: flex;
-    display: -webkit-flex;
-}
 
-.wrap > .container{
-    min-width: 900px;
-    max-width: 1400px;
+/**
+ *部分组件
+ */
+.form-control{
+    border-radius: 4px;
 }
-.right{
-    flex:1;
-    padding:0;
+.table-bordered{
+    border: 1px solid #ddd;
+}
+.table-bordered>thead>tr>th, .table-bordered>tbody>tr>th, .table-bordered>tfoot>tr>th, .table-bordered>thead>tr>td, .table-bordered>tbody>tr>td, .table-bordered>tfoot>tr>td{
+    border:1px solid #ddd;
+}
+.contenter-header{
+    background: transparent;
+    box-shadow: none;
+    line-height: 50px;
+    padding: 0;
 }
 .flex{
     display: flex;
     display: -webkit-flex;
 }
-
-/**
- *左侧菜单
- */
-.logoBox{
-    justify-content: center;
-    align-items: center;
-    -webkit-justify-content: center;
-    -webkit-align-items: center;
-    font-weight: bold;
-    background-color: rgb(2,0,32);
-    height:60px;
-    font-size:25px;
-}
-.userBox{
-    padding:10px;
-    border-bottom: 1px solid rgb(66,81,100);
-}
-.userAvatarBox img{
-    width:50px;
-    height: 50px;
-    border:1px solid rgb(0,36,81);
-    border-radius: 25px;
-    margin-right: 10px;
-}
-.userName{
-    margin-bottom: 8px;
-}
-/*菜单*/
-.menuItems,.menuCollapse{
-    flex-direction:column;
-    -webkit-flex-direction:column;
-}
-.menuItem{
-    
-}
-.menuItem a,.menuItem a:hover,.menuItem a:active,.menuItem a:visited,.menuItem a:link{
-    color:#999;
-}
-.menuItem .menu{
-    display: flex;
-    display: -webkit-flex;
-    align-items: center;
-    -webkit-align-items: center;
-    padding: 10px;
-    height: 50px;
-    box-sizing: border-box;
-}
-.menuItem.active{
-    color:#fff;
-    background-color: rgb(66,81,100);
-}
-.menuItem.active > .menu:nth-child(1){
-    border-left: 5px solid #0099FF;
-    border-bottom: 1px solid rgb(46,64,81);
-}
-.menuItem.active > a.menu,a.menu.active{
-    color:#fff;
-}
-.menuItem i{
-    margin-right: 8px;
-}
-
-/**
- *右侧内容
- */
-
-/*navbar*/
-.navbar{
-    display: flex;
-    display: -webkit-flex;
-    justify-content:flex-end;
-    -webkit-justify-content:flex-end;
-    align-items:center;
-    -webkit-align-items:center;
-
-    color: #333;
-    background-color: rgb(248,248,248);
-    margin-bottom: 10px;
-    border-bottom: 1px solid #e7e7e7;
-}
-.navItem{
-    display: flex;
-    display: -webkit-flex;
-    justify-content:center;
-    -webkit-justify-content:center;
-    align-items:center;
-    -webkit-align-items:center;
-
-    height:60px;
-    width:150px;
-}
-
-.content{background-color: rgb(244,244,244);}
-
-
-/**
- *部分组件
- */
 .breadcrumb{
-    background-color: rgb(248,248,248);
-    height:50px;
-    line-height: 50px;
-    margin:0;
-    padding: 0 0 0 15px;
-    border-top: 1px solid #eee;
-    border-bottom: 1px solid #eee;
+    padding: 0;
+    margin: 0;
+    padding-left: 20px;
+    background-color: #eee;
+}
+.content-wrapper{
+    background-image: url(../imgs/back.png);
+}
+.content{
+    background-image: url(../imgs/back.png);
+    background-color: #fff;
 }
 .space{
     height:10px;
@@ -164,7 +45,7 @@ html,body{
     display: flex;
     display: -webkit-flex;
     justify-content:center;
-    -webkit-justify-content:center;
+    -webkit-justify-content:center;     
 }
 .widget-left{
     color:#fff;
@@ -186,6 +67,9 @@ html,body{
 }
 .widget-title{
     margin-bottom: 10px;
+}
+.widget-title h3{
+    margin:0;
 }
 .widget-info{
     color:#aaa;
@@ -209,8 +93,6 @@ html,body{
 
 .form-content,.table-content{
     background-image: url(../imgs/main-back.png);
-    padding: 10px;
-   
     background-color: #fff;
 }
 .search-form{
@@ -269,7 +151,7 @@ html,body{
     margin: 10px;
 }
 .active-form .form-groups > .form-group label{
-    min-width:90px;
+    min-width:90px; 
     text-align: left;
     height: 34px;
     line-height: 34px;

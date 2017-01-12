@@ -11,6 +11,7 @@ return [
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'controllerNamespace' => 'frontend\controllers',
+    'name' =>'WTF+',        //平台名称
     'modules' => [
         //权限管理模块
         'admin' => [
@@ -68,6 +69,14 @@ return [
         ],
         'errorHandler' => [
             'errorAction' => 'site/error',
+        ],
+        //模板
+        'assetManager' => [
+            'bundles' => [
+                'dmstr\web\AdminLteAsset' => [
+                    'skin' => 'skin-black',
+                ],
+            ],
         ],
         /*
         'urlManager' => [

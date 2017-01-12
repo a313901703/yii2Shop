@@ -66,36 +66,5 @@ $(function(){
     if (option && typeof option === "object") {
         myChart.setOption(option, true);
     }
-
-    $(function(){
-        $.ajax({
-            url: '/site/index.html',
-            type: 'get',
-            dataType: 'json',
-            data: {param1:'param1'},
-            success: function(data, status) {
-                console.log('success')
-                console.log(data)
-                // console.log(status)
-                // if (data.ret_code != 0) {
-                //     if (onerror) {
-                //         onerror(data);
-                //     }
-                // }
-                // var ret_msg = data.ret_msg;
-                //callback(ret_msg, param);
-            },
-            error: function(xhr, status, msg) {
-                console.log('error')
-                // console.log(xhr)
-                // console.log(status)
-                console.log(msg)
-                // if (msg.indexOf && msg.indexOf("Invalid JSON") == 0) {
-                //    // swal(t_fields.errors_out, t_fields.network_timeout, "error");
-                // } else {
-                //     //msg && swal(t_fields.errors_out, t_fields.system_errors_out+'('+msg+')', "error");
-                // }
-            }
-        })
-    })
+    
 });
