@@ -30,6 +30,7 @@ return [
             'class'=>'app\Modules\goods\Module',
         ],
     ],
+
     'components' => [
         'request' => [
             'csrfParam' => '_csrf-frontend',
@@ -78,12 +79,15 @@ return [
                 ],
             ],
         ],
-        /*
+        
         'urlManager' => [
             'rules' => [
+                'goods'=>'goods/good/index',
+                'goods/<id:\d+>'=>'goods/good/view',
+                'goods/update/<id:\d+>'=>'goods/good/update',
+                '<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
             ],
         ],
-        */
     ],
     'params' => $params,
 ];

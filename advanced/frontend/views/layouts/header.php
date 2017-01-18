@@ -101,6 +101,7 @@ use yii\helpers\Html;
                         <li class="footer"><a href="#">See All Messages</a></li>
                     </ul>
                 </li>
+                
                 <li class="dropdown notifications-menu">
                     <a href="#" class="dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown">
                         <i class="fa fa-bell-o"></i>

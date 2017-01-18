@@ -4,7 +4,9 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "570825719984268cab78ba4d1f98aa05",
+
+    "hash": "f7c448927da5a4532caafabeec6f53be",
+    "content-hash": "3e57c91891575952c5dc521deb857c51",
     "packages": [
         {
             "name": "almasaeed2010/adminlte",
@@ -1420,6 +1422,52 @@
                 "uri"
             ],
             "time": "2016-06-24T23:00:38+00:00"
+        },
+        {
+            "name": "jamband/yii2-schemadump",
+            "version": "v0.9.9",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jamband/yii2-schemadump.git",
+                "reference": "a156f2a67cc1a47e46605f4d8d5228826c22d36d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://packagist.phpcomposer.com/files/jamband/yii2-schemadump/a156f2a67cc1a47e46605f4d8d5228826c22d36d.zip",
+                "reference": "a156f2a67cc1a47e46605f4d8d5228826c22d36d",
+                "shasum": ""
+            },
+            "require": {
+                "yiisoft/yii2": "^2.0"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "jamband\\schemadump\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Tomoki Morita",
+                    "email": "tmsongbooks215@gmail.com",
+                    "homepage": "http://jamband.github.io/"
+                }
+            ],
+            "description": "Generate the schema from an existing database",
+            "homepage": "https://github.com/jamband/yii2-schemadump",
+            "keywords": [
+                "command",
+                "database",
+                "extension",
+                "generator",
+                "migration",
+                "yii2"
+            ],
+            "time": "2015-12-17 09:39:40"
         },
         {
             "name": "myclabs/deep-copy",

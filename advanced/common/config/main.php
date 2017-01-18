@@ -12,12 +12,22 @@ return [
             'username' => 'root',
             'password' => 'root',
             'charset' => 'utf8',
+            // 'enableSchemaCache' => true,
+            // // Duration of schema cache.
+            // 'schemaCacheDuration' => 3600,
+            // // Name of the cache component used to store schema information
+            // 'schemaCache' => 'cache',
         ],
         'urlManager' => [
             'enablePrettyUrl' => true,
             'enableStrictParsing' => false,
             'showScriptName' => false,
             'suffix' => '.html',//后缀
+            'rules' => [
+                '<controller:(post|comment)>/<id:\d+>/<action:(create|update|delete)>' => '<controller>/<action>',
+                '<controller:(post|comment)>/<id:\d+>' => '<controller>/view',
+                '<controller:(post|comment)>s' => '<controller>/index',
+            ],
         ],
         'authManager' => [
             'class' => 'yii\rbac\DbManager', // 使用数据库管理配置文件

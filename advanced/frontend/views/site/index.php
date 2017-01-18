@@ -75,7 +75,7 @@ AppAsset::addScript($this,Yii::$app->request->baseUrl."/js/easypiechart/dist/jqu
         <div class="col-md-8">
             <div class="chat-box">
                 <div class="chat-heading">
-                    <i class="icon-comment icon-1x"></i>
+                    <i class="fa fa-comment fa-1x"></i>
                     <span style="margin-right: 10px">Chat</span>
                 </div>
                 <div class="chat-body">
@@ -124,7 +124,7 @@ AppAsset::addScript($this,Yii::$app->request->baseUrl."/js/easypiechart/dist/jqu
             <div class="todolist-box">
                 <ul class="list-group">
                     <li class="list-group-item active">
-                        <i class='icon-check'></i>
+                        <i class='fa fa-check-square-o'></i>
                         list-to-do
                     </li>
                     <li class="list-group-item">
@@ -133,9 +133,9 @@ AppAsset::addScript($this,Yii::$app->request->baseUrl."/js/easypiechart/dist/jqu
                             <span class="under-line"> list-to-do 1 </span>
                         </div>
                         <div class="todo-operate">   
-                            <i class="icon-pencil"> </i>
-                            <i class="icon-flag"> </i>
-                            <i class="icon-trash"> </i>
+                            <i class="fa fa-pencil"> </i>
+                            <i class="fa fa-flag"> </i>
+                            <i class="fa fa-trash"> </i>
                         </div>
                     </li>
                     <li class="list-group-item">
@@ -144,9 +144,9 @@ AppAsset::addScript($this,Yii::$app->request->baseUrl."/js/easypiechart/dist/jqu
                             <span> list-to-do 1 </span>
                         </div>
                         <div class="todo-operate">   
-                            <i class="icon-pencil"> </i>
-                            <i class="icon-flag"> </i>
-                            <i class="icon-trash"> </i>
+                            <i class="fa fa-pencil"> </i>
+                            <i class="fa fa-flag"> </i>
+                            <i class="fa fa-trash"> </i>
                         </div>
                     </li>
                     <li class="list-group-item">
@@ -155,9 +155,9 @@ AppAsset::addScript($this,Yii::$app->request->baseUrl."/js/easypiechart/dist/jqu
                             <span> list-to-do 1 </span>
                         </div>
                         <div class="todo-operate">   
-                            <i class="icon-pencil"> </i>
-                            <i class="icon-flag"> </i>
-                            <i class="icon-trash"> </i>
+                            <i class="fa fa-pencil"> </i>
+                            <i class="fa fa-flag"> </i>
+                            <i class="fa fa-trash"> </i>
                         </div>
                     </li>
                     <li class="list-group-item">
@@ -166,9 +166,9 @@ AppAsset::addScript($this,Yii::$app->request->baseUrl."/js/easypiechart/dist/jqu
                             <span> list-to-do 1 </span>
                         </div>
                         <div class="todo-operate">   
-                            <i class="icon-pencil"> </i>
-                            <i class="icon-flag"> </i>
-                            <i class="icon-trash"> </i>
+                            <i class="fa fa-pencil"> </i>
+                            <i class="fa fa-flag"> </i>
+                            <i class="fa fa-trash"> </i>
                         </div>
                     </li>
                 </ul>

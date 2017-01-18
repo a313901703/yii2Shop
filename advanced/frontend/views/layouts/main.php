@@ -33,7 +33,6 @@ if (Yii::$app->controller->action->id === 'login') {
     <body class="hold-transition <?= \dmstr\helpers\AdminLteHelper::skinClass() ?> sidebar-mini">
     <?php $this->beginBody() ?>
     <div class="wrapper">
-
         <?= $this->render(
             'header.php',
             ['directoryAsset' => $directoryAsset]
