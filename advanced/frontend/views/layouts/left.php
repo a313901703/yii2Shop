@@ -32,34 +32,67 @@
                 'items' => [
                     ['label' => 'Menu Yii2', 'options' => ['class' => 'header']],
                     ['label' => '首页', 'icon' => 'fa fa-file-code-o', 'url' => ['/site/index']],
-                    ['label' => 'Debug', 'icon' => 'fa fa-dashboard', 'url' => ['/debug']],
-                    ['label' => 'Login', 'url' => ['site/login'], 'visible' => Yii::$app->user->isGuest],
                     [
-                        'label' => 'Same tools',
+                        'label' => '商品',
                         'icon' => 'fa fa-share',
+                        'url' => '#',
+                        'items' => [
+                            ['label' => '商品详情', 'icon' => 'fa fa-file-code-o', 'url' => ['/goods/good']],
+                            //['label' => 'Debug', 'icon' => 'fa fa-dashboard', 'url' => ['/debug'],],
+                        ],
+                    ],
+                    [
+                        'label' => '用户管理',
+                        'icon' => 'fa fa-users',
+                        'url' => '#',
+                        'items' => [
+                            ['label' => '权限分配', 'icon' => 'fa fa-users', 'url' => ['/admin']],
+                            ['label' => '用户列表', 'icon' => 'fa fa-users', 'url' => ['/admin/user']],
+                            ['label' => '角色列表', 'icon' => 'fa fa-users', 'url' => ['/admin/role']],
+                            ['label' => '权限列表', 'icon' => 'fa fa-users', 'url' => ['/admin/permission']],
+                            ['label' => '路由列表', 'icon' => 'fa fa-users', 'url' => ['/admin/route']],
+                            ['label' => '规则列表', 'icon' => 'fa fa-users', 'url' => ['/admin/rule']],
+                            ['label' => '菜单列表', 'icon' => 'fa fa-users', 'url' => ['/adminmenu']],
+                        ],
+                    ],
+                    [
+                        'label' => 'Tools',
+                        'icon' => 'fa fa-lightbulb-o',
                         'url' => '#',
                         'items' => [
                             ['label' => 'Gii', 'icon' => 'fa fa-file-code-o', 'url' => ['/gii'],],
                             ['label' => 'Debug', 'icon' => 'fa fa-dashboard', 'url' => ['/debug'],],
-                            [
-                                'label' => 'Level One',
-                                'icon' => 'fa fa-circle-o',
-                                'url' => '#',
-                                'items' => [
-                                    ['label' => 'Level Two', 'icon' => 'fa fa-circle-o', 'url' => '#',],
-                                    [
-                                        'label' => 'Level Two',
-                                        'icon' => 'fa fa-circle-o',
-                                        'url' => '#',
-                                        'items' => [
-                                            ['label' => 'Level Three', 'icon' => 'fa fa-circle-o', 'url' => '#',],
-                                            ['label' => 'Level Three', 'icon' => 'fa fa-circle-o', 'url' => '#',],
-                                        ],
-                                    ],
-                                ],
-                            ],
                         ],
+                        'visible' => YII_ENV_DEV,       //开发模式可见        
                     ],
+                    //['label' => 'Login', 'url' => ['/site/login'], 'icon'=>'fa fa-sign-in','visible' => Yii::$app->user->isGuest],
+                    ['label' => 'Logout', 'url' => ['/site/logout'], 'icon'=>'fa fa-sign-out','visible' => !Yii::$app->user->isGuest],
+                    // [
+                    //     'label' => 'Same tools',
+                    //     'icon' => 'fa fa-share',
+                    //     'url' => '#',
+                    //     'items' => [
+                    //         ['label' => 'Gii', 'icon' => 'fa fa-file-code-o', 'url' => ['/gii'],],
+                    //         ['label' => 'Debug', 'icon' => 'fa fa-dashboard', 'url' => ['/debug'],],
+                    //         [
+                    //             'label' => 'Level One',
+                    //             'icon' => 'fa fa-circle-o',
+                    //             'url' => '#',
+                    //             'items' => [
+                    //                 ['label' => 'Level Two', 'icon' => 'fa fa-circle-o', 'url' => '#',],
+                    //                 [
+                    //                     'label' => 'Level Two',
+                    //                     'icon' => 'fa fa-circle-o',
+                    //                     'url' => '#',
+                    //                     'items' => [
+                    //                         ['label' => 'Level Three', 'icon' => 'fa fa-circle-o', 'url' => '#',],
+                    //                         ['label' => 'Level Three', 'icon' => 'fa fa-circle-o', 'url' => '#',],
+                    //                     ],
+                    //                 ],
+                    //             ],
+                    //         ],
+                    //     ],
+                    // ],
                 ],
             ]
         ) ?>
