@@ -14,9 +14,11 @@ class AppAsset extends AssetBundle
     public $css = [
         'css/site.css',
         'css/layout.css',
+        'css/sweetalert.css',
     ];
     public $js = [
-        
+        'js/sweetalert.min.js',
+        'js/main.js',       //全局js
     ];
     public $depends = [
         'yii\web\YiiAsset',

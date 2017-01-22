@@ -14,27 +14,32 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
-                'method' => 'post',
-            ],
-        ]) ?>
-    </p>
-
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
             'id',
             'name',
-            'thumb',
+            [
+                'attribute' => 'thumb',
+                'format' => ['image',['width'=>'70','height'=>'70']],
+            ],
             'sort',
-            'created_at',
-            'created_by',
+            [
+                'attribute' => 'created_at',
+                'format' =>['date', 'php:Y-m-d H:i:s'],
+            ],
+            //'created_by',
         ],
     ]) ?>
+     <p>
+        <?= Html::a('修改', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('删除', ['delete', 'id' => $model->id], [
+            'class' => 'btn btn-danger',
+            'data' => [
+                'confirm' => '您确定要删除么?',
+                'method' => 'post',
+            ],
+        ]) ?>
+    </p>
 
 </div>

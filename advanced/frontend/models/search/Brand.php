@@ -41,7 +41,7 @@ class Brand extends BrandModel
      */
     public function search($params)
     {
-        $query = BrandModel::find();
+        $query = BrandModel::find()->where(['>=','status',0]);
 
         // add conditions that should always apply here
 

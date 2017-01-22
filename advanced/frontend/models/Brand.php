@@ -18,6 +18,8 @@ use yii\behaviors\BlameableBehavior;
  */
 class Brand extends \yii\db\ActiveRecord
 {
+    const ACTIVE_STATUS = 0;
+    const PAUSE_STATUS  = 0;
     /**
      * @inheritdoc
      */
@@ -47,12 +49,12 @@ class Brand extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'thumb'], 'required'],
+            [['name'], 'required'],
             ['sort', 'integer'],
             [['sort','status'], 'default','value'=>0],
             [['name'], 'string', 'max' => 50],
             //检查 "primaryImage" 是否为 PNG, JPG 格式的上传图片,且文件小于1M
-            ['thumb', 'file', 'extensions' => ['png', 'jpg'],'skipOnEmpty' => false, 'maxSize' => 1024*1024*1024],
+            ['thumb', 'file', 'extensions' => ['png', 'jpg'], 'maxSize' => 1024*1024*1024],
         ];
     }
 
@@ -69,5 +71,9 @@ class Brand extends \yii\db\ActiveRecord
             'created_at' => '创建时间',
             'created_by' => '创建人',
         ];
+    }
+
+    public function findById($id){
+        return static::find()->where(['ID'=>$id])->andWhere(['status'=>[self::ACTIVE_STATUS,self::PAUSE_STATUS]])->one();
     }
 }
