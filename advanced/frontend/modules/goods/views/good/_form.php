@@ -19,7 +19,7 @@ $inputClass = 'form-control';
     <div class="form-groups flex">
         <div class="form-group flex">
             <?= Html::activeLabel($model, 'name') ?>
-            <?= Html::activeInput('text', $model, 'name', ['class' => $inputClass]) ?>
+            <?= Html::activeInput('text', $model, 'name', ['class' => 'form-control required']) ?>
         </div>
     </div>
 
@@ -33,29 +33,28 @@ $inputClass = 'form-control';
             <?= Html::activeInput('text', $model, 'keyword', ['class' => $inputClass]) ?>
         </div>
     </div>
-
     <div class="form-groups flex">
         <div class="form-group flex">
             <?= Html::activeLabel($model, 'seo_title') ?>
-            <?= Html::activeInput('text', $model, 'seo_title', ['class' => $inputClass]) ?>
+            <?= Html::activeInput('text', $model, 'seo_title', ['class' => $inputClass,'data-toggle'=>"tooltip",'data-placement'=>"top",'title'=>"用于seo优化"]) ?>
         </div>
         <div class="form-group flex">
             <?= Html::activeLabel($model, 'seo_keyword') ?>
-            <?= Html::activeInput('text', $model, 'seo_keyword', ['class' => $inputClass]) ?>
+            <?= Html::activeInput('text', $model, 'seo_keyword', ['class' => $inputClass,'data-toggle'=>"tooltip",'data-placement'=>"top",'title'=>"用于seo优化"]) ?>
         </div>
     </div>
 
     <div class="form-groups flex">
         <div class="form-group flex">
             <?= Html::activeLabel($model, 'seo_content') ?>
-            <?= Html::activeTextarea($model, 'seo_content', ['class' => $inputClass,'row'=>6]) ?>
+            <?= Html::activeTextarea($model, 'seo_content', ['class' => $inputClass,'row'=>6,'style'=>['resize'=>'none'],'data-toggle'=>"tooltip",'data-placement'=>"top",'title'=>"用于seo优化"]) ?>
         </div>
     </div>
 
     <div class="form-groups flex">
         <div class="form-group flex">
             <?= Html::activeLabel($model, 'good_no') ?>
-            <?= Html::activeInput('text', $model, 'good_no', ['class' => $inputClass]) ?>
+            <?= Html::activeInput('text', $model, 'good_no', ['class' => $inputClass,'data-toggle'=>"tooltip",'data-placement'=>"top",'title'=>"商品货号,不填写则由系统随机生成"]) ?>
         </div>
         <div class="form-group flex">
             <?= Html::activeLabel($model, 'weight') ?>
@@ -108,14 +107,14 @@ $inputClass = 'form-control';
         </div>
         <div class="form-group flex">
             <?= Html::activeLabel($model, 'alert') ?>
-            <?= Html::activeInput('text', $model, 'alert', ['class' => $inputClass,'placeholder'=>0]) ?>
+            <?= Html::activeInput('text', $model, 'alert', ['class' => $inputClass,'placeholder'=>0,'data-toggle'=>"tooltip",'data-placement'=>"top",'title'=>"库存不足警告"]) ?>
         </div>
     </div>
 
     <div class="form-groups flex">
         <div class="form-group flex">
             <?= Html::activeLabel($model, 'sort') ?>
-            <?= Html::activeInput('text', $model, 'sort', ['class' => $inputClass]) ?>
+            <?= Html::activeInput('text', $model, 'sort', ['class' => $inputClass,'data-toggle'=>"tooltip",'data-placement'=>"top",'title'=>"数字越大，排序越靠前"]) ?>
         </div>
         <div class="form-group flex">
             <?= Html::activeLabel($model, 'integral') ?>
@@ -123,7 +122,7 @@ $inputClass = 'form-control';
         </div>
         <div class="form-group flex">
             <?= Html::activeLabel($model, 'virtual_nums') ?>
-            <?= Html::activeInput('text', $model, 'virtual_nums', ['class' => $inputClass,'placeholder'=>0]) ?>
+            <?= Html::activeInput('text', $model, 'virtual_nums', ['class' => $inputClass,'placeholder'=>0,'data-toggle'=>"tooltip",'data-placement'=>"top",'title'=>"虚拟购买数量"]) ?>
         </div>
     </div>
 
@@ -139,7 +138,7 @@ $inputClass = 'form-control';
     <div class="form-groups flex">
         <div class="form-group flex">
             <?= Html::activeLabel($model, 'good_note') ?>
-            <?= Html::activeTextarea($model, 'good_note', ['class' => $inputClass,'resize'=>'none','style'=>['height'=>'150px']]) ?>
+            <?= Html::activeTextarea($model, 'good_note', ['class' => $inputClass,'style'=>['height'=>'150px','resize'=>'none']]) ?>
         </div>
     </div>
 

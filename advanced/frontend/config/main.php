@@ -22,7 +22,6 @@ return [
         'redactor' => [ 
             'class' => 'yii\redactor\RedactorModule', 
             'uploadDir' => '@webroot/imgs/uploads',
-            'uploadDir' => '@webroot/imgs/uploads',
             'imageAllowExtensions'=>['jpg','png','gif']
         ], 
         //商品管理
@@ -79,13 +78,10 @@ return [
                 ],
             ],
         ],
-        
         'urlManager' => [
             'rules' => [
-                'goods'=>'goods/good/index',
-                'goods/<id:\d+>'=>'goods/good/view',
-                'goods/update/<id:\d+>'=>'goods/good/update',
-                '<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
+                '<module:\w+>/<controller:\w+>s'=>'<module>/<controller>',
+                '<module:\w+>/<controller:\w+>/<action:\w+>/<id:\d+>'=>'<module>/<controller>/<action>',
             ],
         ],
     ],

@@ -10,12 +10,15 @@ $this->title = '新建商品';
 $this->params['breadcrumbs'][] = ['label' => '商品列表', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 
-// \Yii::$app->session->setFlash('error', 'This is the message');
 ?>
-<div class="form-content">
-    
-    <?= $this->render('_form', [
-        'model' => $model,
-    ]) ?>
 
+<div class="form-content">
+    <div class="flex">
+        <?=  !$model->isNewRecord ? \Yii::$app->view->renderFile('@app/modules/goods/views/good/nav.php') : '';?>
+        <div style="flex:1">
+            <?= $this->render('_form', [
+                'model' => $model,
+            ]) ?>
+        </div>
+    </div>
 </div>
