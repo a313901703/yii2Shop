@@ -1,10 +1,11 @@
 <?php
 
 namespace app\models;
-use yii\behaviors\TimestampBehavior;
-use yii\behaviors\BlameableBehavior;
+
 
 use Yii;
+use yii\behaviors\TimestampBehavior;
+use yii\behaviors\BlameableBehavior;
 
 /**
  * This is the model class for table "goods".
@@ -61,7 +62,7 @@ class Goods extends \yii\db\ActiveRecord
             [['weight', 'market_price', 'sale_price', 'cost'], 'number'],
             [['good_cate', 'good_brand', 'recommend', 'show', 'freight', 'stock', 'alert', 'sort', 'integral', 'virtual_nums', 'volume'], 'integer'],
             [['name', 'seo_title', 'seo_keyword', 'good_no'], 'string', 'max' => 50],
-            [['volume','virtual_nums','integral'],'default','value' => 0],
+            [['volume','virtual_nums','integral','status'],'default','value' => 0],
             ['good_no','default','value' =>  function ($model, $attribute) {
                 return chr(rand(65, 90)).chr(rand(65, 90)).time();
             }],

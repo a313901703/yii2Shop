@@ -9,7 +9,6 @@
             </div>
             <div class="pull-left info">
                 <p>Alexander Pierce</p>
-
                 <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
             </div>
         </div>
@@ -37,8 +36,9 @@
                         'icon' => 'fa fa-share',
                         'url' => '#',
                         'items' => [
-                            ['label' => '商品详情', 'icon' => 'fa fa-file-code-o', 'url' => ['/goods/good']],
-                            //['label' => 'Debug', 'icon' => 'fa fa-dashboard', 'url' => ['/debug'],],
+                            ['label' => '商品详情', 'icon' => 'fa fa-table', 'url' => ['/goods/good']],
+                            ['label' => '商品分类', 'icon' => 'fa fa-table', 'url' => ['/goods/category']],
+                            ['label' => '商品品牌', 'icon' => 'fa fa-table', 'url' => ['/goods/brand']],
                         ],
                     ],
                     [

@@ -5,12 +5,12 @@ namespace app\models\search;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Goods as GoodsModel;
+use app\models\Category as CategoryModel;
 
 /**
- * Goods represents the model behind the search form about `app\models\Goods`.
+ * Category represents the model behind the search form about `app\models\Category`.
  */
-class Goods extends GoodsModel
+class Category extends CategoryModel
 {
     /**
      * @inheritdoc
@@ -18,9 +18,8 @@ class Goods extends GoodsModel
     public function rules()
     {
         return [
-            [['id', 'good_cate', 'good_brand', 'recommend', 'show', 'freight', 'stock', 'alert', 'sort', 'integral', 'virtual_nums', 'volume', 'created_at', 'updated_at', 'created_by', 'updated_by'], 'integer'],
-            [['name', 'short_name', 'keyword', 'seo_title', 'seo_keyword', 'seo_content', 'good_no'], 'safe'],
-            [['weight', 'market_price', 'sale_price', 'cost'], 'number'],
+            [['id', 'sort', 'pid', 'created_at', 'created_by'], 'integer'],
+            [['name', 'pid_sign'], 'safe'],
         ];
     }
 
@@ -42,7 +41,7 @@ class Goods extends GoodsModel
      */
     public function search($params)
     {
-        $query = GoodsModel::find();
+        $query = CategoryModel::find();
 
         // add conditions that should always apply here
 
@@ -61,20 +60,14 @@ class Goods extends GoodsModel
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'good_cate' => $this->good_cate,
-            'good_brand' => $this->good_brand,
-            'recommend' => $this->recommend,
-            'show' => $this->show,
-            'freight' => $this->freight,
-            'market_price' => $this->market_price,
-            'sale_price' => $this->sale_price,
-            'stock' => $this->stock,
+            'sort' => $this->sort,
+            'pid' => $this->pid,
             'created_at' => $this->created_at,
+            'created_by' => $this->created_by,
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name])
-            ->andFilterWhere(['like', 'keyword', $this->keyword])
-            ->andFilterWhere(['like', 'seo_title', $this->seo_title]);
+            ->andFilterWhere(['like', 'pid_sign', $this->pid_sign]);
 
         return $dataProvider;
     }

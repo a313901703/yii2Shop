@@ -5,12 +5,12 @@ namespace app\models\search;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Goods as GoodsModel;
+use app\models\Brand as BrandModel;
 
 /**
- * Goods represents the model behind the search form about `app\models\Goods`.
+ * Brand represents the model behind the search form about `app\models\Brand`.
  */
-class Goods extends GoodsModel
+class Brand extends BrandModel
 {
     /**
      * @inheritdoc
@@ -18,9 +18,8 @@ class Goods extends GoodsModel
     public function rules()
     {
         return [
-            [['id', 'good_cate', 'good_brand', 'recommend', 'show', 'freight', 'stock', 'alert', 'sort', 'integral', 'virtual_nums', 'volume', 'created_at', 'updated_at', 'created_by', 'updated_by'], 'integer'],
-            [['name', 'short_name', 'keyword', 'seo_title', 'seo_keyword', 'seo_content', 'good_no'], 'safe'],
-            [['weight', 'market_price', 'sale_price', 'cost'], 'number'],
+            [['id', 'sort'], 'integer'],
+            [['name'], 'safe'],
         ];
     }
 
@@ -42,16 +41,20 @@ class Goods extends GoodsModel
      */
     public function search($params)
     {
-        $query = GoodsModel::find();
+        $query = BrandModel::find();
 
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'sort' => [
+                'defaultOrder' => [
+                    'sort' => SORT_DESC,
+                ]
+            ]
         ]);
 
         $this->load($params);
-
         if (!$this->validate()) {
             // uncomment the following line if you do not want to return any records when validation fails
             // $query->where('0=1');
@@ -61,20 +64,13 @@ class Goods extends GoodsModel
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'good_cate' => $this->good_cate,
-            'good_brand' => $this->good_brand,
-            'recommend' => $this->recommend,
-            'show' => $this->show,
-            'freight' => $this->freight,
-            'market_price' => $this->market_price,
-            'sale_price' => $this->sale_price,
-            'stock' => $this->stock,
+            'sort' => $this->sort,
             'created_at' => $this->created_at,
+            'created_by' => $this->created_by,
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name])
-            ->andFilterWhere(['like', 'keyword', $this->keyword])
-            ->andFilterWhere(['like', 'seo_title', $this->seo_title]);
+            ->andFilterWhere(['like', 'thumb', $this->thumb]);
 
         return $dataProvider;
     }

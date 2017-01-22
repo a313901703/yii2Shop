@@ -126,7 +126,12 @@
     flex:1;
     -webkit-flex:1;
 }
-
+.hint-block{
+    min-width:130px;
+    color:#888;
+    font-size: 12px;
+    margin-left:5px;
+}
 .list-table{
 
 }
