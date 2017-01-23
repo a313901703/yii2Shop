@@ -8,7 +8,7 @@ use yii\widgets\Pjax;
 /* @var $searchModel app\models\search\Category */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Categories';
+$this->title = '分类列表';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="category-index">
@@ -17,6 +17,9 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
+        'filterRowOptions' =>['class'=>'hidden'],
+        'options'=>['class'=>'list-table'],
+        'layout'=>"{items}\n{summary}\n{pager}",
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 

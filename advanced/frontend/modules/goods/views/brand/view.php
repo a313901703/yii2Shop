@@ -7,7 +7,7 @@ use yii\widgets\DetailView;
 /* @var $model app\models\Brand */
 
 $this->title = $model->name;
-$this->params['breadcrumbs'][] = ['label' => 'Brands', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => '品牌', 'url' => ['/goods/brand']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="brand-view">

@@ -27,22 +27,22 @@ class SiteController extends Controller
     public function behaviors()
     {
         return [
-            'access' => [
-                'class' => AccessControl::className(),
-                'only' => ['logout', 'signup','index'],
-                'rules' => [
-                    [
-                        'actions' => ['signup'],
-                        'allow' => true,
-                        'roles' => ['?'],
-                    ],
-                    [
-                        'actions' => ['logout','index'],
-                        'allow' => true,
-                        'roles' => ['@'],
-                    ],
-                ],
-            ],
+            // 'access' => [
+            //     'class' => AccessControl::className(),
+            //     'only' => ['logout', 'signup','index'],
+            //     'rules' => [
+            //         [
+            //             'actions' => ['signup'],
+            //             'allow' => true,
+            //             'roles' => ['?'],
+            //         ],
+            //         [
+            //             'actions' => ['logout','index'],
+            //             'allow' => true,
+            //             'roles' => ['@'],
+            //         ],
+            //     ],
+            // ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
@@ -86,7 +86,6 @@ class SiteController extends Controller
      */
     public function actionLogin()
     {
-        //$this->layout = 'login';
         if (!Yii::$app->user->isGuest) {
             return $this->goHome();
         }
@@ -153,6 +152,10 @@ class SiteController extends Controller
      */
     public function actionSignup()
     {
+        if (!Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
+
         $model = new SignupForm();
         if ($model->load(Yii::$app->request->post())) {
             if ($user = $model->signup()) {

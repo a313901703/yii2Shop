@@ -9,8 +9,7 @@ use app\models\search\Brand as BrandSearch;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
-use frontend\components\Controller;
-use frontend\components\UploadImg;
+use frontend\components\{Controller,UploadImg};
 
 /**
  * BrandController implements the CRUD actions for Brand model.
@@ -67,16 +66,9 @@ class BrandController extends Controller
     public function actionCreate()
     {
         $model = new Brand();
-
-        if ($model->load(Yii::$app->request->post()) ) {
-            //图片上传
-            $uploadImg = UploadImg::uploadImg($model,'thumb');
-            if ($uploadImg['success']) {
-                $model->save(false);
-                return $this->redirect(['index']);
-            }else{
-                Yii::$app->session->setFlash('warning', $uploadImg['msg']);
-            }
+        
+        if ($model->load(Yii::$app->request->post()) && $this->saveModel($model) ) {
+           return $this->redirect(['/goods/brand']);
         } 
         return $this->render('create', [
             'model' => $model,
@@ -92,14 +84,12 @@ class BrandController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            return $this->render('update', [
-                'model' => $model,
-            ]);
+        if ($model->load(Yii::$app->request->post()) && $this->saveModel($model)  ) {
+            return $this->redirect(['/goods/brand']);
         }
+        return $this->render('update', [
+            'model' => $model,
+        ]);
     }
 
     /**
@@ -114,7 +104,19 @@ class BrandController extends Controller
         if ($this->delete($model)) {
             Yii::$app->session->setFlash('success', '删除成功');
         }
-        return $this->redirect(['index']);
+        return $this->redirect(['/goods/brand']);
+    }
+
+    public function saveModel($model){
+        $uploadImg = UploadImg::uploadImg($model,'thumb');
+        if ($uploadImg['success']) {
+            if ($model->save(false)) 
+                return true;
+            Yii::$app->session->setFlash('warning', '保存失败');
+        }else{
+            Yii::$app->session->setFlash('warning', $uploadImg['msg']);
+        }
+        return false;
     }
 
     /**

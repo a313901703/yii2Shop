@@ -16,7 +16,8 @@ return [
         //权限管理模块
         'admin' => [
             'class' => 'mdm\admin\Module',
-            'layout' => 'left-menu',
+            //'layout' => 'left-menu',
+            'mainLayout'=> '@frontend/views/layouts/main.php',
         ],
         //富文本编辑器
         'redactor' => [ 
@@ -80,10 +81,19 @@ return [
         ],
         'urlManager' => [
             'rules' => [
+                'goods/categories' => 'goods/category',
                 '<module:\w+>/<controller:\w+>s'=>'<module>/<controller>',
                 '<module:\w+>/<controller:\w+>/<action:\w+>/<id:\d+>'=>'<module>/<controller>/<action>',
             ],
         ],
+    ],
+    'as access' => [
+        'class' => 'mdm\admin\components\AccessControl',
+        'allowActions' => [
+            //这里是允许访问的action
+            'site/login',
+            'site/signup',
+        ]
     ],
     'params' => $params,
 ];

@@ -22,7 +22,8 @@
         "yiidoc/yii2-redactor": "*",
         "arogachev/yii2-excel": "^0.1.1",
         "dmstr/yii2-adminlte-asset": "2.*",
-        "kartik-v/yii2-widget-fileinput": "@dev"
+        "kartik-v/yii2-widget-fileinput": "@dev",
+        "kartik-v/yii2-widget-select2": "@dev"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",

@@ -49,12 +49,21 @@ class Brand extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name'], 'required'],
+            ['name', 'required'],
+            [['name'], 'string', 'max' => 50],
+
+            
             ['sort', 'integer'],
             [['sort','status'], 'default','value'=>0],
-            [['name'], 'string', 'max' => 50],
-            //检查 "primaryImage" 是否为 PNG, JPG 格式的上传图片,且文件小于1M
-            ['thumb', 'file', 'extensions' => ['png', 'jpg'], 'maxSize' => 1024*1024*1024],
+                
+            //检查 "thumb" 是否为 PNG, JPG 格式的上传图片,且文件小于1M   
+            ['thumb', 'image', 'extensions' => ['png', 'jpg'],'skipOnEmpty' => false,  'maxSize' => 1024*1024*1024,'when'=>function($model){
+                return $model->isNewRecord;
+            }],
+            //修改时不验证空，不知道有没有更好的办法
+            ['thumb', 'image', 'extensions' => ['png', 'jpg'], 'maxSize' => 1024*1024*1024,'when'=>function($model){
+                return !$model->isNewRecord;
+            }],
         ];
     }
 

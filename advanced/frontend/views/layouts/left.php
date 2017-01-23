@@ -8,7 +8,7 @@
                 <img src="<?= $directoryAsset ?>/img/user2-160x160.jpg" class="img-circle" alt="User Image"/>
             </div>
             <div class="pull-left info">
-                <p>Alexander Pierce</p>
+                <p><?= Yii::$app->user->identity->username ?? ''?></p>
                 <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
             </div>
         </div>
@@ -46,13 +46,13 @@
                         'icon' => 'fa fa-users',
                         'url' => '#',
                         'items' => [
-                            ['label' => '权限分配', 'icon' => 'fa fa-users', 'url' => ['/admin']],
+                            ['label' => '权限分配', 'icon' => 'fa fa-users', 'url' => ['/admin/assignment']],
                             ['label' => '用户列表', 'icon' => 'fa fa-users', 'url' => ['/admin/user']],
                             ['label' => '角色列表', 'icon' => 'fa fa-users', 'url' => ['/admin/role']],
                             ['label' => '权限列表', 'icon' => 'fa fa-users', 'url' => ['/admin/permission']],
                             ['label' => '路由列表', 'icon' => 'fa fa-users', 'url' => ['/admin/route']],
                             ['label' => '规则列表', 'icon' => 'fa fa-users', 'url' => ['/admin/rule']],
-                            ['label' => '菜单列表', 'icon' => 'fa fa-users', 'url' => ['/adminmenu']],
+                            ['label' => '菜单列表', 'icon' => 'fa fa-users', 'url' => ['/admin/menu']],
                         ],
                     ],
                     [
@@ -66,7 +66,6 @@
                         'visible' => YII_ENV_DEV,       //开发模式可见        
                     ],
                     //['label' => 'Login', 'url' => ['/site/login'], 'icon'=>'fa fa-sign-in','visible' => Yii::$app->user->isGuest],
-                    ['label' => 'Logout', 'url' => ['/site/logout'], 'icon'=>'fa fa-sign-out','visible' => !Yii::$app->user->isGuest],
                     // [
                     //     'label' => 'Same tools',
                     //     'icon' => 'fa fa-share',

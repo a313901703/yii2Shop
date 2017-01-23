@@ -13,18 +13,28 @@ class Controller extends baseController
 	const DELETE_STATUS = -1;
 	const ACTIVE_STATUS = 0;
 	const PAUSE_STATUS  = 1;
-	/**
-     * @inheritdoc
+
+    /**
+     * controller初始化
      */
+    // public function init()
+    // {
+    // }
+    
+
     public function beforeAction($action)
     {
         if (parent::beforeAction($action)) {
             return true;
         }
+        if (Yii::$app->user->isGuest) {
+            return false;
+        }
         return false;
     }
 
     /**
+
      * 删除，默认status
      */
     public function delete($model,$attribute = 'status'){

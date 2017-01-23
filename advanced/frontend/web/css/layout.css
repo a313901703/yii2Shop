@@ -149,6 +149,7 @@
     background-color: #fafafa;
     border:1px solid #ddd;
     padding: 20px;
+    border-radius: 5px;
 }
 .active-form .form-groups > .form-group{
     flex:1;

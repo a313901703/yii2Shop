@@ -4,6 +4,9 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use kartik\file\FileInput;
 
+use frontend\components\UploadImg;
+
+
 /* @var $this yii\web\View */
 /* @var $model app\models\Brand */
 /* @var $form yii\widgets\ActiveForm */
@@ -32,10 +35,7 @@ use kartik\file\FileInput;
         
     
     <div class="form-groups flex">
-        <?= $form->field($model, 'thumb')->widget(FileInput::classname(), [
-                'options' => ['multiple' => false],
-            ]);
-         ?>
+        <?= $form->field($model, 'thumb',['enableClientValidation' => $model->isNewRecord])->widget(FileInput::classname(), UploadImg::getFileInput($model->thumb));?>
     </div>
 
      <p class="space"></p>

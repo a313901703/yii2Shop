@@ -50,6 +50,7 @@ class Brand extends BrandModel
             'sort' => [
                 'defaultOrder' => [
                     'sort' => SORT_DESC,
+                    'id' => SORT_DESC,
                 ]
             ]
         ]);
