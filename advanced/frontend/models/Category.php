@@ -3,6 +3,9 @@
 namespace app\models;
 
 use Yii;
+use frontend\components\SubTree;
+use app\models\customize\CommonQuery;
+
 
 /**
  * This is the model class for table "category".
@@ -11,7 +14,6 @@ use Yii;
  * @property string $name
  * @property integer $sort
  * @property integer $pid
- * @property string $pid_sign
  * @property integer $created_at
  * @property integer $created_by
  */
@@ -32,19 +34,6 @@ class Category extends \yii\db\ActiveRecord
                 $this->created_at = time();  
                 $this->created_by = Yii::$app->user->id;  
                 $this->status = Yii::$app->params['activeStatus'];
-                if ($this->pid != 0) {
-                    $model = self::findOne($this->pid);
-                    if ($model === null) {
-                        return false;
-                    }
-                    if ($model->pid == 0) {
-                        $this->pid_sign = $this->pid.',';
-                    }else{
-                        $this->pid_sign = $model->pid_sign.','.$this->pid.',';
-                    }
-                }else{
-                    $this->pid_sign = 0;
-                }
             }
             return true;  
         }else{  
@@ -63,7 +52,6 @@ class Category extends \yii\db\ActiveRecord
 
             [['sort', 'pid'], 'integer'],
 
-            [['pid_sign'], 'string', 'max' => 255],
             [['status','pid'],'default','value'=>0],
         ];
     }
@@ -80,5 +68,23 @@ class Category extends \yii\db\ActiveRecord
             'pid' => '父级',
             'created_at' => '创建时间',
         ];
+    }
+
+    /**
+     * @inheritdoc
+     * @return CommonQuery
+     */
+    public static function find()
+    {
+        return new CommonQuery(get_called_class());
+    }
+
+    /**
+     * 获取分类树
+     * @param  [type] $format [添加format]
+     * @return [Array]        [分类树]
+     */
+    public static function getSubTree($format = false){
+        return SubTree::getSubTree(static::find()->asArray()->all(),$format);
     }
 }

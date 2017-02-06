@@ -20,14 +20,16 @@ $this->params['breadcrumbs'][] = $this->title;
             'name',
             'sort',
             'pid',
-            'pid_sign',
-            'created_at',
+            [
+                'attribute' => 'created_at',
+                'format' =>['date', 'php:Y-m-d H:i:s'],
+            ],
         ],
     ]) ?>
 
     <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
+        <?= Html::a('修改', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('删除', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
                 'confirm' => 'Are you sure you want to delete this item?',

@@ -3,12 +3,14 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 
+
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\search\Brand */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = '品牌';
 $this->params['breadcrumbs'][] = $this->title;
+
 ?>
 <div class="table-content">
 
