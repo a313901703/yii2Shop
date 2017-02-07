@@ -23,6 +23,7 @@ class AppAsset extends AssetBundle
     public $depends = [
         'yii\web\YiiAsset',
         'yii\bootstrap\BootstrapAsset',
+        'dmstr\web\AdminLteAsset',
     ];
     //定义按需加载JS方法，注意加载顺序在最后  
     public static function addScript($view, $jsfile) {  

@@ -18,8 +18,8 @@ class Category extends CategoryModel
     public function rules()
     {
         return [
-            [['id', 'sort', 'pid', 'created_at', 'created_by'], 'integer'],
-            [['name', 'pid_sign'], 'safe'],
+            [['id', 'sort', 'pid'], 'integer'],
+            [['name'], 'safe'],
         ];
     }
 
@@ -66,8 +66,7 @@ class Category extends CategoryModel
             'created_by' => $this->created_by,
         ]);
 
-        $query->andFilterWhere(['like', 'name', $this->name])
-            ->andFilterWhere(['like', 'pid_sign', $this->pid_sign]);
+        $query->andFilterWhere(['like', 'name', $this->name]);
 
         return $dataProvider;
     }

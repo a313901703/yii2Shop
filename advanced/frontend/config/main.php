@@ -93,6 +93,7 @@ return [
             //这里是允许访问的action
             'site/login',
             'site/signup',
+            //'admin/*'
         ]
     ],
     'params' => $params,

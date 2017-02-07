@@ -34,7 +34,6 @@ class Controller extends baseController
     }
 
     /**
-
      * 删除，默认status
      */
     public function delete($model,$attribute = 'status'){

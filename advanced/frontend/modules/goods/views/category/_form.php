@@ -3,10 +3,14 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use kartik\select2\Select2;
+use yii\helpers\ArrayHelper;
+
+use app\models\Category;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Category */
 /* @var $form yii\widgets\ActiveForm */
+$categories = ArrayHelper::map(Category::getSubTree(true),'id','name');
 ?>
 
 <div class="category-form">
@@ -27,7 +31,7 @@ use kartik\select2\Select2;
 
     <div class="form-groups flex">
         <?= $form->field($model, 'pid')->widget(Select2::classname(), [
-                'data' => [],
+                'data' => $categories,
                 'options' => ['placeholder' => '请选择'],
                 'pluginOptions' => [
                     'allowClear' => true

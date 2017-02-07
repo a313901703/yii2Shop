@@ -4,10 +4,12 @@ namespace app\modules\goods\controllers;
 
 use Yii;
 use app\models\Category;
-use app\models\search\Category as CategorySearch;
-use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\helpers\ArrayHelper;
+use frontend\components\Controller;
+
+
 
 /**
  * CategoryController implements the CRUD actions for Category model.
@@ -35,12 +37,9 @@ class CategoryController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new CategorySearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
+        $categories = Category::getSubTree();
         return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
+            'categories' => $categories,
         ]);
     }
 
@@ -101,8 +100,10 @@ class CategoryController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
-
+        $model = $this->findModel($id);
+        if ($this->delete($model)) {
+            //Yii::$app->session->setFlash('success', '删除成功');
+        }
         return $this->redirect(['index']);
     }
 
