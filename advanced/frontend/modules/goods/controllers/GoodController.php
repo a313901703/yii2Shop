@@ -5,13 +5,11 @@ namespace app\modules\goods\controllers;
 use Yii;
 use app\models\Goods;
 use app\models\search\Goods as GoodsSearch;
-use yii\web\Controller;
+use frontend\components\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 
-use arogachev\excel\import\advanced\Importer;
-use yii\helpers\Html;
 
 
 /**
@@ -90,13 +88,16 @@ class GoodController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        //将id写入redis
+        $this->redis->set(Yii::$app->user->id.'_currentGood',$id);
+        
         if ($model->load(Yii::$app->request->post())) {
             if ($model->save()) 
                 return $this->redirect(['index']);
             else{
                 Yii::$app->session->setFlash('warning', array_values($model->getFirstErrors())[0]);
             }
-        } 
+        }
         return $this->render('update', [
             'model' => $model,
         ]);
@@ -113,36 +114,6 @@ class GoodController extends Controller
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
-    }
-
-    public function actionExport(){
-        $importer = new Importer([
-            'filePath' => Yii::getAlias('@webroot/excel/test.xlsx'),
-            'standardModelsConfig' => [
-                [
-                    'className' => Goods::className(),
-                    'standardAttributesConfig' => [
-                        [
-                            'name' => 'good_no',
-                            //'valueReplacement' => 1,
-                        ],
-                        [
-                            'name' => 'id',
-                            'valueReplacement' => function ($value) {
-                                return $value ? Html::tag('p', $value) : '';
-                            },
-                        ],
-                        [
-                            'name' => 'name',
-                            'valueReplacement' => function ($value) {
-                                return $value ? Html::tag('p', $value) : '';
-                                //return Goods::find()->select('id')->where(['name' => $value]);
-                            },
-                        ],
-                    ],
-                ],
-            ],
-        ]);
     }
 
     /**

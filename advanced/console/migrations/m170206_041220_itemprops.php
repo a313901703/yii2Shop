@@ -27,7 +27,7 @@ class m170206_041220_itemprops extends Migration
             'id' => $this->primaryKey(),
             'name' => $this->string(50)->notNull()->comment('属性值名'),
             'sort' => $this->integer(6)->notNull()->defaultValue(0)->comment('排序'),
-            'props_id' => $this->integer()->notNull()->defaultValue(0)->comment('属性ID'),
+            'props_id' => $this->integer()->notNull()->comment('属性ID'),
             'cat_id' => $this->integer()->notNull()->defaultValue(0)->comment('分类ID'),
             'status' => $this->integer(3)->notNull()->defaultValue(0)->comment('0：正常 -1：删除 1：禁用'),
         ],$this->tableOptions);

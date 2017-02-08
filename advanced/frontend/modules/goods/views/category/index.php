@@ -34,7 +34,7 @@ AppAsset::addScript($this,Yii::$app->request->baseUrl."/js/cat.js?".time());
 </style>
 
 <p>
-   <?= Html::a('新建分类', ['create'], ['class' => 'btn btn-success']) ?> 
+   <?= Html::a('<i class="fa fa-plus"></i>  新建分类', ['create'], ['class' => 'btn btn-success']) ?> 
 </p>
 
 <div class="category-index">
@@ -52,7 +52,7 @@ AppAsset::addScript($this,Yii::$app->request->baseUrl."/js/cat.js?".time());
                 <td> <i class="fa fa-chevron-right cat-icon"></i> <?= $category['name'] ?></td>
                 <td><?= $category['pid'] ?></td>
                 <td>
-                    <a class="btn btn-primary btn-sm">修改</a>
+                    <?= Html::a('修改', ['update', 'id' => $category['id']], ['class' => 'btn btn-primary btn-sm']) ?>
                     <?= Html::a('删除', ['delete','id'=>$category['id']], [
                         'class' => 'btn btn-danger btn-sm',
                         'title' => '删除',

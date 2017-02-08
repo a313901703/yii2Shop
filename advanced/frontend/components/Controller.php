@@ -5,7 +5,7 @@ namespace frontend\components;
 use Yii;
 use yii\base\InlineAction;
 use yii\helpers\{Url,Json};
-use yii\web\{Controller as baseController,Response};
+use yii\web\{Controller as baseController,Response,Redis};
 
 
 class Controller extends baseController
@@ -20,18 +20,6 @@ class Controller extends baseController
     // public function init()
     // {
     // }
-    
-
-    public function beforeAction($action)
-    {
-        if (parent::beforeAction($action)) {
-            return true;
-        }
-        if (Yii::$app->user->isGuest) {
-            return false;
-        }
-        return false;
-    }
 
     /**
      * 删除，默认status
@@ -39,5 +27,12 @@ class Controller extends baseController
     public function delete($model,$attribute = 'status'){
     	$model->$attribute = self::DELETE_STATUS;
     	return $model->save();
+    }
+   
+    /**
+     * 获取redis实例
+     */
+    public function getRedis(){
+        return Yii::$app->redis;
     }
 }

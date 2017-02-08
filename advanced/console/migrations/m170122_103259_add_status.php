@@ -14,7 +14,7 @@ class m170122_103259_add_status extends Migration
 
     public function safeDown()
     {
-        $this->dropColumn('post', 'status');
+        $this->dropColumn('goods', 'status');
         $this->dropColumn('category', 'status');
         $this->dropColumn('brand', 'status');
     }

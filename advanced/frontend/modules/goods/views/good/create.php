@@ -13,12 +13,8 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 
 <div class="form-content">
-    <div class="flex">
-        <?=  !$model->isNewRecord ? \Yii::$app->view->renderFile('@app/modules/goods/views/good/nav.php') : '';?>
-        <div style="flex:1">
-            <?= $this->render('_form', [
-                'model' => $model,
-            ]) ?>
-        </div>
-    </div>
+    <?= $this->render('_form', [
+        'model' => $model,
+    ]) ?>
+    
 </div>

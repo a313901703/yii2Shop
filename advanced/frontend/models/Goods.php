@@ -7,6 +7,9 @@ use Yii;
 use yii\behaviors\TimestampBehavior;
 use yii\behaviors\BlameableBehavior;
 
+use app\models\Category;
+use app\models\Brand;
+
 /**
  * This is the model class for table "goods".
  *
@@ -58,7 +61,7 @@ class Goods extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'good_cate', 'good_brand', 'market_price', 'sale_price', 'cost','good_desc','good_detail'], 'required'],
+            [['name', 'good_cate', 'good_brand', 'market_price', 'sale_price','good_desc','good_detail'], 'required'],
             [['weight', 'market_price', 'sale_price', 'cost'], 'number'],
             [['good_cate', 'good_brand', 'recommend', 'show', 'freight', 'stock', 'alert', 'sort', 'integral', 'virtual_nums', 'volume'], 'integer'],
             [['name', 'seo_title', 'seo_keyword', 'good_no'], 'string', 'max' => 50],
@@ -66,6 +69,7 @@ class Goods extends \yii\db\ActiveRecord
             ['good_no','default','value' =>  function ($model, $attribute) {
                 return chr(rand(65, 90)).chr(rand(65, 90)).time();
             }],
+            ['cost','default','value'=>0],
             [['short_name', 'keyword'], 'string', 'max' => 20],
             [['seo_content','good_note'], 'string', 'max' => 255],
         ];
@@ -104,5 +108,13 @@ class Goods extends \yii\db\ActiveRecord
             'good_desc'=>'商品描述',
             'good_detail'=>'商品详情',
         ];
+    }
+
+    public function getBrand(){
+        return $this->hasOne(Brand::className(), ['id' => 'good_brand']);
+    }
+
+    public function getCategory(){
+        return $this->hasOne(Category::className(), ['id' => 'good_cate']);
     }
 }

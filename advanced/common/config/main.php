@@ -18,6 +18,12 @@ return [
             // // Name of the cache component used to store schema information
             // 'schemaCache' => 'cache',
         ],
+        'redis' => [
+            'class' => 'yii\redis\Connection',
+            'hostname' => '127.0.0.1',
+            'port' => 6379,
+            'database' => 'product',
+        ],
         'urlManager' => [
             'enablePrettyUrl' => true,
             'enableStrictParsing' => false,

@@ -94,6 +94,7 @@
 .form-content,.table-content{
     background-image: url(../imgs/main-back.png);
     background-color: #fff;
+    min-height:600px;
 }
 .search-form{
     background-color: #eee;

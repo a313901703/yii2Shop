@@ -24,15 +24,15 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
             'good_no',
             'name',
-            [
-                'label'=>'缩略图',
-                'format'=>'html',
-                'value'=>function($model){
-                    return Html::img("@web/imgs/uploads/1/f40abf6242-503008.png",['width' =>100,'height'=>100]);
-                }
-            ],
-            'good_cate',
-            'good_brand',
+            // [
+            //     'label'=>'缩略图',
+            //     'format'=>'html',
+            //     'value'=>function($model){
+            //         return Html::img("@web/imgs/uploads/1/f40abf6242-503008.png",['width' =>100,'height'=>100]);
+            //     }
+            // ],
+            'brand.name',
+            'category.name',
             [
                 'label'=>'价格',  
                 //'attribute'=>'sale_price',
@@ -45,19 +45,19 @@ $this->params['breadcrumbs'][] = $this->title;
                     return $html;
                 },
             ],
-            // [
-            //     'label'=>'其他信息',  
-            //     //'attribute'=>'sale_price',
-            //     'format'=>'html',
-            //     'value' => function ($model) {
-            //         $html = '';
-            //         $html .= "<span>库存: ".$model->stock."</span><br>";
-            //         $html .= "<span>销售: ".$model->volume."</span><br>";
-            //         $html .= "<span>重量: ".$model->weight." kg</span><br>";
-            //         $html .= "<span>推荐类型: ".$model->recommend."</span><br>";
-            //         return $html;
-            //     },
-            // ],
+            [
+                'label'=>'详细信息',  
+                //'attribute'=>'sale_price',
+                'format'=>'html',
+                'value' => function ($model) {
+                    $html = '';
+                    $html .= "<span>库存: ".$model->stock."</span><br>";
+                    $html .= "<span>销售: ".$model->volume."</span><br>";
+                    $html .= "<span>重量: ".$model->weight." kg</span><br>";
+                    $html .= "<span>推荐类型: ".$model->recommend."</span><br>";
+                    return $html;
+                },
+            ],
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>

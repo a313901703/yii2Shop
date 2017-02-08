@@ -12,6 +12,10 @@ return [
     'bootstrap' => ['log'],
     'controllerNamespace' => 'frontend\controllers',
     'name' =>'WTF+',        //平台名称
+
+    'aliases' => [
+        '@goods' => '@app/modules/goods',
+    ],
     'modules' => [
         //权限管理模块
         'admin' => [
@@ -82,7 +86,8 @@ return [
         'urlManager' => [
             'rules' => [
                 'goods/categories' => 'goods/category',
-                '<module:\w+>/<controller:\w+>s'=>'<module>/<controller>',
+                'goods/props' => 'goods/props/index',
+                '<module:\w+>/<controller:\w+>s'=>'<module>/<controller>/index',
                 '<module:\w+>/<controller:\w+>/<action:\w+>/<id:\d+>'=>'<module>/<controller>/<action>',
             ],
         ],
