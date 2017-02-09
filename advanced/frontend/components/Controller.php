@@ -4,8 +4,11 @@ namespace frontend\components;
 
 use Yii;
 use yii\base\InlineAction;
+use yii\data\ActiveDataProvider;
 use yii\helpers\{Url,Json};
-use yii\web\{Controller as baseController,Response,Redis};
+use yii\web\{Controller as baseController,Response};
+use yii\web\NotFoundHttpException;
+
 
 
 class Controller extends baseController
@@ -35,4 +38,24 @@ class Controller extends baseController
     public function getRedis(){
         return Yii::$app->redis;
     }
+
+    /**
+     * 获取ActiveDataprovider   用于GridView
+     * @param  [type] $query  查询条件
+     * @param  [type] $params 参数
+     * @return [obj]         ActiveDataprovider
+     */
+    public function getActiveDataprovider($query,$params){
+        $provider = new ActiveDataProvider([
+            'query' => $query,
+            'pagination' => [
+                'pageSize' => $params['pageSize']??20 ,
+            ],
+            'sort' => [
+                'defaultOrder' => $params['sort']??['id'=>SORT_DESC]
+            ],
+        ]);
+        return $provider;
+    }  
+
 }

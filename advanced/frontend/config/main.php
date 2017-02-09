@@ -87,6 +87,8 @@ return [
             'rules' => [
                 'goods/categories' => 'goods/category',
                 'goods/props' => 'goods/props/index',
+                '<module:\w+>/<controller:(props)>/<action:\w+>/pid/<pid:\d+>'=>'<module>/<controller>/<action>',
+
                 '<module:\w+>/<controller:\w+>s'=>'<module>/<controller>/index',
                 '<module:\w+>/<controller:\w+>/<action:\w+>/<id:\d+>'=>'<module>/<controller>/<action>',
             ],

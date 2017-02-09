@@ -18,4 +18,10 @@ $(function(){
 			}
 		});
 	}
+
+	$('.modalBtn').on('click',function(){
+		console.log($(this).data('toggle'))
+		$("#modal .modal-body").load($(this).data('toggle'));
+		$('#modal').modal('show')
+	});
 });
