@@ -56,6 +56,14 @@ class Controller extends baseController
             ],
         ]);
         return $provider;
-    }  
+    } 
+
+    public function saveModel($model){
+        if ($model->save()) 
+            return true;
+        else
+            Yii::$app->session->setFlash('alert', ['type'=>'warning','text'=>array_values($model->getFirstErrors())[0]]);
+        return false;
+    } 
 
 }

@@ -12,7 +12,6 @@ use yii\helpers\Url;
 $this->title = '属性列表';
 $this->params['breadcrumbs'][] = $this->title;
 
-// AppAsset::addScript($this,Yii::$app->request->baseUrl."/js/cat.js?";
 ?>
 <div class="flex">
     <?= $this->render('@goods/views/nav.php', ['id'=>1])?>
@@ -44,16 +43,16 @@ $this->params['breadcrumbs'][] = $this->title;
                         'headerOptions' => ['width' => '300'],
                         'buttons' => [
                             'addvalue' => function($url, $model, $key){
-                                return Html::a('<i class="fa fa-plus"></i> 新建属性值',['create', 'pid' => $key], ['class' => 'btn btn-success btn-sm']);
+                                return Html::a('<i class="fa fa-list"></i> 属性值',['create', 'pid' => $key], ['class' => 'btn btn-success btn-sm']);
                             },
                             'update' => function($url, $model, $key){
                                 return Html::a('<i class="fa fa-pencil"></i> 修改','#', 
-                                    ['class' => 'btn btn-primary btn-sm modalBtn','data-toggle'=>'/goods/props/update/1.html']);
+                                    ['class' => 'btn btn-primary btn-sm modalBtn','data-toggle'=>Url::to(['props/update','id'=>$key]),'data-title'=>$model->name]);
                             },
                             'delete' => function($url, $model, $key){
                                 return Html::a('<i class="fa fa-trash-o"></i> 删除',['delete', 'id' => $key], 
                                     ['class' => 'btn btn-danger btn-sm','data' => ['confirm' => '你确定要删除吗？','method' => 'post']]);
-                            },                         
+                            },
                        ],
                     ],
                 ],

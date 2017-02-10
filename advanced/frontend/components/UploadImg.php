@@ -83,10 +83,10 @@ class UploadImg
      * @param  array  $pluginOptions [description]
      * @return [type]                [description]
      */
-    public static function getFileInput($attributes,$path = '',$options = [],$pluginOptions =[] ){
-        if (empty($attributes)) {
-            return [];
-        }
+    public static function getFileInput($attributes,$options = [],$pluginOptions =[],$path = ''){
+        // if (empty($attributes)) {
+        //     return [];
+        // }
         $path = $path ?: Yii::getAlias('@web');
         if (is_array($attributes)) {
             foreach ($attributes as $key => $value) {
@@ -105,7 +105,7 @@ class UploadImg
             // 预览的文件
             'initialPreview' => $initialPreview,
             // 需要展示的图片设置，比如图片的宽度等
-            //'initialPreviewConfig' => ['url'=>'brand/delete','key'=>$model->id],
+            'initialPreviewConfig' => [],
             // 是否展示预览图
             'initialPreviewAsData' => true,
             // 异步上传的接口地址设置
@@ -120,7 +120,7 @@ class UploadImg
             // 最多上传的文件个数限制
             'maxFileCount' => 1,
             // 是否显示移除按钮，指input上面的移除按钮，非具体图片上的移除按钮
-            'showRemove' => true,
+            'showRemove' => false,
             // 是否显示上传按钮，指input上面的上传按钮，非具体图片上的上传按钮
             'showUpload' => true,
             //是否显示[选择]按钮,指input上面的[选择]按钮,非具体图片上的上传按钮
@@ -137,9 +137,7 @@ class UploadImg
                 'showRemove' => true,
             ],
         ];
-
-        $pluginOptions = empty($pluginOptions) ? $defaultPluginOptions : array_merge($defaultPluginOptions,$pluginOptions);
-
+        $pluginOptions = empty($pluginOptions) ? $defaultPluginOptions : ArrayHelper::merge($defaultPluginOptions,$pluginOptions);
         return [
             'options' => $options,
             'pluginOptions' => $pluginOptions

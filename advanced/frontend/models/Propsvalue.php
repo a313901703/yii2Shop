@@ -49,6 +49,7 @@ class Propsvalue extends \yii\db\ActiveRecord
             'sort' => '排序',
             'props_id' => '属性ID',
             'status' => '状态',
+            'thumb' => '缩略图',
         ];
     }
 

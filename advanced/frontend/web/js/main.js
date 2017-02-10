@@ -1,4 +1,7 @@
 $(function(){
+	/**
+	 * 重写alert
+	 */
 	yii.confirm = function (message, ok, cancel) {
 		swal({
 			title: message,
@@ -18,9 +21,11 @@ $(function(){
 			}
 		});
 	}
-
+	/**
+	 * modal 显示隐藏层
+	 */
 	$('.modalBtn').on('click',function(){
-		console.log($(this).data('toggle'))
+		$("#modal .modal-title").html($(this).data('title'));
 		$("#modal .modal-body").load($(this).data('toggle'));
 		$('#modal').modal('show')
 	});

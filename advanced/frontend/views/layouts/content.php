@@ -11,7 +11,6 @@ use dmstr\widgets\Alert;
     </section>
 
     <section class="content">
-        <?= Alert::widget(['options'=>['style'=>'margin-bottom:0']]) ?>
         <?= $content ?>
     </section>
 </div>
@@ -228,3 +227,19 @@ use dmstr\widgets\Alert;
         </div>
     </div>
 </div>
+
+<?php
+//
+$session = Yii::$app->session;
+if ($alert = $session->getFlash('alert') ){
+    $js = <<<JS
+        $(function(){
+            swal({
+                title: "{$alert['text']}",
+                type: "{$alert['type']}",
+            })
+        })
+JS;
+$this->registerJs($js);
+}
+?>
