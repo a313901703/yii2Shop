@@ -3,8 +3,9 @@
  * 公共自定义查询类
  */
 
-namespace app\models\customize;
+namespace app\models;
 
+use Yii;
 use yii\db\ActiveQuery;
 
 class CommonQuery extends ActiveQuery
@@ -36,5 +37,11 @@ class CommonQuery extends ActiveQuery
     public function del($status = self::DELETE_STATUS){
         $this->andWhere(['status'=> $status]);
         return $this;
+    }
+
+    public function goods($goodsId = '')
+    {
+        $goodsId = $goodsId ?: Yii::$app->redis->get(Yii::$app->user->id.'_currentGoods');
+        return $this->andWhere(['goods_id'=>$goodsId]);
     }
 }

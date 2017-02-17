@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\widgets\Pjax;
 use frontend\assets\AppAsset;
 use yii\helpers\Url;
 
@@ -13,6 +14,7 @@ $this->title = '属性列表';
 $this->params['breadcrumbs'][] = $this->title;
 
 ?>
+
 <div class="flex">
     <?= $this->render('@goods/views/nav.php', ['id'=>1])?>
     <div style="flex:1">
@@ -21,6 +23,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'model' => $model,
             ]) ?>
             <div class="space"></div>
+            <?php Pjax::begin(['id' => 'propses']) ?>
             <?= GridView::widget([
                 'dataProvider' => $provider,
                 'options'=>['class'=>'list-table'],
@@ -57,9 +60,11 @@ $this->params['breadcrumbs'][] = $this->title;
                     ],
                 ],
             ]); ?>
+            <?php Pjax::end() ?>
         </div>
     </div>
 </div>
+
 
 
 

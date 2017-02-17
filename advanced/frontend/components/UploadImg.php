@@ -96,7 +96,7 @@ class UploadImg
             $initialPreview = $path.$attributes;
         }
 
-        $defaultOptions = ['multiple' => false];
+        $defaultOptions = ['multiple' => false,'data'=>['id'=>1]];
         $options = empty($options) ? $defaultOptions : array_merge($defaultOptions,$options);
 
         $defaultPluginOptions = [
@@ -105,9 +105,12 @@ class UploadImg
             // 预览的文件
             'initialPreview' => $initialPreview,
             // 需要展示的图片设置，比如图片的宽度等
-            'initialPreviewConfig' => [],
+            'initialPreviewConfig' => [
+                'width'=>'100px',
+            ],
             // 是否展示预览图
             'initialPreviewAsData' => true,
+            'previewSettings' => ['image'=>['width'=>'100px','height'=>'100px']],
             // 异步上传的接口地址设置
             //'uploadUrl' => Url::toRoute(['/site/upload']),
             // 异步上传需要携带的其他参数，比如商品id等
@@ -140,7 +143,7 @@ class UploadImg
         $pluginOptions = empty($pluginOptions) ? $defaultPluginOptions : ArrayHelper::merge($defaultPluginOptions,$pluginOptions);
         return [
             'options' => $options,
-            'pluginOptions' => $pluginOptions
+            'pluginOptions' => $pluginOptions,
         ];
     }
 }

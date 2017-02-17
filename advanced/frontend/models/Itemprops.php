@@ -24,6 +24,18 @@ class Itemprops extends \yii\db\ActiveRecord
         return 'itemprops';
     }
 
+    public function beforeSave($insert)
+    {  
+        if(parent::beforeSave($insert)){  
+            if($this->isNewRecord){  
+                $this->goods_id = Yii::$app->redis->get(Yii::$app->user->id.'_currentGoods');
+            }
+            return true;  
+        }else{  
+            return false;  
+        }  
+    } 
+
     /**
      * @inheritdoc
      */
@@ -36,6 +48,10 @@ class Itemprops extends \yii\db\ActiveRecord
 
             ['type','default','value'=>2],
             ['type','in','range'=>[1,2,3]],
+
+            ['goods_id','default','value'=>function($model){
+                
+            }],
         ];
     }
 
@@ -50,6 +66,10 @@ class Itemprops extends \yii\db\ActiveRecord
             'sort' => '排序',
             'type' => '类型',
         ];
+    }
+
+    public static function find(){
+        return parent::find()->where(['goods_id'=>Yii::$app->redis->get(Yii::$app->user->id.'_currentGoods')]);
     }
 
     /**

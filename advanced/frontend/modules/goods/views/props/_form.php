@@ -2,17 +2,26 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-use kartik\select2\Select2;
-use yii\helpers\ArrayHelper;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\props */
 /* @var $form yii\widgets\ActiveForm */
 ?>
-
+<?php
+ 
+$this->registerJs(
+    '$("document").ready(function(){ 
+        var container = $("#propses");//容器
+        $("#new_props").on("pjax:end", function() {
+            $.pjax.reload({container:"#propses",timeout: 5000});  //Reload GridView
+        });
+    });'
+);
+?>
 <div >
+    <?php yii\widgets\Pjax::begin(['id' => 'new_props']) ?>
     <?php $form = ActiveForm::begin([
-        'options'=>['class'=>'search-form'],
+        'options'=>['class'=>'search-form','data-pjax' => true],
         'fieldConfig'=>[
             'template'=> "<div class=\"form-group\">{label}{input}</div>\n{error}",
         ]
@@ -27,4 +36,5 @@ use yii\helpers\ArrayHelper;
     </div>
 
     <?php ActiveForm::end(); ?>
+    <?php yii\widgets\Pjax::end() ?>
 </div>

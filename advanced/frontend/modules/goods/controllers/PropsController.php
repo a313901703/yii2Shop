@@ -34,10 +34,10 @@ class PropsController extends Controller
         $model = new Itemprops();
         if ($model->load(Yii::$app->request->post())) {
             $this->saveModel($model);
-            return $this->redirect(['index']);
+            $model = new Itemprops();
         } 
-        $query = Itemprops::find()->where(['type'=>2])->with(['propsvalues']);
-        $provider = $this->getActiveDataprovider($query,['pageSize'=>20,'sort'=>['sort' => SORT_DESC,'id' => SORT_DESC]]);
+        $query = Itemprops::find()->andWhere(['type'=>2])->with(['propsvalues']);
+        $provider = $this->getActiveDataprovider($query,['pageSize'=>20],['defaultOrder'=>['sort' => SORT_DESC,'id' => SORT_DESC]]);
         return $this->render('index', [
             'model' => $model,
             'provider' => $provider
@@ -46,12 +46,16 @@ class PropsController extends Controller
 
     public function actionCreate($pid)
     {
-        $valueModel = new Propsvalue();
-        $model = $this->findModel($pid);
+        $model = new Propsvalue();
+        $propsModel = $this->findModel($pid);
+
         if ($post = Yii::$app->request->post()){
             print_r($post);exit;
+            return $this->redirect(['index']);
         }
-        return $this->render('create',['model'=>$model,'valueModel'=>$valueModel]);
+        $query = Propsvalue::find()->where(['props_id'=>$pid])->goods();
+        $provider = $this->getActiveDataprovider($query,['pageSize'=>20],['defaultOrder'=>['sort' => SORT_DESC,'id' => SORT_DESC]]);
+        return $this->render('create',['model'=>$model,'propsModel'=>$propsModel,'provider'=>$provider]);
     }
 
     public function actionUpdate($id)
