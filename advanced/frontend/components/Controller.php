@@ -45,15 +45,11 @@ class Controller extends baseController
      * @param  [type] $params 参数
      * @return [obj]         ActiveDataprovider
      */
-    public function getActiveDataprovider($query,$params){
+    public function getActiveDataprovider($query,$pagination = ['pageSize' => 20],$sort = ['defaultOrder'=>['id' => SORT_DESC]]){
         $provider = new ActiveDataProvider([
             'query' => $query,
-            'pagination' => [
-                'pageSize' => $params['pageSize']??20 ,
-            ],
-            'sort' => [
-                'defaultOrder' => $params['sort']??['id'=>SORT_DESC]
-            ],
+            'pagination' => $pagination,
+            'sort' => $sort,
         ]);
         return $provider;
     } 

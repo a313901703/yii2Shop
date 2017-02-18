@@ -89,7 +89,7 @@ class GoodController extends Controller
     {
         $model = $this->findModel($id);
         //将id写入redis
-        $this->redis->set(Yii::$app->user->id.'_currentGood',$id);
+        $this->redis->set(Yii::$app->user->id.'_currentGoods',$id);
         
         if ($model->load(Yii::$app->request->post())) {
             if ($model->save()) 

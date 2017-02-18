@@ -25,6 +25,18 @@ class Propsvalue extends \yii\db\ActiveRecord
         return 'propsvalue';
     }
 
+    public function beforeSave($insert)
+    {  
+        if(parent::beforeSave($insert)){  
+            if($this->isNewRecord){  
+                $this->goods_id = Yii::$app->redis->get(Yii::$app->user->id.'_currentGoods');
+            }
+            return true;  
+        }else{  
+            return false;  
+        }  
+    } 
+
     /**
      * @inheritdoc
      */
@@ -51,6 +63,10 @@ class Propsvalue extends \yii\db\ActiveRecord
             'status' => '状态',
             'thumb' => '缩略图',
         ];
+    }
+
+    public static function find(){
+        return new CommonQuery(get_called_class());
     }
 
     /**

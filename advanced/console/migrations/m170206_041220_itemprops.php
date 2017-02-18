@@ -20,6 +20,7 @@ class m170206_041220_itemprops extends Migration
             'name' => $this->string(50)->notNull()->comment('属性名'),
             'sort' => $this->integer(6)->notNull()->defaultValue(0)->comment('排序'),
             'type' => $this->integer(5)->notNull()->defaultValue(0)->comment('类型 1：基本属性 2：销售属性'),
+            'goods_id' => $this->integer()->notNull()->comment('商品ID'),
         ],$this->tableOptions);
 
         $this->createTable(self::TABLE_NAME_PROPS_VALUE, [
@@ -28,6 +29,7 @@ class m170206_041220_itemprops extends Migration
             'sort' => $this->integer(6)->notNull()->defaultValue(0)->comment('排序'),
             'thumb' => $this->string()->notNull()->comment('缩略图'),
             'props_id' => $this->integer()->notNull()->comment('属性ID'),
+            'goods_id' => $this->integer()->notNull()->comment('商品ID'),
             'status' => $this->integer(3)->notNull()->defaultValue(0)->comment('0：正常 -1：删除 1：禁用'),
         ],$this->tableOptions);
 

@@ -12,13 +12,13 @@ use frontend\components\UploadImg;
 /* @var $this yii\web\View */
 /* @var $model app\models\props */
 /* @var $form yii\widgets\ActiveForm */
-//print_r(UploadImg::getFileInput($model->thumb));exit;
+
 ?>
 <style type="text/css">
-    .search-form{
+   /* .search-form{
         background: none;
-    }
-    .items{
+    }*/
+   /* .items{
         background-color: #eee;
         margin-bottom: 10px;
     }
@@ -30,51 +30,36 @@ use frontend\components\UploadImg;
     }
     .file-preview-frame{
         height:110px;
+    }*/
+    .active-form{
+        background-color: #eee;
     }
-    
 </style>
 <div >
     <?php $form = ActiveForm::begin([
-        'options'=>['class'=>'active-form','enctype' => 'multipart/form-data'],
+        'options'=>['class'=>' active-form','enctype' => 'multipart/form-data'],
         'fieldConfig'=>[
-            'template'=> "<div class=\"form-group\">{label}{input}</div>\n{error}",
+            'template'=> "<div class=\"form-group flex\">{label}{input}{hint}</div>\n{error}",
         ]
     ]); ?>
-    
-    <div class="form-groups-box">
-        <div class="items">
-            <div class="form-groups flex">
-                <?= $form->field($model, 'name[]')->textInput(['maxlength' => true]) ?>
-                <?= $form->field($model, 'sort[]') ?>
-                <div class="form-group flex"></div>
-                <div class="form-group flex"></div>
-            </div>
-
-            <div class="form-groups flex">
-                <?= $form->field($model, 'thumb[]')->widget(FileInput::classname(),UploadImg::getFileInput($model->thumb));?>
-                <div class="form-group flex"></div>
-                <div class="form-group flex"></div>
-                <div class="form-group flex"></div>
-            </div>
-        </div>
+    <div class="form-groups flex">
+        <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
+        <div class="form-group flex"></div>
+        <div class="form-group flex"></div>
+    </div>
+    <div class="form-groups flex">
+        <?= $form->field($model, 'sort')?>
+        <div class="form-group flex"></div>
+        <div class="form-group flex"></div>
+    </div>
+    <div class="form-groups flex">
+        <?= $form->field($model, 'thumb')->widget(FileInput::classname(),UploadImg::getFileInput($model->thumb))?>
+        <div class="form-group flex"></div>
     </div>
         
-    <div class="form-group btn-group">
-        <?= Html::a('添加属性值', '#', ['class' => 'btn btn-success add-value']) ?>
-        <?= Html::submitButton('提交', ['class' => 'btn btn-primary']) ?>
+    <div class="form-group">
+        <?= Html::submitButton('提交', ['class' => 'btn btn-success']) ?>
     </div>
     <?php ActiveForm::end(); ?>
 </div>
-
-<?php 
-// AppAsset::addScript($this,Yii::$app->request->baseUrl."/js/jquery-temp.min.js");
-// $js = <<<JS
-//         $(function(){
-//             $('.add-value').on('click',function(){
-//                 $('#valueTemp').tmpl([1]).appendTo('.form-groups-box');
-//             })
-//         })
-// JS;
-// $this->registerJs($js);
-
- ?>
+    
