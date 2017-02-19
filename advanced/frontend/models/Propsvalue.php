@@ -17,6 +17,7 @@ use Yii;
  */
 class Propsvalue extends \yii\db\ActiveRecord
 {
+    public $_thumb;
     /**
      * @inheritdoc
      */
@@ -47,6 +48,8 @@ class Propsvalue extends \yii\db\ActiveRecord
             [['sort', 'props_id', 'status'], 'integer'],
             [['name'], 'string', 'max' => 50],
             [['props_id'], 'exist', 'skipOnError' => true, 'targetClass' => Itemprops::className(), 'targetAttribute' => ['props_id' => 'id']],
+
+            ['_thumb', 'image', 'extensions' => ['png', 'jpg'], 'maxSize' => 1024*1024,'maxWidth'=>100,'maxHeight'=>100],
         ];
     }
 
@@ -62,6 +65,7 @@ class Propsvalue extends \yii\db\ActiveRecord
             'props_id' => '属性ID',
             'status' => '状态',
             'thumb' => '缩略图',
+            '_thumb' => '缩略图',
         ];
     }
 

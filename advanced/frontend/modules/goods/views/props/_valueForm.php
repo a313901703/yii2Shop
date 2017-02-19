@@ -15,22 +15,6 @@ use frontend\components\UploadImg;
 
 ?>
 <style type="text/css">
-   /* .search-form{
-        background: none;
-    }*/
-   /* .items{
-        background-color: #eee;
-        margin-bottom: 10px;
-    }
-    .active-form .form-groups > .form-group{
-        margin: 0 10px;
-    }
-    .file-thumbnail-footer{
-        display: none;
-    }
-    .file-preview-frame{
-        height:110px;
-    }*/
     .active-form{
         background-color: #eee;
     }
@@ -42,6 +26,7 @@ use frontend\components\UploadImg;
             'template'=> "<div class=\"form-group flex\">{label}{input}{hint}</div>\n{error}",
         ]
     ]); ?>
+    
     <div class="form-groups flex">
         <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
         <div class="form-group flex"></div>
@@ -53,7 +38,7 @@ use frontend\components\UploadImg;
         <div class="form-group flex"></div>
     </div>
     <div class="form-groups flex">
-        <?= $form->field($model, 'thumb')->widget(FileInput::classname(),UploadImg::getFileInput($model->thumb))?>
+        <?= $form->field($model, '_thumb')->widget(FileInput::classname(),UploadImg::getFileInput($model->thumb))?>
         <div class="form-group flex"></div>
     </div>
         

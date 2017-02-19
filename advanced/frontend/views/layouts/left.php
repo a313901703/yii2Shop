@@ -24,7 +24,9 @@
             </div>
         </form>
         <!-- /.search form -->
-
+        <?php 
+        $goodsActive = ($this->context->module->id == 'goods' && in_array($this->context->id,['good','props'])) ? 'active' : '';
+         ?>
         <?= dmstr\widgets\Menu::widget(
             [
                 'options' => ['class' => 'sidebar-menu'],
@@ -36,7 +38,12 @@
                         'icon' => 'fa fa-share',
                         'url' => '#',
                         'items' => [
-                            ['label' => '商品详情', 'icon' => 'fa fa-table', 'url' => ['/goods/good']],
+                            [
+                                'label' => '商品详情', 
+                                'icon' => 'fa fa-table', 
+                                'url' => ['/goods/good'],
+                                'active'=> $goodsActive      
+                            ],
                             ['label' => '商品分类', 'icon' => 'fa fa-table', 'url' => ['/goods/category']],
                             ['label' => '商品品牌', 'icon' => 'fa fa-table', 'url' => ['/goods/brand']],
                         ],
@@ -65,33 +72,6 @@
                         ],
                         'visible' => YII_ENV_DEV,       //开发模式可见        
                     ],
-                    //['label' => 'Login', 'url' => ['/site/login'], 'icon'=>'fa fa-sign-in','visible' => Yii::$app->user->isGuest],
-                    // [
-                    //     'label' => 'Same tools',
-                    //     'icon' => 'fa fa-share',
-                    //     'url' => '#',
-                    //     'items' => [
-                    //         ['label' => 'Gii', 'icon' => 'fa fa-file-code-o', 'url' => ['/gii'],],
-                    //         ['label' => 'Debug', 'icon' => 'fa fa-dashboard', 'url' => ['/debug'],],
-                    //         [
-                    //             'label' => 'Level One',
-                    //             'icon' => 'fa fa-circle-o',
-                    //             'url' => '#',
-                    //             'items' => [
-                    //                 ['label' => 'Level Two', 'icon' => 'fa fa-circle-o', 'url' => '#',],
-                    //                 [
-                    //                     'label' => 'Level Two',
-                    //                     'icon' => 'fa fa-circle-o',
-                    //                     'url' => '#',
-                    //                     'items' => [
-                    //                         ['label' => 'Level Three', 'icon' => 'fa fa-circle-o', 'url' => '#',],
-                    //                         ['label' => 'Level Three', 'icon' => 'fa fa-circle-o', 'url' => '#',],
-                    //                     ],
-                    //                 ],
-                    //             ],
-                    //         ],
-                    //     ],
-                    // ],
                 ],
             ]
         ) ?>

@@ -5,10 +5,11 @@ namespace frontend\components;
 use Yii;
 use yii\base\InlineAction;
 use yii\data\ActiveDataProvider;
-use yii\helpers\{Url,Json};
+use yii\helpers\{Url,Json,ArrayHelper};
 use yii\web\{Controller as baseController,Response};
 use yii\web\NotFoundHttpException;
 
+use frontend\components\{UploadImg};
 
 
 class Controller extends baseController
@@ -23,6 +24,14 @@ class Controller extends baseController
     // public function init()
     // {
     // }
+
+
+    public function saveModel($model){
+        if ($model->save()) 
+            return true;
+        Yii::$app->session->setFlash('alert', ['type'=>'warning','title'=>'錯誤','text'=>array_values($model->getFirstErrors())[0]]);
+        return false;
+    } 
 
     /**
      * 删除，默认status
@@ -42,10 +51,13 @@ class Controller extends baseController
     /**
      * 获取ActiveDataprovider   用于GridView
      * @param  [type] $query  查询条件
-     * @param  [type] $params 参数
+     * @param  [type] $pagination 分页
+     * @param  [type] $sort 排序
      * @return [obj]         ActiveDataprovider
      */
-    public function getActiveDataprovider($query,$pagination = ['pageSize' => 20],$sort = ['defaultOrder'=>['id' => SORT_DESC]]){
+    public function getActiveDataprovider($query,$pagination = [],$sort = []){
+        $pagination = ArrayHelper::merge(['pageSize' => 20],$pagination);
+        $sort = ArrayHelper::merge(['defaultOrder'=>['id' => SORT_DESC]],$sort);
         $provider = new ActiveDataProvider([
             'query' => $query,
             'pagination' => $pagination,
@@ -54,12 +66,15 @@ class Controller extends baseController
         return $provider;
     } 
 
-    public function saveModel($model){
-        if ($model->save()) 
-            return true;
-        else
-            Yii::$app->session->setFlash('alert', ['type'=>'warning','text'=>array_values($model->getFirstErrors())[0]]);
-        return false;
-    } 
+    
 
+    /**
+     * 图片上传
+     */
+    public function uploadImg(&$model,$_attr,$attr){
+        $uploadImg = UploadImg::uploadImgNew($model,$_attr,$attr);
+        if ($uploadImg !== true) {
+            Yii::$app->session->setFlash('alert',['type'=>'warning','title'=>'錯誤','text'=>$uploadImg]);
+        }
+    }
 }

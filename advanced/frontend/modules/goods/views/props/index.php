@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
 use frontend\assets\AppAsset;
-use yii\helpers\Url;
+use yii\helpers\{Url,ArrayHelper};
 
 
 /* @var $this yii\web\View */
@@ -34,7 +34,8 @@ $this->params['breadcrumbs'][] = $this->title;
                     [
                         'label' => '属性值',
                         'value' => function ($model) {
-                            return '黑色，白色，红色，蓝色';
+                            $propsValues = ArrayHelper::getColumn($model->propsvalues,'name');
+                            return $propsValues ? implode('/ ', $propsValues) : '';
                         }
                     ],
                     'sort',

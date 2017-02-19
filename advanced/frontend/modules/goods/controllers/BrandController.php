@@ -112,7 +112,7 @@ class BrandController extends Controller
         if ($uploadImg['success']) {
             if ($model->save(false)) 
                 return true;
-            Yii::$app->session->setFlash('warning', '保存失败');
+            //Yii::$app->session->setFlash('warning', '保存失败');
         }else{
             Yii::$app->session->setFlash('warning', $uploadImg['msg']);
         }

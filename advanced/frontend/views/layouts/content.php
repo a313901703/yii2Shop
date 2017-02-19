@@ -235,7 +235,8 @@ if ($alert = $session->getFlash('alert') ){
     $js = <<<JS
         $(function(){
             swal({
-                title: "{$alert['text']}",
+                title: "{$alert['title']}",
+                text: "{$alert['text']}",
                 type: "{$alert['type']}",
             })
         })

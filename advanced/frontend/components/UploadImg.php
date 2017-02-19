@@ -29,9 +29,33 @@ class UploadImg
             }
         }else{
             $return['success'] = false;
-            $return['msg'] = current(array_values($model->errors));
+            $return['msg'] = current(array_values($model->firstErrors));
         }
         return $return;
+    }
+
+    /**
+     * [单个图片上传]
+     * @param  [type] $model    
+     * @param  [type] $_attr [上传的字段]
+     * @param  [type] $attr  [实际字段]
+     * @param  [type] $path      [上传路径]
+     * @param  [type] $filename  [上传文件名]
+     * @return [boolean]         [是否成功]
+     */
+    public static function uploadImgNew(&$model,$_attr,$attr,$path = '',$filename = ''){
+        $file = $model->$_attr = UploadedFile::getInstance($model, $_attr);
+        if (!$file) {
+            
+        }elseif($model->validate([$_attr])){
+            //如果上传成功，删除旧文件并写入实际字段
+            if ($model->$_attr = self::upload($file,$path,$filename)) {
+                self::remove($model->$attr);
+                $model->$attr = $model->$_attr;
+            }
+        }else
+            return current(array_values($model->getFirstErrors()));
+        return true;
     }
     /**
      * [多图片上传]
@@ -61,6 +85,7 @@ class UploadImg
         if ($file->saveAs($path)) {
             return  Yii::getAlias(Yii::$app->params['uploadImgDir']).'/'.$name.'.' . $file->getExtension();
         }
+        return '';
     }
 
     /**
@@ -96,7 +121,7 @@ class UploadImg
             $initialPreview = $path.$attributes;
         }
 
-        $defaultOptions = ['multiple' => false,'data'=>['id'=>1]];
+        $defaultOptions = ['multiple' => false];
         $options = empty($options) ? $defaultOptions : array_merge($defaultOptions,$options);
 
         $defaultPluginOptions = [
@@ -125,7 +150,7 @@ class UploadImg
             // 是否显示移除按钮，指input上面的移除按钮，非具体图片上的移除按钮
             'showRemove' => false,
             // 是否显示上传按钮，指input上面的上传按钮，非具体图片上的上传按钮
-            'showUpload' => true,
+            'showUpload' => false,
             //是否显示[选择]按钮,指input上面的[选择]按钮,非具体图片上的上传按钮
             'showBrowse' => true,
             // 展示图片区域是否可点击选择多文件

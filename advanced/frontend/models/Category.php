@@ -4,7 +4,7 @@ namespace app\models;
 
 use Yii;
 use frontend\components\SubTree;
-use app\models\customize\CommonQuery;
+//use app\models\customize\CommonQuery;
 
 
 /**
