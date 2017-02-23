@@ -130,11 +130,10 @@ class UploadImg
             // 预览的文件
             'initialPreview' => $initialPreview,
             // 需要展示的图片设置，比如图片的宽度等
-            'initialPreviewConfig' => [
-                'width'=>'100px',
-            ],
+            'initialPreviewConfig' => [],
             // 是否展示预览图
             'initialPreviewAsData' => true,
+            //初始化图片预览大小
             'previewSettings' => ['image'=>['width'=>'100px','height'=>'100px']],
             // 异步上传的接口地址设置
             //'uploadUrl' => Url::toRoute(['/site/upload']),
@@ -148,7 +147,7 @@ class UploadImg
             // 最多上传的文件个数限制
             'maxFileCount' => 1,
             // 是否显示移除按钮，指input上面的移除按钮，非具体图片上的移除按钮
-            'showRemove' => false,
+            'showRemove' => true,
             // 是否显示上传按钮，指input上面的上传按钮，非具体图片上的上传按钮
             'showUpload' => false,
             //是否显示[选择]按钮,指input上面的[选择]按钮,非具体图片上的上传按钮

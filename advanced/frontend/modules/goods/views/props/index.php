@@ -14,15 +14,30 @@ $this->title = '属性列表';
 $this->params['breadcrumbs'][] = $this->title;
 
 ?>
+<style type="text/css">
+    .propsTab li a,.propsTab li a:hover,.propsTab li a:focus,.propsTab li a:link,.propsTab li a:visited{
+        color:#72afd2;
+        background-color: transparent;
+    }
 
+    .nav-tabs.nav-justified.propsTab > .active > a, .nav-tabs.nav-justified.propsTab > .active > a:hover, .nav-tabs.nav-justified.propsTab > .active > a:focus{
+        color:#72afd2;
+        background-color: transparent;
+        border:1px solid #72afd2;
+        border-bottom:0;
+    }
+</style>
 <div class="flex">
-    <?= $this->render('@goods/views/nav.php', ['id'=>1])?>
+    <?= $this->render('@goods/views/nav.php')?>
     <div style="flex:1">
+
         <div class="category-index">
             <?= $this->render('_form', [
                 'model' => $model,
             ]) ?>
+
             <div class="space"></div>
+
             <?php Pjax::begin(['id' => 'propses']) ?>
             <?= GridView::widget([
                 'dataProvider' => $provider,

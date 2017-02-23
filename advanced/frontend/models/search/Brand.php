@@ -66,12 +66,9 @@ class Brand extends BrandModel
         $query->andFilterWhere([
             'id' => $this->id,
             'sort' => $this->sort,
-            'created_at' => $this->created_at,
-            'created_by' => $this->created_by,
         ]);
 
-        $query->andFilterWhere(['like', 'name', $this->name])
-            ->andFilterWhere(['like', 'thumb', $this->thumb]);
+        $query->andFilterWhere(['like', 'name', $this->name]);
 
         return $dataProvider;
     }

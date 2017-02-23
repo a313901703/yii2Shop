@@ -12,7 +12,7 @@ return [
     'bootstrap' => ['log'],
     'controllerNamespace' => 'frontend\controllers',
     'name' =>'WTF+',        //平台名称
-
+    //'defaultRoute'=>'goods',
     'aliases' => [
         '@goods' => '@app/modules/goods',
     ],

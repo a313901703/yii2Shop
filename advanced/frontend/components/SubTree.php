@@ -54,4 +54,8 @@ final class SubTree
         }
         return $hasChild;
     }
+
+    public static function combiData($data){
+        
+    }
 }

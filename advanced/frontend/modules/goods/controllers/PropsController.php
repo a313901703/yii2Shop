@@ -7,6 +7,7 @@ use app\models\{Itemprops,Propsvalue};
 use frontend\components\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\helpers\ArrayHelper;
 
 class PropsController extends Controller
 {
@@ -98,6 +99,30 @@ class PropsController extends Controller
         $propsModel = $this->findModel($model->props_id);
         $model->delete();
         return $this->redirect(['create','pid'=>$propsModel->id]);
+    }
+
+    //属性组合
+    public function actionCombi()
+    {
+        $request = Yii::$app->request;
+        if ($request->isAjax) {
+            $redis = $this->redis;
+            $goodsId = $redis->get(Yii::$app->user->id.'_currentGoods');
+            $Itemprops = Itemprops::find()->andWhere(['type'=>2])->with(['propsvalues'])->asArray()->all();
+            $propsNames = ArrayHelper::getColumn($Itemprops,'name');
+            if (!$propsNames) 
+                $this->returnData('没有数据  Σ(｀д′*ノ)ノ',404);
+            foreach ($Itemprops as  $item) {
+                $propsValue[] = ArrayHelper::getColumn($item['propsvalues'],'name');
+                $propsIds[] = ArrayHelper::getColumn($item['propsvalues'],'id');
+            }
+            $propsColumn = array_keys($propsNames);
+            $this->returnData([$propsNames,$propsValue,$propsColumn,$propsIds]);
+        }elseif($request->isPost){
+            print_r($request->post());exit;
+        }
+
+        return $this->render('combi');
     }
 
     /**

@@ -77,6 +77,6 @@ class Itemprops extends \yii\db\ActiveRecord
      */
     public function getPropsvalues()
     {
-        return $this->hasMany(Propsvalue::className(), ['props_id' => 'id']);
+        return $this->hasMany(Propsvalue::className(), ['props_id' => 'id'])->orderBy(['id' => SORT_ASC,'sort'=>SORT_DESC]);
     }
 }

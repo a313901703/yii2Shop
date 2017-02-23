@@ -25,7 +25,6 @@ class Controller extends baseController
     // {
     // }
 
-
     public function saveModel($model){
         if ($model->save()) 
             return true;
@@ -40,7 +39,7 @@ class Controller extends baseController
     	$model->$attribute = self::DELETE_STATUS;
     	return $model->save();
     }
-   
+
     /**
      * 获取redis实例
      */
@@ -66,8 +65,6 @@ class Controller extends baseController
         return $provider;
     } 
 
-    
-
     /**
      * 图片上传
      */
@@ -76,5 +73,15 @@ class Controller extends baseController
         if ($uploadImg !== true) {
             Yii::$app->session->setFlash('alert',['type'=>'warning','title'=>'錯誤','text'=>$uploadImg]);
         }
+    }
+
+    /**
+     * 以json格式返回数据
+     */
+    public function returnData($data,$status = '200'){
+        $response = Yii::$app->response;
+        $response->format = \yii\web\Response::FORMAT_JSON;
+        $response->data = ['data'=>$data,'status'=>$status];
+        $response->send();
     }
 }
