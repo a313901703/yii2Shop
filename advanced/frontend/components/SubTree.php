@@ -55,7 +55,24 @@ final class SubTree
         return $hasChild;
     }
 
-    public static function combiData($data){
-        
+    /**
+     * 数据组合
+     * @param  [type] $data 
+     */
+    public static function combiData(&$data){
+        if (count($data) >= 2) {
+            $data1 = array_shift($data);
+            $data2 = array_shift($data);
+            $dataNew = [];
+            foreach ($data1 as $data1Key => $data1Item) {
+                foreach ($data2 as $data2Key => $data2Item) {
+                    $dataNew[$data1Key.','.$data2Key] = $data1Item.','.$data2Item;
+                }
+            }
+            array_unshift($data,$dataNew);
+            if (count($data) >= 2) 
+                self::combiData($data);
+        }
+        $data = $data[0];
     }
 }

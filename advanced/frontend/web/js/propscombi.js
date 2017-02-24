@@ -1,13 +1,12 @@
 $(function () {
     //SKU信息
-    // $(".div_contentlist label").bind("change", function () {
-    //     step.Creat_Table();
-    // });
-    var step = {
-        testMerge:function(){
+    window.step = {
+        testMerge:function(arrayColumn){
             step.hebingFunction();
             var table = $('#combiTable');
-            arrayColumn = [0,1];
+            console.log(arrayColumn)
+            arrayColumn = JSON.stringify(arrayColumn);
+            console.log(arrayColumn)
              $(table).mergeCell({
                 // 目前只有cols这么一个配置项, 用数组表示列的索引,从0开始
                 cols: arrayColumn
@@ -56,12 +55,9 @@ $(function () {
                 ////生成组合
                 var zuheDate = step.doExchange(arrayInfor);
                 var zuheId   = step.doExchange(arrayIds);
-                console.log(zuheId)
-                console.log(zuheDate)
                 if (zuheDate.length > 0) {
                     //创建行
                     $.each(zuheDate, function (index, item) {
-                        //console.log(index)
                         var td_array = item.split(",");
                         var tr = $("<tr></tr>");
                         tr.appendTo(tbody);
@@ -103,7 +99,7 @@ $(function () {
                     var cols = options.cols;
                     for (var i = cols.length - 1; cols[i] != undefined; i--) {
                         // fixbug console调试
-                         console.debug($(this));
+                        // console.debug($(this));
                         mergeCell($(this), cols[i]);
                     }
                     dispose($(this));
@@ -187,18 +183,6 @@ $(function () {
             }
         }
     }
-    step.testMerge();
-
-    // $.getJSON(location.href,{type:'getCombi'},function(json){
-    //     if (json.status == 200) {
-    //         step.Creat_Table(json.data);
-    //     }else{
-    //         swal({
-    //             title: json.data,
-    //             type: "warning",
-    //         })
-    //     }
-    // });
-        
+    //step.testMerge();
 })
 

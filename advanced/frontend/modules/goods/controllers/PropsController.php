@@ -3,8 +3,9 @@
 namespace app\modules\goods\controllers;
 
 use Yii;
-use app\models\{Itemprops,Propsvalue};
+use app\models\{Itemprops,Propsvalue,Propscombi};
 use frontend\components\Controller;
+use frontend\components\SubTree;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\helpers\ArrayHelper;
@@ -75,7 +76,7 @@ class PropsController extends Controller
             return $this->refresh();
         }
         $query = Propsvalue::find()->where(['props_id'=>$pid])->goods();
-        $provider = $this->getActiveDataprovider($query,['pageSize'=>20],['defaultOrder'=>['sort' => SORT_DESC,'id' => SORT_DESC]]);
+        $provider = $this->getActiveDataprovider($query,['pageSize'=>20],['defaultOrder'=>['sort' => SORT_DESC,'id' => SORT_ASC]]);
         return $this->render('create',['model'=>$model,'propsModel'=>$propsModel,'provider'=>$provider]);
     }
 
@@ -105,24 +106,38 @@ class PropsController extends Controller
     public function actionCombi()
     {
         $request = Yii::$app->request;
-        if ($request->isAjax) {
-            $redis = $this->redis;
-            $goodsId = $redis->get(Yii::$app->user->id.'_currentGoods');
-            $Itemprops = Itemprops::find()->andWhere(['type'=>2])->with(['propsvalues'])->asArray()->all();
-            $propsNames = ArrayHelper::getColumn($Itemprops,'name');
-            if (!$propsNames) 
-                $this->returnData('没有数据  Σ(｀д′*ノ)ノ',404);
-            foreach ($Itemprops as  $item) {
-                $propsValue[] = ArrayHelper::getColumn($item['propsvalues'],'name');
-                $propsIds[] = ArrayHelper::getColumn($item['propsvalues'],'id');
+        $Itemprops = Itemprops::find()->andWhere(['type'=>2])->with(['propsvalues'])->orderBy(['id'=>SORT_ASC,'sort'=>SORT_DESC])->asArray()->all();
+        $propsNames = ArrayHelper::getColumn($Itemprops,'name');
+        //TODO 没有数据跳转到没有数据的页面
+        //if (!$propsNames) 
+            //$this->returnData('没有数据  Σ(｀д′*ノ)ノ',404);
+        foreach ($Itemprops as  $item) {
+            $propsValues[] = ArrayHelper::map($item['propsvalues'],'id','name');
+        }
+        $propsColumn = json_encode(array_keys($propsNames));
+        SubTree::combiData($propsValues);
+        if($request->isPost){
+            $propsPrice = $request->post('propsPrice');
+            $propsStock = $request->post('propsStock');
+            $propsCost  = $request->post('propsCost');
+            $model = new Propscombi();
+            foreach($propsPrice as $key => $value)
+            {
+                $attributes = ['pid'=>$key,'sale_price'=>$value,'cost'=>$propsCost[$key] ?? 0,'stock'=>$propsStock[$key] ?? 0];
+                $model->attributes = $attributes;
+                $model->save() && $model->id=0;
             }
-            $propsColumn = array_keys($propsNames);
-            $this->returnData([$propsNames,$propsValue,$propsColumn,$propsIds]);
-        }elseif($request->isPost){
-            print_r($request->post());exit;
         }
 
-        return $this->render('combi');
+        return $this->render('combi',[
+            'propsValues'=>$propsValues,
+            'propsNames'=>$propsNames,
+            'propsColumn'=>$propsColumn,
+        ]);
+    }
+
+    protected function saveCombiModel(){
+
     }
 
     /**

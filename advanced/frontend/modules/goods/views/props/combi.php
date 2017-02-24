@@ -2,7 +2,7 @@
 use yii\helpers\{Html};
 use frontend\assets\AppAsset;
 use yii\widgets\ActiveForm;
-
+use yii\widgets\ListView;
 /* @var $this yii\web\View */
 /* @var goods/combi */
 
@@ -19,45 +19,30 @@ AppAsset::addScript($this,Yii::$app->request->baseUrl."/js/propscombi.js");
             <table class="table table-bordered" id="combiTable">
                 <thead>
                     <tr>
-                        <th>颜色</th>
-                        <th>内存</th>
-                        <th>合约</th>
+                        <?php foreach ($propsNames as $value): ?>
+                        <th><?=$value?></th>
+                        <?php endforeach ?>
                         <th>价格</th>
+                        <th>成本</th>
                         <th>库存</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>白色</td>
-                        <td>16G</td>
-                        <td>移动</td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>白色</td>
-                        <td>32G</td>
-                        <td>移动</td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>黑色</td>
-                        <td>16G</td>
-                        <td>移动</td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>黑色</td>
-                        <td>16G</td>
-                        <td>移动</td>
-                        <td></td>
-                        <td></td>
-                    </tr>
+                    <?= $this->render('@goods/views/props/_combiTr.php',['data'=>$propsValues])?>
                 </tbody>
             </table>
+        </div>
+        <div class="form-group">
+            <button class="btn btn-success">提交</button>
         </div>
         <?php ActiveForm::end(); ?>
     </div>
 </div>
+<?php
+$js = <<<JS
+    $(function(){
+        step.testMerge("{$propsColumn}");
+    })
+JS;
+$this->registerJs($js);
+?>
