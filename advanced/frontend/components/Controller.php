@@ -32,6 +32,10 @@ class Controller extends baseController
         return false;
     } 
 
+    public function setWarningFlash($text){
+        Yii::$app->session->setFlash('alert', ['type'=>'warning','title'=>'錯誤','text'=>$text]);
+    }
+
     /**
      * 删除，默认status
      */

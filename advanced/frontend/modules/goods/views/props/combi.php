@@ -3,6 +3,7 @@ use yii\helpers\{Html};
 use frontend\assets\AppAsset;
 use yii\widgets\ActiveForm;
 use yii\widgets\ListView;
+use yii\helpers\ArrayHelper;
 /* @var $this yii\web\View */
 /* @var goods/combi */
 
@@ -22,13 +23,26 @@ AppAsset::addScript($this,Yii::$app->request->baseUrl."/js/propscombi.js");
                         <?php foreach ($propsNames as $value): ?>
                         <th><?=$value?></th>
                         <?php endforeach ?>
-                        <th>价格</th>
-                        <th>成本</th>
-                        <th>库存</th>
+                        <th width="150">价格</th>
+                        <th width="150">成本</th>
+                        <th width="150">库存</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <?= $this->render('@goods/views/props/_combiTr.php',['data'=>$propsValues])?>
+                    <?php foreach ($propsValues as $key => $value): ?>
+                    <tr>
+                        <?php foreach (explode(',', $value) as $item): ?>
+                           <td><?=$item?></td> 
+                        <?php endforeach ?>
+                        <td>
+                            <input type="text" name="propsPrice[<?=$key;?>]" class="form-control" value="<?=$models[$key]['sale_price']?? ''?>">
+                        </td>
+                        <td>
+                            <input type="text" name="propsCost[<?=$key;?>]" class="form-control" value="<?=$models[$key]['cost']??''?> ">
+                        </td>
+                        <td><input type="text" name="propsStock[<?=$key;?>]" class="form-control" value="<?=$models[$key]['stock']??''?> "></td>
+                    </tr>
+                    <?php endforeach ?>
                 </tbody>
             </table>
         </div>

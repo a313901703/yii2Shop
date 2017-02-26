@@ -22,6 +22,7 @@ class PropsController extends Controller
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['POST'],
+                    'deleteValue' =>['POST'],
                 ],
             ],
         ];
@@ -105,7 +106,11 @@ class PropsController extends Controller
     //属性组合
     public function actionCombi()
     {
-        $request = Yii::$app->request;
+        $models = Propscombi::find()->indexBy('pids')->all();
+        if(Yii::$app->request->isPost){
+            $this->saveCombiModel($models);
+            return $this->redirect(['combi']);
+        }
         $Itemprops = Itemprops::find()->andWhere(['type'=>2])->with(['propsvalues'])->orderBy(['id'=>SORT_ASC,'sort'=>SORT_DESC])->asArray()->all();
         $propsNames = ArrayHelper::getColumn($Itemprops,'name');
         //TODO 没有数据跳转到没有数据的页面
@@ -115,29 +120,45 @@ class PropsController extends Controller
             $propsValues[] = ArrayHelper::map($item['propsvalues'],'id','name');
         }
         $propsColumn = json_encode(array_keys($propsNames));
+        
         SubTree::combiData($propsValues);
-        if($request->isPost){
-            $propsPrice = $request->post('propsPrice');
-            $propsStock = $request->post('propsStock');
-            $propsCost  = $request->post('propsCost');
-            $model = new Propscombi();
-            foreach($propsPrice as $key => $value)
-            {
-                $attributes = ['pid'=>$key,'sale_price'=>$value,'cost'=>$propsCost[$key] ?? 0,'stock'=>$propsStock[$key] ?? 0];
-                $model->attributes = $attributes;
-                $model->save() && $model->id=0;
-            }
-        }
-
         return $this->render('combi',[
             'propsValues'=>$propsValues,
             'propsNames'=>$propsNames,
             'propsColumn'=>$propsColumn,
+            'models' => $models,
         ]);
     }
 
-    protected function saveCombiModel(){
-
+    //保存属性组合
+    protected function saveCombiModel($models){
+        $request = Yii::$app->request;
+        $propsPrice = $request->post('propsPrice');
+        $propsStock = $request->post('propsStock');
+        $propsCost  = $request->post('propsCost');
+        $db = Yii::$app->db;
+        $transaction = $db->beginTransaction();  //开启事务
+        try {
+            $model = new Propscombi();
+            foreach($propsPrice as $key => $value)
+            {
+                $attributes = ['pids'=>$key,'sale_price'=>$value,'cost'=>$propsCost[$key] ?? 0,'stock'=>$propsStock[$key] ?? 0];
+                //如果不存在组合数据 创建新模型，否则使用现有模型
+                if (!$models) 
+                    $_model = clone $model;
+                elseif(isset($models[$key]))
+                    $_model = $models[$key];
+                else
+                    continue;
+                $_model->attributes = $attributes;
+                if (!$_model->save())
+                    throw new \yii\web\HttpException(400,array_values($model->getFirstErrors())[0] );
+            }
+            $transaction->commit();
+        }catch (Exception $e) {  
+            $transaction->rollBack();
+            $this->warningFlash = $e->getMessage();
+        }
     }
 
     /**

@@ -35,7 +35,7 @@ use yii\bootstrap\Nav;
     $id = Yii::$app->redis->get(Yii::$app->user->id.'_currentGoods');
     $menuItems = [
         ['label' => '商品修改', 'url' => ['/goods/good/update','id'=>$id]],
-        ['label' => '商品图片', 'url' => '#'],
+        ['label' => '商品图片', 'url' => ['/goods/images']],
         ['label' => '销售属性', 'url' => ['/goods/props/index']],
         ['label' => '销售组合', 'url' => ['/goods/props/combi']],
     ];

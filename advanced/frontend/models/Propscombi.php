@@ -30,9 +30,10 @@ class Propscombi extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['pids', 'goods_id', 'sale_price'], 'required'],
+            [['pids', 'sale_price'], 'required'],
             [['goods_id', 'sale_price', 'cost', 'stock'], 'integer'],
-            [['cost','stock'],'dafault','value'=>0],
+            [['cost','stock'],'default','value'=>0],
+            ['goods_id','default','value'=>Yii::$app->redis->get(Yii::$app->user->id.'_currentGoods')],
             [['pids'], 'string', 'max' => 50],
         ];
     }
@@ -50,5 +51,9 @@ class Propscombi extends \yii\db\ActiveRecord
             'cost' => '成本',
             'stock' => '库存',
         ];
+    }
+
+    public static function find(){
+        return parent::find()->where(['goods_id'=>Yii::$app->redis->get(Yii::$app->user->id.'_currentGoods')]);
     }
 }
