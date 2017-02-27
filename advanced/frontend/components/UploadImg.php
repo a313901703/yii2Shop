@@ -10,6 +10,8 @@ use yii\helpers\ArrayHelper;
 class UploadImg
 {
     /**
+     * 弃用！！！！！
+     * 
      * [单个图片上传]
      * @param  [type] $model    
      * @param  [type] $attribute [上传的字段]
@@ -65,8 +67,27 @@ class UploadImg
      * @param  [type] $filename  [上传文件名]
      * @return [boolean]         [是否成功]
      */
-    public function uploadImgs($file,$attribute,$path = '',$filename = ''){
-        
+    public static function uploadImgs(&$model,$_attr,$attr,$path = '',$filename = ''){
+        $files = $model->$_attr = UploadedFile::getInstances($model, $_attr);
+        if (!$files) {
+            
+        }elseif($model->validate([$_attr])){
+            foreach ($files as $key => $file) {
+                //如果上传成功，删除旧文件并写入实际字段
+                if ($uploadFile = self::upload($file,$path,$filename)) 
+                    $uploadFiles[] = $uploadFile;
+            }
+            if (!empty($uploadFiles)) {
+                if ($model->$attr) {
+                    foreach (json_decode($model->$attr,true) as $item) {
+                        self::remove($item);
+                    }
+                }
+                $model->$attr = $model->$_attr = json_encode($uploadFiles);
+            }
+        }else
+            return current(array_values($model->getFirstErrors()));
+        return true;
     }
 
     /**
@@ -80,12 +101,12 @@ class UploadImg
         if (!is_dir($path)) 
             mkdir($path,'0777',true);  //允许创建多级目录
         
-        $name = $filename.'_'.time();
+        $name = $filename.rand(100000,999999).'_'.time();
         $path = $path.'/'.$name.'.' . $file->getExtension();
         if ($file->saveAs($path)) {
             return  Yii::getAlias(Yii::$app->params['uploadImgDir']).'/'.$name.'.' . $file->getExtension();
         }
-        return '';
+        return false;
     }
 
     /**
@@ -122,15 +143,15 @@ class UploadImg
         }
 
         $defaultOptions = ['multiple' => false];
-        $options = empty($options) ? $defaultOptions : array_merge($defaultOptions,$options);
+        $options = empty($options) ? $defaultOptions : ArrayHelper::merge($defaultOptions,$options);
 
         $defaultPluginOptions = [
             // 需要预览的文件格式
             'previewFileType' => 'image',
             // 预览的文件
-            'initialPreview' => $initialPreview,
+            //'initialPreview' => $initialPreview,
             // 需要展示的图片设置，比如图片的宽度等
-            'initialPreviewConfig' => [],
+            //'initialPreviewConfig' => [],
             // 是否展示预览图
             'initialPreviewAsData' => true,
             //初始化图片预览大小
@@ -140,12 +161,13 @@ class UploadImg
             // 异步上传需要携带的其他参数，比如商品id等
             // 'uploadExtraData' => [
             //     'goods_id' => $model->id,
+            // 如果要设置具体图片上的移除、上传和展示按钮，需要设置该选项
             // ],
             //'uploadAsync' => true,
             // 最少上传的文件个数限制
-            'minFileCount' => 0,
+            //'minFileCount' => 0,
             // 最多上传的文件个数限制
-            'maxFileCount' => 1,
+            'maxFileCount' => 10,
             // 是否显示移除按钮，指input上面的移除按钮，非具体图片上的移除按钮
             'showRemove' => true,
             // 是否显示上传按钮，指input上面的上传按钮，非具体图片上的上传按钮
@@ -154,7 +176,6 @@ class UploadImg
             'showBrowse' => true,
             // 展示图片区域是否可点击选择多文件
             'browseOnZoneClick' => true,
-            // 如果要设置具体图片上的移除、上传和展示按钮，需要设置该选项
             'fileActionSettings' => [
                 // 设置具体图片的查看属性为false,默认为true
                 'showZoom' => true,

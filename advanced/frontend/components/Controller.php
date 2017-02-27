@@ -79,6 +79,13 @@ class Controller extends baseController
         }
     }
 
+    public function uploadImgs(&$model,$_attr,$attr){
+        $uploadImg = UploadImg::uploadImgs($model,$_attr,$attr);
+        if ($uploadImg !== true) {
+            Yii::$app->session->setFlash('alert',['type'=>'warning','title'=>'錯誤','text'=>$uploadImg]);
+        }
+    }
+
     /**
      * 以json格式返回数据
      */

@@ -1,6 +1,6 @@
 <?php
 
-namespace app\modules\goods\controllers;
+namespace goods\controllers;
 
 use Yii;
 use app\models\Category;
