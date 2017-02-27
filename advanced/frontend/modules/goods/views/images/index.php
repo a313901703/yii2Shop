@@ -13,7 +13,11 @@ $this->title = '商品图片';
 $this->params['breadcrumbs'][] = $this->title;
 
 ?>
-
-<?= $this->render('_form', [
-    'model' => $model,
-]) ?>
+<div class="flex">
+    <?= $this->render('@goods/views/nav.php')?>
+    <div style="flex:1">
+	<?= $this->render('_form', [
+	    'model' => $model,
+	]) ?>
+	</div>
+</div>

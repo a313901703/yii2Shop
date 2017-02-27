@@ -149,9 +149,9 @@ class UploadImg
             // 需要预览的文件格式
             'previewFileType' => 'image',
             // 预览的文件
-            //'initialPreview' => $initialPreview,
+            'initialPreview' => $initialPreview,
             // 需要展示的图片设置，比如图片的宽度等
-            //'initialPreviewConfig' => [],
+            'initialPreviewConfig' => [],
             // 是否展示预览图
             'initialPreviewAsData' => true,
             //初始化图片预览大小

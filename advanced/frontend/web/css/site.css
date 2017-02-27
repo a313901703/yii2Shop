@@ -1,0 +1,28 @@
+
+/*  goods left nav */
+.goodsLeftNav{
+    width:170px;
+    height: auto;
+}
+.goodsLeftNav li a{
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+.goodsLeftNav li a,.goodsLeftNav li a:hover,.goodsLeftNav li a:focus,.goodsLeftNav li a:link,.goodsLeftNav li a:visited{
+    background-color: transparent;
+    border:0;
+    border-right:1px solid #72afd2;
+}
+
+.goodsLeftNav>li.active>a, .goodsLeftNav>li.active>a:hover, .goodsLeftNav>li.active>a:focus, .goodsLeftNav>li.active>a:link, .goodsLeftNav>li.active>a:visited{
+    color:#72afd2;
+    background-color: transparent;
+    border:1px solid #72afd2;
+    border-right:0;
+}
+.goodsLeftNav > li + li{
+    margin-top:0;
+}
+.goodsLeftNav{
+    border-bottom:0;
+}
