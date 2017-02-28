@@ -10,6 +10,7 @@ use yii\helpers\{Url,ArrayHelper};
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = '商品图片';
+$this->params['breadcrumbs'][] = ['label' => '商品', 'url' => ['/goods']];
 $this->params['breadcrumbs'][] = $this->title;
 
 ?>

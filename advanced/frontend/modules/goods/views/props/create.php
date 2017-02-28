@@ -6,6 +6,7 @@ use yii\grid\GridView;
 /* @var $model app\models\Category */
 
 $this->title = $propsModel->name;
+$this->params['breadcrumbs'][] = ['label' => '商品', 'url' => ['/goods']];
 $this->params['breadcrumbs'][] = ['label' => '属性', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>

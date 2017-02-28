@@ -25,29 +25,33 @@
         </form>
         <!-- /.search form -->
         <?php 
-        $goodsActive = ($this->context->module->id == 'goods' && in_array($this->context->id,['good','props'])) ? 'active' : '';
+        $goodsActive = ($this->context->module->id == 'goods' && in_array($this->context->id,['good','props','images'])) ? 'active' : '';
          ?>
         <?= dmstr\widgets\Menu::widget(
             [
                 'options' => ['class' => 'sidebar-menu'],
                 'items' => [
-                    ['label' => 'Menu Yii2', 'options' => ['class' => 'header']],
-                    ['label' => '首页', 'icon' => 'fa fa-file-code-o', 'url' => ['/site/index']],
+                    ['label' => 'Menu', 'options' => ['class' => 'header']],
+                    ['label' => '首页', 'icon' => 'fa fa-home', 'url' => ['/site/index']],
                     [
                         'label' => '商品',
-                        'icon' => 'fa fa-share',
+                        'icon' => 'fa fa-shopping-bag',
                         'url' => '#',
                         'items' => [
                             [
-                                'label' => '商品详情', 
-                                'icon' => 'fa fa-table', 
+                                'label' => '商品列表', 
+                                'icon' => 'fa fa-bars', 
                                 'url' => ['/goods/good'],
                                 'active'=> $goodsActive      
                             ],
                             ['label' => '商品分类', 'icon' => 'fa fa-table', 'url' => ['/goods/category']],
-                            ['label' => '商品品牌', 'icon' => 'fa fa-table', 'url' => ['/goods/brand']],
+                            ['label' => '商品品牌', 'icon' => 'fa fa-list', 'url' => ['/goods/brand']],
+                            ['label' => '经销商', 'icon' => 'fa fa-user-secret', 'url' => '#'],
+                            ['label' => '运费模板', 'icon' => 'fa fa-truck', 'url' => '#'],
                         ],
                     ],
+                    ['label' => '订单', 'icon' => 'fa fa-cny', 'url' => '#'],
+                    ['label' => '文章', 'icon' => 'fa fa-newspaper-o', 'url' => '#'],
                     [
                         'label' => '用户管理',
                         'icon' => 'fa fa-users',

@@ -58,6 +58,14 @@ $this->params['breadcrumbs'][] = $this->title;
                     return $html;
                 },
             ],
+            [
+                'label'=>'是否上架',  
+                'format'=>'html',
+                'value' => function ($model) {
+                    $html = $model->show == 0 ? '<span class="label label-success">上架</span>' :'<span class="label label-danger">下架</span>' ;
+                    return $html;
+                },
+            ],
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>

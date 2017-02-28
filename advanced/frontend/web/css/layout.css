@@ -152,6 +152,14 @@
     padding: 20px;
     border-radius: 5px;
 }
+.active-form.search-form{
+    background-color: #eee;
+    padding-bottom: 0;
+}
+.active-form.search-form .form-groups > .form-group{
+    margin-top:0;
+    margin-bottom: 0;
+}
 .active-form .form-groups > .form-group{
     flex:1;
     -webkit-flex:1;

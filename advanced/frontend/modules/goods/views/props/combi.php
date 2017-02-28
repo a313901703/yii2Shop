@@ -8,6 +8,7 @@ use yii\helpers\ArrayHelper;
 /* @var goods/combi */
 
 $this->title = '属性组合';
+$this->params['breadcrumbs'][] = ['label' => '商品', 'url' => ['/goods']];
 $this->params['breadcrumbs'][] = $this->title;
 
 AppAsset::addScript($this,Yii::$app->request->baseUrl."/js/propscombi.js");
