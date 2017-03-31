@@ -15,7 +15,7 @@ use frontend\models\SignupForm;
 use frontend\models\ContactForm;
 
 use yii\base\ErrorException;
-
+   
 /**
  * Site controller
  */
