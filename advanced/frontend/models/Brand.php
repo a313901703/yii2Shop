@@ -3,9 +3,6 @@
 namespace app\models;
 
 use Yii;
-use yii\behaviors\TimestampBehavior;
-use yii\behaviors\BlameableBehavior;
-
 /**
  * This is the model class for table "brand".
  *

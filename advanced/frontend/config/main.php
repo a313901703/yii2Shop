@@ -15,6 +15,8 @@ return [
     //'defaultRoute'=>'goods',
     'aliases' => [
         '@goods' => '@app/modules/goods',
+        '@api' => '@app/modules/api',
+        '@v1' => '@app/modules/api/modules/v1',
     ],
     'modules' => [
         //权限管理模块
@@ -33,6 +35,10 @@ return [
         'goods'=>[
             'class'=>'app\Modules\goods\Module',
         ],
+        //restful api
+        'api'=>[
+            'class'=>'app\Modules\api\Module',
+        ],
     ],
 
     'components' => [
@@ -44,6 +50,7 @@ return [
         //     'class' => 'yii\web\Response',
         //     'on beforeSend' => function ($event) {
         //         $response = $event->sender;
+        //         $response->format = 'json';
         //         if ($response->data !== NULL && Yii::$app->getRequest()->getIsAjax() && $response->isClientError) {
         //             $response->format = 'json';
         //             $response->data = [
@@ -85,10 +92,10 @@ return [
         ],
         'urlManager' => [
             'rules' => [
+                ['class' => 'yii\rest\UrlRule', 'controller' => 'api/v1/goods'],
+                
                 'goods/categories' => 'goods/category',
                 '<module:\w+>/<controller:(props)>/<action:\w+>/pid/<pid:\d+>'=>'<module>/<controller>/<action>',
-
-                //'<module:\w+>/<controller:\w+>s'=>'<module>/<controller>/index',
                 '<module:\w+>/<controller:\w+>/<action:\w+>/<id:\d+>'=>'<module>/<controller>/<action>',
             ],
         ],
@@ -99,6 +106,7 @@ return [
             //这里是允许访问的action
             'site/login',
             'site/signup',
+            'api/*',
             //'admin/*'
         ]
     ],

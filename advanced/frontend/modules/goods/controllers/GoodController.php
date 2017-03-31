@@ -94,9 +94,8 @@ class GoodController extends Controller
         if ($model->load(Yii::$app->request->post())) {
             if ($model->save()) 
                 return $this->redirect(['index']);
-            else{
+            else
                 Yii::$app->session->setFlash('warning', array_values($model->getFirstErrors())[0]);
-            }
         }
         return $this->render('update', [
             'model' => $model,
