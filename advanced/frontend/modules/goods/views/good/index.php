@@ -18,6 +18,8 @@ $this->params['breadcrumbs'][] = $this->title;
         'filterModel' => $searchModel,
         'filterRowOptions' =>['class'=>'hidden'],
         'options'=>['class'=>'list-table'],
+        'rowOptions'=>function($model, $key, $index, $grid) { 
+            return ['class' => $model['show'] ? 'danger' : 'label-green'] ; },
         'layout'=>"{items}\n{summary}\n{pager}",
 
         'columns' => [
@@ -54,7 +56,6 @@ $this->params['breadcrumbs'][] = $this->title;
                     $html .= "<span>库存: ".$model->stock."</span><br>";
                     $html .= "<span>销售: ".$model->volume."</span><br>";
                     $html .= "<span>重量: ".$model->weight." kg</span><br>";
-                    $html .= "<span>推荐类型: ".$model->recommend."</span><br>";
                     return $html;
                 },
             ],
