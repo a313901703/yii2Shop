@@ -21,7 +21,9 @@ use frontend\components\UploadImg;
 </div>
 
 <div class="form-groups flex">
-    <?= $form->field($model, '_carousels[]')->widget(FileInput::classname(),UploadImg::getFileInput($model->_carousels,['multiple' => true],[
+    <?= $form->field($model, '_carousels[]')->widget(FileInput::classname(),UploadImg::getFileInput($model->_carousels,
+        ['multiple' => true],
+        [
             'previewSettings' => ['image'=>['width'=>'400px','height'=>'100px']],
             'maxFileCount' => 5
         ]))->hint('(建议尺寸600*150,图片小于1M,不多于5张)')?>

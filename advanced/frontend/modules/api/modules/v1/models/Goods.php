@@ -16,7 +16,9 @@ class Goods extends \app\models\Goods implements Linkable
             // 字段名和属性名相同
             'id',
             // 字段名为"name", 值由一个PHP回调函数定义
-            'name'
+            'name',
+            'images',
+
         ];
     }
 

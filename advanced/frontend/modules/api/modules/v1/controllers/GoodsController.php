@@ -25,7 +25,7 @@ class GoodsController extends ActiveController
     public function actionRecommend(){
         $goods = Goods::find()->select(['id','name','sale_price','(virtual_nums + volume) as volume'])
             ->where(['status'=>0,'recommend'=>1])
-            ->limit(4)
+            ->limit(6)
             ->all();
         return $goods;
     }

@@ -26,3 +26,7 @@
 .goodsLeftNav{
     border-bottom:0;
 }
+
+.krajee-default.file-preview-frame .kv-file-content{
+    height:auto;
+}

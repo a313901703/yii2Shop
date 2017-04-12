@@ -45,22 +45,6 @@ return [
         'request' => [
             'csrfParam' => '_csrf-frontend',
         ],
-        //格式化错误响应
-        // 'response' => [
-        //     'class' => 'yii\web\Response',
-        //     'on beforeSend' => function ($event) {
-        //         $response = $event->sender;
-        //         $response->format = 'json';
-        //         if ($response->data !== NULL && Yii::$app->getRequest()->getIsAjax() && $response->isClientError) {
-        //             $response->format = 'json';
-        //             $response->data = [
-        //                 'errCode'=>$response->isClientError,
-        //                 'data' => $response->data,
-        //             ];
-        //             $response->statusCode = 200;
-        //         }
-        //     },  
-        // ],
         'user' => [
             'identityClass' => 'common\models\User',
             'enableAutoLogin' => true,
@@ -98,6 +82,14 @@ return [
                 '<module:\w+>/<controller:(props)>/<action:\w+>/pid/<pid:\d+>'=>'<module>/<controller>/<action>',
                 '<module:\w+>/<controller:\w+>/<action:\w+>/<id:\d+>'=>'<module>/<controller>/<action>',
             ],
+        ],
+        // //七牛存储
+        'qiniu'=> [ 
+            'class' => 'crazyfd\qiniu\Qiniu', 
+            'accessKey' => 'K4tHKc648cdBO1phJLb-WZue7viQfJ39bcXXvzqP', 
+            'secretKey' => 'tdNASIfXJtAkDaoF7nYjihU7uUJ6YQYyEUsQXRUK', 
+            'domain' => '', 
+            'bucket' => 'app-shop', 
         ],
     ],
     'as access' => [

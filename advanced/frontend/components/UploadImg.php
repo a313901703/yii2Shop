@@ -4,6 +4,7 @@ namespace frontend\components;
 use Yii;
 use yii\web\UploadedFile;
 use yii\helpers\ArrayHelper;
+
 /**
 * 图片上传，必须依赖于model
 */
@@ -101,10 +102,16 @@ class UploadImg
         if (!is_dir($path)) 
             mkdir($path,'0777',true);  //允许创建多级目录
         
-        $name = $filename.rand(100000,999999).'_'.time();
-        $path = $path.'/'.$name.'.' . $file->getExtension();
+        $name = $filename.rand(100000,999999).'_'.time().'.' . $file->getExtension();
+        $path = $path.'/'.$name;
+
         if ($file->saveAs($path)) {
-            return  Yii::getAlias(Yii::$app->params['uploadImgDir']).'/'.$name.'.' . $file->getExtension();
+            $qiniu = Yii::$app->qiniu;
+            $qiniu->uploadFile($path,$name);
+            $link = $qiniu->getLink($name);
+            @unlink($path);
+            return  Yii::$app->params['qiniuImg']. $link;
+            //return  Yii::getAlias(Yii::$app->params['uploadImgDir']).'/'.$name;
         }
         return false;
     }

@@ -9,7 +9,6 @@ use yii\web\NotFoundHttpException;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 
-
 class ImagesController extends Controller
 {
     

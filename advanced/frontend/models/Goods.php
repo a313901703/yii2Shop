@@ -117,4 +117,8 @@ class Goods extends \yii\db\ActiveRecord
     public function getCategory(){
         return $this->hasOne(Category::className(), ['id' => 'good_cate']);
     }
+
+    public function getImages(){
+        return $this->hasOne(GoodsImages::className(),['goods_id'=>'id']);
+    }
 }
