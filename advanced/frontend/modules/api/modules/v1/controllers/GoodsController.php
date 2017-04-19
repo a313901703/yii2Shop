@@ -23,9 +23,11 @@ class GoodsController extends ActiveController
      * 首页商品推荐
      */
     public function actionRecommend(){
-        $goods = Goods::find()->select(['id','name','sale_price','(virtual_nums + volume) as volume'])
+        $goods = Goods::find()->select(['id','name','sale_price as price','market_price','(virtual_nums + volume) as volume'])
             ->where(['status'=>0,'recommend'=>1])
+            ->with(['images'])
             ->limit(6)
+            ->asArray()
             ->all();
         return $goods;
     }

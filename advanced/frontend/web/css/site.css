@@ -1,7 +1,7 @@
 
 /*  goods left nav */
 .goodsLeftNav{
-    width:170px;
+    min-width:140px;
     height: auto;
 }
 .goodsLeftNav li a{
