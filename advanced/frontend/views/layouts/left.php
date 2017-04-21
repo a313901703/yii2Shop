@@ -46,7 +46,11 @@
                             ['label' => '商品分类', 'icon' => 'table', 'url' => ['/goods/category']],
                             ['label' => '商品品牌', 'icon' => 'list', 'url' => ['/goods/brand']],
                             ['label' => '经销商', 'icon' => 'user-secret', 'url' => '#'],
-                            ['label' => '运费模板', 'icon' => 'truck', 'url' => ['/goods/freight']],
+                            [
+                                'label' => '运费模板', 
+                                'icon' => 'truck', 
+                                'url' => ['/goods/freight'],
+                                'active'=>$this->context->id == 'freight'? 'active' : '' ],
                         ],
                     ],
                     ['label' => '订单', 'icon' => 'cny', 'url' => '#'],

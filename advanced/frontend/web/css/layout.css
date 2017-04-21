@@ -173,6 +173,9 @@
     height: 34px;
     line-height: 34px;
 }
-.active-form .form-groups > .form-group input{
+.active-form .form-groups > .form-group input[type=text]{
     height:34px;
+}
+.form-group.has-success label{
+    color:#333;
 }

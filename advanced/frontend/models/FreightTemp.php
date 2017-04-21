@@ -5,11 +5,10 @@ namespace app\models;
 use Yii;
 
 /**
- * 运费模板
  * This is the model class for table "freight_temp".
  *
  * @property integer $id
- * @property integer $name
+ * @property string $name
  * @property integer $type
  * @property integer $base_freight
  * @property integer $renew
@@ -17,6 +16,8 @@ use Yii;
  * @property integer $free_post
  * @property integer $charge_rule
  * @property string $region
+ * @property integer $base_num
+ * @property integer $renew_num
  */
 class FreightTemp extends \yii\db\ActiveRecord
 {
@@ -34,9 +35,11 @@ class FreightTemp extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['type', 'base_freight', 'renew', 'whether_post', 'free_post', 'charge_rule'], 'integer'],
-            [['base_freight', 'renew', 'free_post','name'], 'required'],
-            [['region'], 'string', 'max' => 255],
+            [['name', 'base_freight', 'free_post'], 'required'],
+            [['type', 'base_freight', 'renew', 'whether_post', 'free_post', 'charge_rule', 'base_num', 'renew_num','free_post_value'], 'integer'],
+            [['name', 'region'], 'string', 'max' => 255],
+            [['charge_rule','free_post'],'default','value'=>'1'],
+            ['region_name','safe'],
         ];
     }
 
@@ -46,7 +49,7 @@ class FreightTemp extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'name' =>'模板名称',
+            'name' => '运费模板名称',
             'type' => '运费类型',
             'base_freight' => '基础运费',
             'renew' => '续费',
@@ -54,6 +57,9 @@ class FreightTemp extends \yii\db\ActiveRecord
             'free_post' => '包邮策略',
             'charge_rule' => '计费规则',
             'region' => '配送区域',
+            'base_num' => '首件',
+            'renew_num' => '续件',
+            'region_name'=>'配送区域',
         ];
     }
 }
