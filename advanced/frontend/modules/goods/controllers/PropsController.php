@@ -114,8 +114,9 @@ class PropsController extends Controller
         $Itemprops = Itemprops::find()->andWhere(['type'=>2])->with(['propsvalues'])->orderBy(['id'=>SORT_ASC,'sort'=>SORT_DESC])->asArray()->all();
         $propsNames = ArrayHelper::getColumn($Itemprops,'name');
         //TODO 没有数据跳转到没有数据的页面
-        //if (!$propsNames) 
-            //$this->returnData('没有数据  Σ(｀д′*ノ)ノ',404);
+        if (!$propsNames) 
+            throw new NotFoundHttpException('没有数据  Σ(｀д′*ノ)ノ');
+            // return $this->returnData('没有数据  Σ(｀д′*ノ)ノ',404);
         foreach ($Itemprops as  $item) {
             $propsValues[] = ArrayHelper::map($item['propsvalues'],'id','name');
         }
