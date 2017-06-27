@@ -7,6 +7,7 @@ use yii\helpers\ArrayHelper;
 
 use app\models\Category;
 use app\models\Brand;
+use app\models\FreightTemp;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Goods */
@@ -14,6 +15,7 @@ use app\models\Brand;
 $inputClass = 'form-control';
 $categories = ArrayHelper::map(Category::getSubTree(true),'id','name');
 $brands = ArrayHelper::map(Brand::find()->where(['status'=>0])->all(),'id','name');
+$freights = ArrayHelper::map(FreightTemp::find()->select('id,name')->all(),'id','name');
 ?>
 
 <div class="table-content">
@@ -87,7 +89,14 @@ $brands = ArrayHelper::map(Brand::find()->where(['status'=>0])->all(),'id','name
     </div>
 
     <div class="form-groups flex">
-        <?= $form->field($model, 'freight')?>
+        <?= $form->field($model, 'freight')->widget(Select2::classname(), [
+                'data' => $freights,
+                'options' => ['placeholder' => '请选择'],
+                'pluginOptions' => [
+                    'allowClear' => true
+                ],
+            ]);
+        ?>
         <?= $form->field($model, 'market_price') ?>
         <?= $form->field($model, 'sale_price') ?>
     </div>

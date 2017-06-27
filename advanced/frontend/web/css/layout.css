@@ -102,6 +102,7 @@
     border-radius: 5px;
     margin-bottom: 20px;
     padding: 10px;
+    min-width: 900px;
 }
 .search-form .form-group{
     margin-bottom: 20px;
@@ -134,6 +135,7 @@
     margin-left:5px;
 }
 .list-table{
+    min-width: 900px;
 
 }
 .list-table thead tr th a,.list-table thead tr th{
@@ -171,6 +173,9 @@
     height: 34px;
     line-height: 34px;
 }
-.active-form .form-groups > .form-group input{
+.active-form .form-groups > .form-group input[type=text]{
     height:34px;
+}
+.form-group.has-success label{
+    color:#333;
 }

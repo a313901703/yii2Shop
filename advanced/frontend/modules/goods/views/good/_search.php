@@ -77,10 +77,6 @@ $brands = ArrayHelper::map(Brand::find()->where(['status'=>0])->all(),'id','name
         <div class="form-group flex"></div>
     </div>
 
-    <?php // echo $form->field($model, 'created_at') ?>
-
-    <?php // echo $form->field($model, 'created_by') ?>
-
     <div class="form-group btn-group">
         <?= Html::a('新建', ['create'], ['class' => 'btn btn-success']) ?>
         <?= Html::submitButton('查找', ['class' => 'btn btn-primary']) ?>
