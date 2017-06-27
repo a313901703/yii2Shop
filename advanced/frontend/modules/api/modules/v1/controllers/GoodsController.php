@@ -3,11 +3,11 @@ namespace v1\controllers;
 
 use yii\rest\ActiveController;
 use v1\models\Goods;
+use yii\helpers\ArrayHelper;
 
 class GoodsController extends ActiveController
 {
     public $modelClass = 'v1\models\Goods';
-
     // public function actions()
     // {
     //     $actions = parent::actions();
@@ -23,9 +23,10 @@ class GoodsController extends ActiveController
      * 首页商品推荐
      */
     public function actionRecommend(){
-        $goods = Goods::find()->select(['id','name','sale_price','(virtual_nums + volume) as volume'])
+        $goods = Goods::find()->select(['id','name','sale_price','(virtual_nums + volume) as volume1'])
             ->where(['status'=>0,'recommend'=>1])
             ->limit(6)
+            ->asArray()
             ->all();
         return $goods;
     }
