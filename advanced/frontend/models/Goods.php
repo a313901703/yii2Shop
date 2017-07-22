@@ -61,7 +61,7 @@ class Goods extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'good_cate', 'good_brand', 'market_price', 'sale_price','good_desc','good_detail'], 'required'],
+            [['name', 'good_cate', 'market_price', 'sale_price','good_desc','good_detail'], 'required'],
             [['weight', 'market_price', 'sale_price', 'cost'], 'number'],
             [['good_cate', 'good_brand', 'recommend', 'show', 'freight', 'stock', 'alert', 'sort', 'integral', 'virtual_nums', 'volume'], 'integer'],
             [['name', 'seo_title', 'seo_keyword', 'good_no'], 'string', 'max' => 50],
