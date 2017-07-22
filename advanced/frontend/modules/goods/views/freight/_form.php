@@ -50,7 +50,7 @@ AppAsset::addScript($this,Yii::$app->request->baseUrl."/js/app/freight_form.js")
     
     <hr>
 
-    <div class="whether_post_box <?= $model->whether_post ? 'hidden' : ''?>" id="free_post_box"" >
+    <div class="whether_post_box <?= $model->whether_post ? 'hidden' : ''?>" >
         <div class="form-groups">
             <?= $form->field($model, 'charge_rule')->radioList([1=>'按件数',2=>'按重量']) ?>
         </div>

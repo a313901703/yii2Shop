@@ -24,6 +24,14 @@ return [
             'port' => 6379,
             'database' => '0',
         ],
+        'elasticsearch' => [
+            'class' => 'yii\elasticsearch\Connection',
+            'nodes' => [
+                ['http_address' => 'localhost:9200'],
+                // configure more hosts if you have a cluster
+            ],
+            //'autodetectCluster' => false
+        ],
         'urlManager' => [
             'enablePrettyUrl' => true,
             'enableStrictParsing' => false,

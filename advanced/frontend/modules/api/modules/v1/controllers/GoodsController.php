@@ -3,11 +3,11 @@ namespace v1\controllers;
 
 use yii\rest\ActiveController;
 use v1\models\Goods;
+use yii\helpers\ArrayHelper;
 
 class GoodsController extends ActiveController
 {
     public $modelClass = 'v1\models\Goods';
-
     // public function actions()
     // {
     //     $actions = parent::actions();

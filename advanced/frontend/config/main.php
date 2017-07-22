@@ -79,8 +79,8 @@ return [
                 ['class' => 'yii\rest\UrlRule', 'controller' => 'api/v1/goods'],
                 
                 'goods/categories' => 'goods/category',
-                '<module:\w+>/<controller:(props)>/<action:\w+>/pid/<pid:\d+>'=>'<module>/<controller>/<action>',
-                '<module:\w+>/<controller:\w+>/<action:\w+>/<id:\d+>'=>'<module>/<controller>/<action>',
+                // '<module:\w+>/<controller:(props)>/<action:\w+>/pid/<pid:\d+>'=>'<module>/<controller>/<action>',
+                // '<module:\w+>/<controller:\w+>/<action:\w+>/<id:\d+>'=>'<module>/<controller>/<action>',
             ],
         ],
         // //七牛存储
@@ -99,6 +99,7 @@ return [
             'site/login',
             'site/signup',
             'api/*',
+            'estest/*',
             //'admin/*'
         ]
     ],
