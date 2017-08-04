@@ -59,7 +59,18 @@ return [
             'targets' => [
                 [
                     'class' => 'yii\log\FileTarget',
+                    'class' => 'app\components\FileTarget',
+                    'categories' => ['yii\*'],
                     'levels' => ['error', 'warning'],
+                    'logVars' => [],
+                    // 'except' => [
+                    //     'yii\db\*'
+                    // ],
+                    'prefix' => function ($message) {
+                        $user = Yii::$app->has('user', true) ? Yii::$app->get('user') : null;
+                        $userID = $user ? $user->getId(false) : '-';
+                        return "[$userID]";
+                    }
                 ],
             ],
         ],

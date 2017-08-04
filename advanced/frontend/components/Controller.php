@@ -24,7 +24,7 @@ class Controller extends baseController
     // public function init()
     // {
     // }
-
+    
     public function saveModel($model){
         if ($model->save()) 
             return true;
