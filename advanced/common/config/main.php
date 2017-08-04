@@ -22,7 +22,15 @@ return [
             'class' => 'yii\redis\Connection',
             'hostname' => '127.0.0.1',
             'port' => 6379,
-            'database' => 'product',
+            'database' => '0',
+        ],
+        'elasticsearch' => [
+            'class' => 'yii\elasticsearch\Connection',
+            'nodes' => [
+                ['http_address' => 'localhost:9200'],
+                // configure more hosts if you have a cluster
+            ],
+            //'autodetectCluster' => false
         ],
         'urlManager' => [
             'enablePrettyUrl' => true,

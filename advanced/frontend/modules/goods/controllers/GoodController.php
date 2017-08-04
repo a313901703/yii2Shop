@@ -68,6 +68,7 @@ class GoodController extends Controller
     {
         $model = new Goods();
         if ($model->load(Yii::$app->request->post())) {
+            $model->good_brand = 1;
             if ($model->save()) 
                 return $this->redirect(['index']);
             else{
