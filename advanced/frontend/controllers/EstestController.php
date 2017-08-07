@@ -24,7 +24,8 @@ class EstestController extends Controller
     public function actionCreate()
     {
         $book = new Book;
-        $book->primaryKey = 5; // in this case equivalent to $customer->id = 1;
+        // Book::createIndex();
+        $book->primaryKey = 1; // in this case equivalent to $customer->id = 1;
         $book->name = 'name_test';
         $book->type = '1';
         //$book->attributes = ['name'=>'name_test_1'];

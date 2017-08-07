@@ -59,6 +59,7 @@ return [
             'targets' => [
                 [
                     'class' => 'yii\log\FileTarget',
+                    'class' => 'frontend\components\FileTarget',
                     'levels' => ['error', 'warning'],
                 ],
             ],

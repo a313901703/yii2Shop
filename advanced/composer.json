@@ -28,7 +28,8 @@
         "yiisoft/yii2-imagine": "^2.1",
         "phpoffice/phpexcel": "^1.8",
         "crazyfd/yii2-qiniu": "dev-master",
-        "yiisoft/yii2-elasticsearch": "^2.0"
+        "yiisoft/yii2-elasticsearch": "^2.0",
+        "yiisoft/yii2-mongodb": "^2.1"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",
