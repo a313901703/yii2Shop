@@ -32,6 +32,11 @@ return [
             ],
             //'autodetectCluster' => false
         ],
+        'mongodb' => [
+            'class' => '\yii\mongodb\Connection',
+            'dsn' => 'mongodb://127.0.0.1:27017/adptest',
+            'dsn' => 'mongodb://adptest:adpT123@61.174.12.205:27017/adptest',
+        ],
         'urlManager' => [
             'enablePrettyUrl' => true,
             'enableStrictParsing' => false,
