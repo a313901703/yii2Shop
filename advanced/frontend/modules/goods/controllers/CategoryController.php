@@ -100,10 +100,7 @@ class CategoryController extends Controller
      */
     public function actionDelete($id)
     {
-        $model = $this->findModel($id);
-        if ($this->delete($model)) {
-            //Yii::$app->session->setFlash('success', '删除成功');
-        }
+        Category::deleteAll(['or',['id'=>$id],['pid'=>$id]]);
         return $this->redirect(['index']);
     }
 

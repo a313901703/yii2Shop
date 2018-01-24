@@ -39,7 +39,7 @@ class PropsController extends Controller
             $this->saveModel($model);
             $model = new Itemprops();
         } 
-        $query = Itemprops::find()->andWhere(['type'=>2])->with(['propsvalues']);
+        $query = Itemprops::find()->where(['type'=>2])->with(['propsvalues'])->goods();
         $provider = $this->getActiveDataprovider($query,[],['defaultOrder'=>['sort' => SORT_DESC,'id' => SORT_DESC]]);
         return $this->render('index', [
             'model' => $model,
@@ -106,12 +106,12 @@ class PropsController extends Controller
     //属性组合
     public function actionCombi()
     {
-        $models = Propscombi::find()->indexBy('pids')->all();
+        $models = Propscombi::find()->goods()->indexBy('pids')->all();
         if(Yii::$app->request->isPost){
             $this->saveCombiModel($models);
             return $this->redirect(['combi']);
         }
-        $Itemprops = Itemprops::find()->andWhere(['type'=>2])->with(['propsvalues'])->orderBy(['id'=>SORT_ASC,'sort'=>SORT_DESC])->asArray()->all();
+        $Itemprops = Itemprops::find()->where(['type'=>2])->goods()->with(['propsvalues'])->orderBy(['id'=>SORT_ASC,'sort'=>SORT_DESC])->asArray()->all();
         $propsNames = ArrayHelper::getColumn($Itemprops,'name');
         //TODO 没有数据跳转到没有数据的页面
         if (!$propsNames) 
@@ -153,7 +153,7 @@ class PropsController extends Controller
                     continue;
                 $_model->attributes = $attributes;
                 if (!$_model->save())
-                    throw new \yii\web\HttpException(400,array_values($model->getFirstErrors())[0] );
+                    throw new \yii\web\HttpException(400, current(array_values($model->getFirstErrors())));
             }
             $transaction->commit();
         }catch (Exception $e) {  

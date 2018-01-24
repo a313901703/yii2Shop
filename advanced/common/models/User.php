@@ -69,6 +69,7 @@ class User extends ActiveRecord implements IdentityInterface
      */
     public static function findIdentityByAccessToken($token, $type = null)
     {
+        return static::findOne(['auth_key'=>$token]);
         throw new NotSupportedException('"findIdentityByAccessToken" is not implemented.');
     }
 
@@ -99,6 +100,11 @@ class User extends ActiveRecord implements IdentityInterface
             'password_reset_token' => $token,
             'status' => self::STATUS_ACTIVE,
         ]);
+    }
+
+    public static function findByPhone($phone)
+    {
+        return static::findOne(['phone' => $phone]);
     }
 
     /**

@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use app\components\ActiveRecord;
 
 /**
  * This is the model class for table "itemprops".
@@ -14,7 +15,7 @@ use Yii;
  *
  * @property Propsvalue[] $propsvalues
  */
-class Itemprops extends \yii\db\ActiveRecord
+class Itemprops extends ActiveRecord
 {
     /**
      * @inheritdoc
@@ -45,6 +46,7 @@ class Itemprops extends \yii\db\ActiveRecord
             [['name'], 'required'],
             [['sort', 'type'], 'integer'],
             [['name'], 'string', 'max' => 50],
+            ['sort','default','value'=>0],
 
             ['type','default','value'=>2],
             ['type','in','range'=>[1,2,3]],
@@ -68,9 +70,9 @@ class Itemprops extends \yii\db\ActiveRecord
         ];
     }
 
-    public static function find(){
-        return parent::find()->where(['goods_id'=>Yii::$app->redis->get(Yii::$app->user->id.'_currentGoods')]);
-    }
+    // public static function find(){
+    //     return parent::find()->where(['goods_id'=>Yii::$app->redis->get(Yii::$app->user->id.'_currentGoods')]);
+    // }
 
     /**
      * @return \yii\db\ActiveQuery

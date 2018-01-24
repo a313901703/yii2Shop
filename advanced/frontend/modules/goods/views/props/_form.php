@@ -29,7 +29,7 @@ $this->registerJs(
 
     <div class="form-inline-group">
         <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
-        <?= $form->field($model, 'sort')?>
+        <?= $form->field($model, 'sort')->textInput(['placeholder' => 0])?>
     </div>
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? '新建' : '修改', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

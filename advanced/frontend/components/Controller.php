@@ -7,7 +7,7 @@ use yii\base\InlineAction;
 use yii\data\ActiveDataProvider;
 use yii\helpers\{Url,Json,ArrayHelper};
 use yii\web\{Controller as baseController,Response};
-use yii\web\NotFoundHttpException;
+use yii\web\{NotFoundHttpException,BadRequestHttpException};
 
 use frontend\components\{UploadImg};
 
@@ -27,10 +27,25 @@ class Controller extends baseController
     
     public function saveModel($model){
         if ($model->save()) 
-            return true;
-        Yii::$app->session->setFlash('alert', ['type'=>'warning','title'=>'錯誤','text'=>array_values($model->getFirstErrors())[0]]);
+            return $model;
+        $this->setWarningFlash(current(array_values($model->getFirstErrors())));
         return false;
     } 
+
+    public function saveModelWithLock(){
+        try{
+            if (!$model->save()) {
+                throw new BadRequestHttpException(current(array_values($model->getFirstErrors())));
+            }
+        }catch(StaleObjectException $e){
+            $this->setWarningFlash('不是最新的数据');
+            return false;
+        }catch(\Throwable $e){
+            $this->setWarningFlash($e->getMessage());
+            return false;
+        }
+        return true;
+    }
 
     public function setWarningFlash($text){
         Yii::$app->session->setFlash('alert', ['type'=>'warning','title'=>'錯誤','text'=>$text]);

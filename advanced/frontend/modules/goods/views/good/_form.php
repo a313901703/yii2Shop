@@ -16,6 +16,9 @@ $inputClass = 'form-control';
 $categories = ArrayHelper::map(Category::getSubTree(true),'id','name');
 $brands = ArrayHelper::map(Brand::find()->where(['status'=>0])->all(),'id','name');
 $freights = ArrayHelper::map(FreightTemp::find()->select('id,name')->all(),'id','name');
+$model->market_price = $model->market_price / 100;
+$model->sale_price = $model->sale_price / 100;
+$model->cost = $model->cost / 100;
 ?>
 
 <div class="table-content">

@@ -41,9 +41,9 @@ $this->params['breadcrumbs'][] = $this->title;
                 'format'=>'html',
                 'value' => function ($model) {
                     $html = '';
-                    $html .= "<span>市场价: ".$model->market_price."</span><br>";
-                    $html .= "<span>售价: ".$model->sale_price."</span><br>";
-                    $html .= "<span>成本: ".$model->cost."</span><br>";
+                    $html .= "<span>市场价: ".($model->market_price / 100)."</span><br>";
+                    $html .= "<span>售价: ".($model->sale_price/100)."</span><br>";
+                    $html .= "<span>成本: ".($model->cost/100)."</span><br>";
                     return $html;
                 },
             ],

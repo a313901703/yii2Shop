@@ -12,7 +12,6 @@ return [
     'bootstrap' => ['log'],
     'controllerNamespace' => 'frontend\controllers',
     'name' =>'WTF+',        //平台名称
-    //'defaultRoute'=>'goods',
     'aliases' => [
         '@goods' => '@app/modules/goods',
         '@api' => '@app/modules/api',
@@ -54,18 +53,21 @@ return [
             // this is the name of the session cookie used for login on the frontend
             'name' => 'advanced-frontend',
         ],
+        // 'view'=>[
+        //     'class'=>'app\components\View',
+        // ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
             'targets' => [
                 [
                     'class' => 'yii\log\FileTarget',
-                    'class' => 'app\components\FileTarget',
+                    //'class' => 'app\components\FileTarget',
                     'categories' => ['yii\*'],
                     'levels' => ['error', 'warning'],
                     'logVars' => [],
-                    // 'except' => [
-                    //     'yii\db\*'
-                    // ],
+                    'except' => [
+                        'yii\db\*'
+                    ],
                     'prefix' => function ($message) {
                         $user = Yii::$app->has('user', true) ? Yii::$app->get('user') : null;
                         $userID = $user ? $user->getId(false) : '-';
@@ -87,11 +89,32 @@ return [
         ],
         'urlManager' => [
             'rules' => [
-                ['class' => 'yii\rest\UrlRule', 'controller' => 'api/v1/goods'],
-                
+                [
+                    'class' => 'yii\rest\UrlRule',
+                    'controller' => [
+                        'api/v1/goods',
+                        'api/v1/product',
+                        'api/v1/user',
+                        'api/v1/pay-cart',
+                        'api/v1/order',
+                    ],
+                    'suffix'=>'',
+                    'tokens'=>[
+                        '{id}' => '<id:\\d[\\d,]*>',
+                        '{_act}'=>'<_act>',
+                    ],
+                    'patterns'=>[
+                        'PUT,PATCH {id}' => 'update',
+                        'DELETE {id}' => 'delete',
+                        'GET,HEAD {id}' => 'view',
+                        'POST' => 'create',
+                        'GET,POST {_act}' => 'index',
+                        'GET,HEAD' => 'index',
+                        '{id}' => 'options',
+                        '' => 'options',
+                    ],
+                ],
                 'goods/categories' => 'goods/category',
-                // '<module:\w+>/<controller:(props)>/<action:\w+>/pid/<pid:\d+>'=>'<module>/<controller>/<action>',
-                // '<module:\w+>/<controller:\w+>/<action:\w+>/<id:\d+>'=>'<module>/<controller>/<action>',
             ],
         ],
         // //七牛存储
@@ -109,8 +132,9 @@ return [
             //这里是允许访问的action
             'site/login',
             'site/signup',
-            'api/*',
-            'estest/*',
+            'site/logout',
+            // 'api/*',
+            //'estest/*',
             //'admin/*'
         ]
     ],

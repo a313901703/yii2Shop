@@ -12,7 +12,7 @@ use Yii;
  * @property string $carousels
  * @property integer $goods_id
  */
-class GoodsImages extends \yii\db\ActiveRecord
+class GoodsImages extends \app\components\ActiveRecord
 {
     public $_thumb;
     public $_carousels;
@@ -53,9 +53,5 @@ class GoodsImages extends \yii\db\ActiveRecord
             '_carousels' => '轮播',
 
         ];
-    }
-
-    public static function find(){
-        return parent::find()->where(['goods_id'=>Yii::$app->redis->get(Yii::$app->user->id.'_currentGoods')]);
     }
 }

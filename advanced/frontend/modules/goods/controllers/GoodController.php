@@ -27,7 +27,6 @@ class GoodController extends Controller
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['POST'],
-                    'index'=>['POST'],
                 ],
             ],
         ];
@@ -69,13 +68,10 @@ class GoodController extends Controller
     {
         $model = new Goods();
         if ($model->load(Yii::$app->request->post())) {
-            $model->good_brand = 1;
-            if ($model->save()) 
+            if ($this->saveModel($model)) {
                 return $this->redirect(['index']);
-            else{
-                Yii::$app->session->setFlash('warning', array_values($model->getFirstErrors())[0]);
             }
-        } 
+        }
         return $this->render('create', [
             'model' => $model,
         ]);
@@ -92,12 +88,10 @@ class GoodController extends Controller
         $model = $this->findModel($id);
         //将id写入redis
         $this->redis->set(Yii::$app->user->id.'_currentGoods',$id);
-        
         if ($model->load(Yii::$app->request->post())) {
-            if ($model->save()) 
+            if ($this->saveModel($model)) {
                 return $this->redirect(['index']);
-            else
-                Yii::$app->session->setFlash('warning', array_values($model->getFirstErrors())[0]);
+            }
         }
         return $this->render('update', [
             'model' => $model,

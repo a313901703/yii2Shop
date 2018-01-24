@@ -2,11 +2,11 @@
 namespace app\components;
 
 use Yii;
-use yii\log\{Logger,FileTarget};
+use yii\log\{Logger};
 use yii\helpers\{ArrayHelper,VarDumper,Json};
 use yii\helpers\StringHelper;
 
-class FileTarget extends FileTarget
+class FileTarget extends \yii\log\FileTarget
 {
     public $logTag;
 

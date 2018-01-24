@@ -62,9 +62,10 @@ $(function(){
         // }
         ]
     };
-    window.onresize = myChart.resize;
+    myChart.setOption(option, true);
+    //window.onresize = myChart.resize;
     if (option && typeof option === "object") {
-        myChart.setOption(option, true);
+        
     }
     
 });

@@ -46,6 +46,7 @@ class Propsvalue extends \yii\db\ActiveRecord
         return [
             [['name', 'props_id'], 'required'],
             [['sort', 'props_id', 'status'], 'integer'],
+            ['sort','default','value'=>0],
             [['name'], 'string', 'max' => 50],
             [['props_id'], 'exist', 'skipOnError' => true, 'targetClass' => Itemprops::className(), 'targetAttribute' => ['props_id' => 'id']],
 

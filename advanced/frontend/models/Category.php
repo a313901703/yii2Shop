@@ -52,7 +52,7 @@ class Category extends \yii\db\ActiveRecord
 
             [['sort', 'pid'], 'integer'],
 
-            [['status','pid'],'default','value'=>0],
+            [['status','pid','sort'],'default','value'=>0],
         ];
     }
 

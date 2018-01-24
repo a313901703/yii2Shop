@@ -36,12 +36,14 @@ AppAsset::addScript($this,Yii::$app->request->baseUrl."/js/propscombi.js");
                            <td><?=$item?></td> 
                         <?php endforeach ?>
                         <td>
-                            <input type="text" name="propsPrice[<?=$key;?>]" class="form-control" value="<?=$models[$key]['sale_price']?? ''?>">
+                            <input type="text" name="propsPrice[<?=$key;?>]" class="form-control" value="<?=ArrayHelper::getValue($models,[$key,'sale_price'],0) / 100 ?>">
                         </td>
                         <td>
-                            <input type="text" name="propsCost[<?=$key;?>]" class="form-control" value="<?=$models[$key]['cost']??''?> ">
+                            <input type="text" name="propsCost[<?=$key;?>]" class="form-control" value="<?=ArrayHelper::getValue($models,[$key,'cost'],0) / 100?>">
                         </td>
-                        <td><input type="text" name="propsStock[<?=$key;?>]" class="form-control" value="<?=$models[$key]['stock']??''?> "></td>
+                        <td>
+                            <input type="text" name="propsStock[<?=$key;?>]" class="form-control" value="<?=ArrayHelper::getValue($models,[$key,'stock'],0)?> ">
+                        </td>
                     </tr>
                     <?php endforeach ?>
                 </tbody>

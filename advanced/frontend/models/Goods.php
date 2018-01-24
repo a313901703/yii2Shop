@@ -37,7 +37,7 @@ use app\models\Brand;
  * @property string $virtual_nums
  * @property string $volume
  */
-class Goods extends \yii\db\ActiveRecord
+class Goods extends \app\components\ActiveRecord
 {
     /**
      * @inheritdoc
@@ -55,6 +55,10 @@ class Goods extends \yii\db\ActiveRecord
         ];
     }
 
+    // public function optimisticLock(){
+    //     return 'version';
+    // }
+
     /**
      * @inheritdoc
      */
@@ -63,6 +67,9 @@ class Goods extends \yii\db\ActiveRecord
         return [
             [['name', 'good_cate', 'market_price', 'sale_price','good_desc','good_detail'], 'required'],
             [['weight', 'market_price', 'sale_price', 'cost'], 'number'],
+            [['market_price', 'sale_price', 'cost'],'filter','filter'=>function($value){
+                return (int)($value * 100);
+            }],
             [['good_cate', 'good_brand', 'recommend', 'show', 'freight', 'stock', 'alert', 'sort', 'integral', 'virtual_nums', 'volume'], 'integer'],
             [['name', 'seo_title', 'seo_keyword', 'good_no'], 'string', 'max' => 50],
             [['volume','virtual_nums','integral','status','freight','alert','sort'],'default','value' => 0],
@@ -120,5 +127,13 @@ class Goods extends \yii\db\ActiveRecord
 
     public function getImages(){
         return $this->hasOne(GoodsImages::className(),['goods_id'=>'id']);
+    }
+
+    public function getProps(){
+        return $this->hasMany(Itemprops::className(),['goods_id'=>'id']);
+    }
+
+    public function getPropsCombi(){
+        return $this->hasMany(Propscombi::className(),['goods_id'=>'id'])->orderBy(['sale_price'=>SORT_ASC]);
     }
 }

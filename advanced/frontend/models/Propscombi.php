@@ -14,7 +14,7 @@ use Yii;
  * @property integer $cost
  * @property integer $stock
  */
-class Propscombi extends \yii\db\ActiveRecord
+class Propscombi extends \app\components\ActiveRecord
 {
     /**
      * @inheritdoc
@@ -35,6 +35,9 @@ class Propscombi extends \yii\db\ActiveRecord
             [['cost','stock'],'default','value'=>0],
             ['goods_id','default','value'=>Yii::$app->redis->get(Yii::$app->user->id.'_currentGoods')],
             [['pids'], 'string', 'max' => 50],
+            [['sale_price','cost'],'filter','filter'=>function($value){
+                return (int)($value * 100);
+            }]
         ];
     }
 
@@ -51,9 +54,5 @@ class Propscombi extends \yii\db\ActiveRecord
             'cost' => '成本',
             'stock' => '库存',
         ];
-    }
-
-    public static function find(){
-        return parent::find()->where(['goods_id'=>Yii::$app->redis->get(Yii::$app->user->id.'_currentGoods')]);
     }
 }
