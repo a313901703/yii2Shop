@@ -19,15 +19,19 @@ Documentation is at [docs/guide/README.md](docs/guide/README.md).
 安装
 -------------------
 ```
-./init                          初始化
+#初始化
+./init                          
 
-composer update                 安装扩展
+#安装扩展
+composer update   
 
-./yii migrate                   安装数据库
+#安装数据库
+./yii migrate                   
 ./yii migrate --migrationPath=@mdm/admin/migrations
 ./yii yii migrate --migrationPath=@yii/rbac/migrations
 
-./yii signup     创建admin角色账号
+#创建admin角色账号
+./yii signup     
 
 ```
 
