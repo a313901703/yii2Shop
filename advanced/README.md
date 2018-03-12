@@ -2,8 +2,8 @@ Yii 2 商城
 ===============================
 
 Yii2-shop
-手机端参考(React-native) https://github.com/a313901703/AwesomeProject.git
-WEB端参考(Vue) https://github.com/a313901703/vue-shop.git
+#### 手机端参考(React-native) https://github.com/a313901703/AwesomeProject.git
+#### WEB端参考(Vue) https://github.com/a313901703/vue-shop.git
 
 安装
 -------------------
