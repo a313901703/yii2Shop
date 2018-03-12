@@ -13,7 +13,6 @@ $newUsersIds = Yii::$app->authManager->getUserIdsByRole('api_vi_登录');
 $newUsers = User::find()->where(['id'=>$newUsersIds])->limit(8)->orderBy('id desc')->asArray()->all();
 
 $products = Goods::find()->limit(4)->orderBy('id desc')->asArray()->all();
-//print_r($newUsers);exit;
 ?>
 
 <div class="row">
