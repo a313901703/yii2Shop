@@ -10,7 +10,6 @@ use yii\filters\auth\{QueryParamAuth,HttpBasicAuth};
 use api\filters\OAuthFilter;
 use frontend\traits\CommFunc;
 
-
 /**
 * 
 */
@@ -42,16 +41,7 @@ class Controller extends ActiveController
         ];
         $behaviors = ArrayHelper::merge($behaviors,[OAuthFilter::className()]);
         return $behaviors;
-    }
-
-    // public function afterAction($action, $result)
-    // {
-    //     $result = parent::afterAction($action, $result);
-    //     if(isset($result['data'])){
-    //         $result['data'] = $this->serializeData($result['data']);
-    //     }
-    //     return $result;
-    // }
+    }   
 
     /**
      * @inheritdoc
@@ -59,7 +49,7 @@ class Controller extends ActiveController
     protected function verbs()
     {
         return [
-            'index' => ['GET', 'HEAD'],
+            'index' => ['GET', 'HEAD' , 'POST'],
             'view' => ['GET', 'HEAD'],
             'create' => ['POST'],
             'update' => ['PUT', 'PATCH','POST'],
@@ -134,6 +124,11 @@ class Controller extends ActiveController
             $error = array_values($model->getFirstErrors())[0];
             throw new BadRequestHttpException($error);
         }
+    }
+
+    protected function serializeData($data)
+    {
+        return Yii::createObject(['class'=>$this->serializer,'preserveKeys'=>3])->serialize($data);
     }
 }
 

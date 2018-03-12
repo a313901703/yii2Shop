@@ -2,9 +2,7 @@
 
 namespace v1\models;
 
-use yii\web\Link;
-use yii\web\Linkable;
-use yii\helpers\Url;
+use Yii;
 use yii\helpers\ArrayHelper;
 /**
 * 
@@ -35,16 +33,26 @@ class Goods extends \app\models\Goods
             'carousels'=>function($model){
                 return $model['images'] ? json_decode($model['images']['carousels'],true) : [];
             },
-            //'props',
-            // 'propsCombi',
-            // 'props'=>function($model){
-            //     return $model['props']
-            // },
         ];
     }
 
     public function extraFields(){
-        return ['props'];
+        return [
+            'props'=>function($model){
+                $props = \app\models\Itemprops::find()->where(['goods_id'=>$model->id])
+                    ->with('propsvalues')
+                    ->asArray()
+                    ->all();
+                return $props;
+            },
+            'propsCombi',
+            'collection'=>function($model){
+                if (($collection = \app\models\Collection::findOne(['product_id'=>$model['id'],'created_by'=>Yii::$app->user->id])) === null) {
+                    return 0;
+                }
+                return $collection['status'];
+            }
+        ];
     }
 
 }

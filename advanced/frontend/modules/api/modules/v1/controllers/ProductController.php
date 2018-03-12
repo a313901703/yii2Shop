@@ -20,43 +20,41 @@ class ProductController extends Controller
     }
 
     public function prepareDataProvider(){
-        $limit = Yii::$app->request->get('limit') ?: 10;
-        $query = $this->modelClass::find()->active();
-        // $data = $this->getActiveDataprovider($query,$limit);
-        // $data['data'] = ArrayHelper::index($data['data'],'id');
-        return $this->getActiveDataprovider($query,$limit);
+        return $this->findModels(['recommend'=>1]);
     }
 
     public function actionRecommend(){
-        $query = Goods::find()
-            ->where(['status'=>0,'recommend'=>1])
-            ->with(['images']);
-        return $this->getActiveDataprovider($query,6);
+        return $this->findModels(['recommend'=>1]);
     }
 
     public function actionView($id){
-        $model = Goods::find()
-            ->select(['id','name','sale_price as price','market_price','(virtual_nums + volume) as volume','stock'])
-            ->where(['id'=>$id])
-            ->with(['props.propsvalues','propsCombi','images'])
-            ->asArray()->one();
-        if ($model['propsCombi']) {
-           $sale_price = $model['propsCombi'][0]['sale_price'];
-           $sale_price .= ' - ' . end($model['propsCombi'])['sale_price'];
-           $model['price'] = $sale_price;
-           $model['stock'] = array_sum(array_column($model['propsCombi'], 'stock'));
+        if (!($model = $this->findModels(['id'=>$id])['data'])) {
+            throw new BadRequestHttpException("商品不存在");
         }
-        $collection = $this->findCollection($model['id']);
-        $model['collection'] = $collection['status'] ?: 0;
-        $model['carousels']  = json_decode($model['images']['carousels'],true) ?: [];
-        return ['data'=>$this->serializeData($model)];
+        $model = current($model);
+        // $model = $this->serializeData($model);
+        // $collection = $this->findCollection($model['id']);
+        // $model['collection'] = $collection['status'] ?: 0;
+        return ['data'=>$this->serializeData($model)]; 
+    }
+
+
+    public function findModels($andWhere = null){
+        $limit = Yii::$app->request->get('limit') ?: 10;
+        $query = Goods::find()
+            ->where(['status'=>0])
+            ->andFilterWhere($andWhere)
+            ->with(['images'])
+            ->indexBy('id');
+        return $this->getActiveDataprovider($query,$limit); 
     }
 
     /**
      * 商品收藏
      */
-    public function actionCollect($id){
+    public function actionCollect(){
         $request = Yii::$app->request;
+        $id = $request->get('id');
         $model = $this->findCollection($id);
         $model->status = $request->get('status');
         $this->saveModel($model);

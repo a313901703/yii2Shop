@@ -37,6 +37,7 @@ class FreightTemp extends \yii\db\ActiveRecord
         return [
             [['name', 'base_freight', 'free_post'], 'required'],
             [['type', 'base_freight', 'renew', 'whether_post', 'free_post', 'charge_rule', 'base_num', 'renew_num','free_post_value'], 'integer'],
+            ['free_post_value','default','value'=>0],
             [['name', 'region'], 'string', 'max' => 255],
             [['charge_rule','free_post'],'default','value'=>'1'],
             ['region_name','safe'],

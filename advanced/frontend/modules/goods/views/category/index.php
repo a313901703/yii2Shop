@@ -42,7 +42,7 @@ AppAsset::addScript($this,Yii::$app->request->baseUrl."/js/cat.js?".time());
         <thead>
             <tr>
                 <th>分类名称</th>
-                <th>父级ID</th>
+                <th>缩略图</th>
                 <th>操作</th>
             </tr>
         </thead>
@@ -50,7 +50,11 @@ AppAsset::addScript($this,Yii::$app->request->baseUrl."/js/cat.js?".time());
             <?php foreach ($categories as $key => $category): ?>
             <tr class="cat cat-<?= $category['level']+1 ?>" data-value='<?= $category['id'] ?>' data-pid='<?= $category['pid'] ?>'>
                 <td> <i class="fa fa-chevron-right cat-icon"></i> <?= $category['name'] ?></td>
-                <td><?= $category['pid'] ?></td>
+                <td>
+                    <?php if ($category['img']): ?>
+                        <img src="<?=$category['img']?>" style="width:80px;height:65px" alt="">
+                    <?php endif ?>
+                </td>
                 <td>
                     <?= Html::a('修改', ['update', 'id' => $category['id']], ['class' => 'btn btn-primary btn-sm']) ?>
                     <?= Html::a('删除', ['delete','id'=>$category['id']], [

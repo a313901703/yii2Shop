@@ -57,7 +57,7 @@ class Region extends \yii\db\ActiveRecord
         ];
     }
 
-    public function getChild(){
+    public function getChildren(){
         return $this->hasMany(Region::className(), ['parent_id' => 'id']);
     }
 }

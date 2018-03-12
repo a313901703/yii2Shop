@@ -15,7 +15,7 @@ class UserController extends Controller
     public function actions()
     {
         $actions = parent::actions();
-        //unset($actions['index']);
+        unset($actions['view']);
         return $actions;
     }
 
@@ -35,13 +35,14 @@ class UserController extends Controller
      * 发送手机验证码
      * @return [type] [description]
      */
-    public function actionCode($phone){
+    public function actionCode(){
         $code = 1234;
         $_code = [];
         for ($i=0; $i < 4; $i++) {
             $_code[] = rand(0,9);
         }
         //$code = implode('', $_code);
+        $phone = Yii::$app->request->post('phone');
         $attributes = [
             'phone' => $phone,
             'code' => $code,
@@ -54,8 +55,9 @@ class UserController extends Controller
     }
 
     private function findModel($phone){
-        if (($model == User::findByPhone($phone)) === null) {
+        if (($model = User::findByPhone($phone)) === null) {
             $model = new User;
         }
+        return $model;
     }
 }

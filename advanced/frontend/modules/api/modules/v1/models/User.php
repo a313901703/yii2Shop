@@ -38,7 +38,7 @@ class User extends commUser
                 'message' => '验证码错误'
             ],
             ['username','default','value'=>Yii::$app->name . '__' . time().rand(1000,9999)],
-            ['password','default','value'=>'123456'],
+            //['password','default','value'=>'123456'],
             ['status','default','value'=>9],
         ];
     }
@@ -47,6 +47,8 @@ class User extends commUser
     {
         if ($this->validate() ) {
             if ($this->isNewRecord) {
+                //设置默认密码
+                $this->setPassword('123456');
                 $user->generateAuthKey();
                 $this->save();
                 //添加到角色

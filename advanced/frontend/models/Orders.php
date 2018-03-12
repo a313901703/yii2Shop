@@ -48,6 +48,9 @@ class Orders extends ActiveRecord
             [['total', 'status', 'pay_type'], 'integer'],
             [['msg'], 'string', 'max' => 255],
             ['status','default','value'=>0],
+            ['order_tag','default','value' =>  function ($model, $attribute) {
+                return Yii::$app->name.'_'.chr(rand(65, 90)).chr(rand(65, 90)).time();
+            }],
         ];
     }
 
@@ -65,10 +68,11 @@ class Orders extends ActiveRecord
             'updated_at' => '修改时间',
             'created_by' => '创建人',
             'updated_by' => '修改人',
+            'order_tag' => '订单号',
         ];
     }
 
-    public function getOrderProducts(){
+    public function getProducts(){
         return $this->hasMany(OrderProduct::className(),['order_id'=>'id']);
     }
 }

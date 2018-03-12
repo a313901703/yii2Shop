@@ -23,6 +23,7 @@ class m171222_035252_orders extends Migration
             'status' => $this->integer(3)->notNull()->defaultValue(0)->comment('状态0:未支付,1:待发货,2:已发货,3:待确认,4:已确认,5:退货,-1:删除'),
             'msg' => $this->string(255)->comment('留言'),
             'pay_type'=>$this->integer(3)->comment('1:微信,2支付宝'),
+            'address_id' => $this->integer()->notNull()->comment('地址ID'),
             'created_at' => $this->integer()->notNull()->comment('创建时间'),
             'updated_at' => $this->integer()->notNull()->comment('修改时间'),
             'created_by' => $this->integer()->notNull()->comment('创建人'),

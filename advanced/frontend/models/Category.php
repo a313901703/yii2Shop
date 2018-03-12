@@ -17,8 +17,10 @@ use frontend\components\SubTree;
  * @property integer $created_at
  * @property integer $created_by
  */
-class Category extends \yii\db\ActiveRecord
+class Category extends \app\components\ActiveRecord
 {
+    public $_img;
+
     /**
      * @inheritdoc
      */
@@ -47,12 +49,16 @@ class Category extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            ['name', 'required'],
+            [['name'], 'required'],
             [['name'], 'string', 'max' => 50],
 
             [['sort', 'pid'], 'integer'],
 
             [['status','pid','sort'],'default','value'=>0],
+
+            [['img'], 'string', 'max' => 255],
+
+            ['_img', 'image', 'extensions' => ['png', 'jpg'], 'maxSize' => 1024*1024,'maxWidth'=>100,'maxHeight'=>80],
         ];
     }
 
@@ -65,6 +71,7 @@ class Category extends \yii\db\ActiveRecord
             'id' => 'ID',
             'name' => '分类名',
             'sort' => '排序',
+            '_img' => '分类图片',
             'pid' => '父级',
             'created_at' => '创建时间',
         ];
@@ -77,6 +84,10 @@ class Category extends \yii\db\ActiveRecord
     public static function find()
     {
         return new CommonQuery(get_called_class());
+    }
+
+    public function getChildren(){
+        return $this->hasMany(Category::className(),['pid'=>'id']);
     }
 
     /**

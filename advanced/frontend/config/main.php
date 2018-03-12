@@ -97,6 +97,8 @@ return [
                         'api/v1/user',
                         'api/v1/pay-cart',
                         'api/v1/order',
+                        'api/v1/address',
+                        'api/v1/category',
                     ],
                     'suffix'=>'',
                     'tokens'=>[

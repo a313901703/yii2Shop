@@ -10,7 +10,7 @@ use app\models\Region;
 /* @var $this yii\web\View */
 /* @var $model app\models\FreightTemp */
 /* @var $form yii\widgets\ActiveForm */
-$locations = Region::find()->where(['parent_id'=>1])->andWhere(['!=','id',1])->with('child')->asArray()->all();
+$locations = Region::find()->where(['parent_id'=>1])->andWhere(['!=','id',1])->with('children')->asArray()->all();
 $regionChecked = $model->region ? explode(',', $model->region) : [];
 AppAsset::addScript($this,Yii::$app->request->baseUrl."/js/app/freight_form.js");
 
@@ -137,7 +137,7 @@ AppAsset::addScript($this,Yii::$app->request->baseUrl."/js/app/freight_form.js")
                                             <input type="checkbox" class="region-all" data-id='<?=$location['id']?>' >全部
                                         </label>
                                     </div>
-                                <?php foreach ($location['child'] as  $city): ?>
+                                <?php foreach ($location['children'] as  $city): ?>
                                     <div class="checkbox">
                                         <label>
                                             <input type="checkbox" name="region" data-name='<?= $city['name']?>' value="<?=$city['id']?>" 

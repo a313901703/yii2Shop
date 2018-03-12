@@ -91,6 +91,7 @@ class PayCart extends ActiveRecord
                 foreach ($props as $item) {
                     $cartItem['props'] .=  $item['props']['name'] . ' : ' .$item['name'] .',';
                 }
+                $cartItem['props'] = trim($cartItem['props'],',');
                 $cartItem['price'] = $propsCombi['sale_price'];
                 $cartItem['cost'] = $propsCombi['cost'];
                 $cartItem['stock'] = $propsCombi['stock'];

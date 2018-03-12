@@ -3,6 +3,7 @@ namespace app\components;
 
 use Yii;
 use app\models\MessageLog;
+use yii\web\BadRequestHttpException;
 
 /**
  * 手机验证码
@@ -27,7 +28,11 @@ class Message
     private function logBefore($args){
         $model = new MessageLog;
         $model->attributes = $args[0];
-        $model->save();
+        if (!$model->save()) {
+            throw new BadRequestHttpException(json_encode($args[0]));
+            $error = array_values($model->getFirstErrors())[0];
+            throw new BadRequestHttpException($error);
+        }
         return $model;
     }
     public function logEnd($model,$response){

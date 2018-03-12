@@ -3,9 +3,12 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use kartik\select2\Select2;
+use kartik\file\FileInput;
+use frontend\components\UploadImg;
 use yii\helpers\ArrayHelper;
 
 use app\models\Category;
+
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Category */
@@ -24,7 +27,7 @@ $categories = ArrayHelper::map(Category::getSubTree(true),'id','name');
 
     <div class="form-groups flex">
         <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
-        <?= $form->field($model, 'sort') ?>
+        <?= $form->field($model, 'sort')->textInput(['placeholder' => 0]) ?>
         <div class="form-group flex"></div>
     </div>
 
@@ -39,7 +42,10 @@ $categories = ArrayHelper::map(Category::getSubTree(true),'id','name');
             ]);
         ?>
         <div class="form-group flex"></div>
-        <div class="form-group flex"></div>
+    </div>
+
+    <div class="form-groups flex">
+        <?= $form->field($model, '_img')->widget(FileInput::classname(),UploadImg::getFileInput($model->img))->hint('(尺寸100*80, <= 1M)')?>
     </div>
 
     <p class="space"></p>

@@ -17,6 +17,7 @@ class m170120_103240_category extends Migration
             'id' => $this->primaryKey(),
             'name' => $this->string(50)->notNull()->comment('分类名'),
             'sort' => $this->integer(6)->notNull()->defaultValue(0)->comment('排序'),
+            'img' => $this->string(500)->notNull()->comment('分类图片'),
             'pid' => $this->integer()->notNull()->defaultValue(0)->comment('父类ID'),
             'pid_sign' => $this->string()->notNull()->defaultValue('0')->comment('分类标记'),
             'created_at' => $this->integer()->notNull()->comment('创建时间'),
