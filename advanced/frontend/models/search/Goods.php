@@ -61,7 +61,6 @@ class Goods extends GoodsModel
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'weight' => $this->weight,
             'good_cate' => $this->good_cate,
             'good_brand' => $this->good_brand,
             'recommend' => $this->recommend,
@@ -69,26 +68,13 @@ class Goods extends GoodsModel
             'freight' => $this->freight,
             'market_price' => $this->market_price,
             'sale_price' => $this->sale_price,
-            'cost' => $this->cost,
             'stock' => $this->stock,
-            'alert' => $this->alert,
-            'sort' => $this->sort,
-            'integral' => $this->integral,
-            'virtual_nums' => $this->virtual_nums,
-            'volume' => $this->volume,
             'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
-            'created_by' => $this->created_by,
-            'updated_by' => $this->updated_by,
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name])
-            ->andFilterWhere(['like', 'short_name', $this->short_name])
             ->andFilterWhere(['like', 'keyword', $this->keyword])
-            ->andFilterWhere(['like', 'seo_title', $this->seo_title])
-            ->andFilterWhere(['like', 'seo_keyword', $this->seo_keyword])
-            ->andFilterWhere(['like', 'seo_content', $this->seo_content])
-            ->andFilterWhere(['like', 'good_no', $this->good_no]);
+            ->andFilterWhere(['like', 'seo_title', $this->seo_title]);
 
         return $dataProvider;
     }

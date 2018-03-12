@@ -12,15 +12,19 @@ class AppAsset extends AssetBundle
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
-        'css/site.css',
         'css/layout.css',
+        'css/sweetalert.css',
+        'css/site.css?123',
+        //'css/button.css',
     ];
     public $js = [
-        
+        'js/sweetalert.min.js',
+        'js/main.js',       //全局js
     ];
     public $depends = [
         'yii\web\YiiAsset',
         'yii\bootstrap\BootstrapAsset',
+        'dmstr\web\AdminLteAsset',
     ];
     //定义按需加载JS方法，注意加载顺序在最后  
     public static function addScript($view, $jsfile) {  

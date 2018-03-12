@@ -1,15 +1,13 @@
 <aside class="main-sidebar">
 
     <section class="sidebar">
-
         <!-- Sidebar user panel -->
         <div class="user-panel">
             <div class="pull-left image">
                 <img src="<?= $directoryAsset ?>/img/user2-160x160.jpg" class="img-circle" alt="User Image"/>
             </div>
             <div class="pull-left info">
-                <p>Alexander Pierce</p>
-
+                <p><?= Yii::$app->user->identity->username ?? ''?></p>
                 <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
             </div>
         </div>
@@ -25,74 +23,62 @@
             </div>
         </form>
         <!-- /.search form -->
-
+        <?php 
+        $goodsActive = ($this->context->module->id == 'goods' && in_array($this->context->id,['good','props','images'])) ? 'active' : '';
+         ?>
         <?= dmstr\widgets\Menu::widget(
             [
-                'options' => ['class' => 'sidebar-menu'],
+                'options' => ['class' => 'sidebar-menu tree', 'data-widget'=> 'tree'],
                 'items' => [
-                    ['label' => 'Menu Yii2', 'options' => ['class' => 'header']],
-                    ['label' => '首页', 'icon' => 'fa fa-file-code-o', 'url' => ['/site/index']],
+                    ['label' => 'Menu', 'options' => ['class' => 'header']],
+                    ['label' => '首页', 'icon' => 'home', 'url' => ['/site/index']],
                     [
                         'label' => '商品',
-                        'icon' => 'fa fa-share',
+                        'icon' => 'shopping-bag',
                         'url' => '#',
                         'items' => [
-                            ['label' => '商品详情', 'icon' => 'fa fa-file-code-o', 'url' => ['/goods/good']],
-                            //['label' => 'Debug', 'icon' => 'fa fa-dashboard', 'url' => ['/debug'],],
+                            [
+                                'label' => '商品列表', 
+                                'icon' => 'bars', 
+                                'url' => ['/goods/good'],
+                                'active'=> $goodsActive      
+                            ],
+                            ['label' => '商品分类', 'icon' => 'table', 'url' => ['/goods/category']],
+                            ['label' => '商品品牌', 'icon' => 'list', 'url' => ['/goods/brand']],
+                            ['label' => '经销商', 'icon' => 'user-secret', 'url' => '#'],
+                            [
+                                'label' => '运费模板', 
+                                'icon' => 'truck', 
+                                'url' => ['/goods/freight'],
+                                'active'=>$this->context->id == 'freight'? 'active' : '' ],
                         ],
                     ],
+                    ['label' => '订单', 'icon' => 'cny', 'url' => '#'],
+                    ['label' => '文章', 'icon' => 'newspaper-o', 'url' => '#'],
                     [
                         'label' => '用户管理',
-                        'icon' => 'fa fa-users',
+                        'icon' => 'users',
                         'url' => '#',
                         'items' => [
-                            ['label' => '权限分配', 'icon' => 'fa fa-users', 'url' => ['/admin']],
-                            ['label' => '用户列表', 'icon' => 'fa fa-users', 'url' => ['/admin/user']],
-                            ['label' => '角色列表', 'icon' => 'fa fa-users', 'url' => ['/admin/role']],
-                            ['label' => '权限列表', 'icon' => 'fa fa-users', 'url' => ['/admin/permission']],
-                            ['label' => '路由列表', 'icon' => 'fa fa-users', 'url' => ['/admin/route']],
-                            ['label' => '规则列表', 'icon' => 'fa fa-users', 'url' => ['/admin/rule']],
-                            ['label' => '菜单列表', 'icon' => 'fa fa-users', 'url' => ['/adminmenu']],
+                            ['label' => '权限分配', 'icon' => 'users', 'url' => ['/admin/assignment']],
+                            ['label' => '用户列表', 'icon' => 'users', 'url' => ['/admin/user']],
+                            ['label' => '角色列表', 'icon' => 'users', 'url' => ['/admin/role']],
+                            ['label' => '权限列表', 'icon' => 'users', 'url' => ['/admin/permission']],
+                            ['label' => '路由列表', 'icon' => 'users', 'url' => ['/admin/route']],
+                            ['label' => '规则列表', 'icon' => 'users', 'url' => ['/admin/rule']],
+                            ['label' => '菜单列表', 'icon' => 'users', 'url' => ['/admin/menu']],
                         ],
                     ],
                     [
                         'label' => 'Tools',
-                        'icon' => 'fa fa-lightbulb-o',
+                        'icon' => 'lightbulb-o',
                         'url' => '#',
                         'items' => [
-                            ['label' => 'Gii', 'icon' => 'fa fa-file-code-o', 'url' => ['/gii'],],
-                            ['label' => 'Debug', 'icon' => 'fa fa-dashboard', 'url' => ['/debug'],],
+                            ['label' => 'Gii', 'icon' => 'file-code-o', 'url' => ['/gii'],],
+                            ['label' => 'Debug', 'icon' => 'dashboard', 'url' => ['/debug'],],
                         ],
                         'visible' => YII_ENV_DEV,       //开发模式可见        
                     ],
-                    //['label' => 'Login', 'url' => ['/site/login'], 'icon'=>'fa fa-sign-in','visible' => Yii::$app->user->isGuest],
-                    ['label' => 'Logout', 'url' => ['/site/logout'], 'icon'=>'fa fa-sign-out','visible' => !Yii::$app->user->isGuest],
-                    // [
-                    //     'label' => 'Same tools',
-                    //     'icon' => 'fa fa-share',
-                    //     'url' => '#',
-                    //     'items' => [
-                    //         ['label' => 'Gii', 'icon' => 'fa fa-file-code-o', 'url' => ['/gii'],],
-                    //         ['label' => 'Debug', 'icon' => 'fa fa-dashboard', 'url' => ['/debug'],],
-                    //         [
-                    //             'label' => 'Level One',
-                    //             'icon' => 'fa fa-circle-o',
-                    //             'url' => '#',
-                    //             'items' => [
-                    //                 ['label' => 'Level Two', 'icon' => 'fa fa-circle-o', 'url' => '#',],
-                    //                 [
-                    //                     'label' => 'Level Two',
-                    //                     'icon' => 'fa fa-circle-o',
-                    //                     'url' => '#',
-                    //                     'items' => [
-                    //                         ['label' => 'Level Three', 'icon' => 'fa fa-circle-o', 'url' => '#',],
-                    //                         ['label' => 'Level Three', 'icon' => 'fa fa-circle-o', 'url' => '#',],
-                    //                     ],
-                    //                 ],
-                    //             ],
-                    //         ],
-                    //     ],
-                    // ],
                 ],
             ]
         ) ?>

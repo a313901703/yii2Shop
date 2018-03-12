@@ -9,13 +9,10 @@ use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use common\models\LoginForm;
-use frontend\models\PasswordResetRequestForm;
-use frontend\models\ResetPasswordForm;
-use frontend\models\SignupForm;
-use frontend\models\ContactForm;
-
+use frontend\models\{PasswordResetRequestForm,ResetPasswordForm,SignupForm,ContactForm};
+use app\models\{Orders};
 use yii\base\ErrorException;
-
+   
 /**
  * Site controller
  */
@@ -29,15 +26,10 @@ class SiteController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::className(),
-                'only' => ['logout', 'signup','index'],
+                'only' => ['logout'],
                 'rules' => [
                     [
-                        'actions' => ['signup'],
-                        'allow' => true,
-                        'roles' => ['?'],
-                    ],
-                    [
-                        'actions' => ['logout','index'],
+                        'actions' => ['logout'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -76,7 +68,11 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        //最新订单
+        $orders = Orders::find()->asArray()->orderBy('id desc')->limit(6)->asArray()->all();
+        return $this->render('index',[
+            'orders'=>$orders,
+        ]);
     }
 
     /**
@@ -86,7 +82,6 @@ class SiteController extends Controller
      */
     public function actionLogin()
     {
-        //$this->layout = 'login';
         if (!Yii::$app->user->isGuest) {
             return $this->goHome();
         }
@@ -109,7 +104,6 @@ class SiteController extends Controller
     public function actionLogout()
     {
         Yii::$app->user->logout();
-
         return $this->goHome();
     }
 
@@ -153,6 +147,10 @@ class SiteController extends Controller
      */
     public function actionSignup()
     {
+        if (!Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
+
         $model = new SignupForm();
         if ($model->load(Yii::$app->request->post())) {
             if ($user = $model->signup()) {

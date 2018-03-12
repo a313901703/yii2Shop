@@ -1,10 +1,14 @@
 <?php
 
 namespace app\models;
+
+
+use Yii;
 use yii\behaviors\TimestampBehavior;
 use yii\behaviors\BlameableBehavior;
 
-use Yii;
+use app\models\Category;
+use app\models\Brand;
 
 /**
  * This is the model class for table "goods".
@@ -33,7 +37,7 @@ use Yii;
  * @property string $virtual_nums
  * @property string $volume
  */
-class Goods extends \yii\db\ActiveRecord
+class Goods extends \app\components\ActiveRecord
 {
     /**
      * @inheritdoc
@@ -51,20 +55,28 @@ class Goods extends \yii\db\ActiveRecord
         ];
     }
 
+    // public function optimisticLock(){
+    //     return 'version';
+    // }
+
     /**
      * @inheritdoc
      */
     public function rules()
     {
         return [
-            [['name', 'good_cate', 'good_brand', 'market_price', 'sale_price', 'cost','good_desc','good_detail'], 'required'],
+            [['name', 'good_cate', 'market_price', 'sale_price','good_desc','good_detail'], 'required'],
             [['weight', 'market_price', 'sale_price', 'cost'], 'number'],
+            [['market_price', 'sale_price', 'cost'],'filter','filter'=>function($value){
+                return (int)($value * 100);
+            }],
             [['good_cate', 'good_brand', 'recommend', 'show', 'freight', 'stock', 'alert', 'sort', 'integral', 'virtual_nums', 'volume'], 'integer'],
             [['name', 'seo_title', 'seo_keyword', 'good_no'], 'string', 'max' => 50],
-            [['volume','virtual_nums','integral'],'default','value' => 0],
+            [['volume','virtual_nums','integral','status','freight','alert','sort'],'default','value' => 0],
             ['good_no','default','value' =>  function ($model, $attribute) {
                 return chr(rand(65, 90)).chr(rand(65, 90)).time();
             }],
+            ['cost','default','value'=>0],
             [['short_name', 'keyword'], 'string', 'max' => 20],
             [['seo_content','good_note'], 'string', 'max' => 255],
         ];
@@ -103,5 +115,25 @@ class Goods extends \yii\db\ActiveRecord
             'good_desc'=>'商品描述',
             'good_detail'=>'商品详情',
         ];
+    }
+
+    public function getBrand(){
+        return $this->hasOne(Brand::className(), ['id' => 'good_brand']);
+    }
+
+    public function getCategory(){
+        return $this->hasOne(Category::className(), ['id' => 'good_cate']);
+    }
+
+    public function getImages(){
+        return $this->hasOne(GoodsImages::className(),['goods_id'=>'id']);
+    }
+
+    public function getProps(){
+        return $this->hasMany(Itemprops::className(),['goods_id'=>'id']);
+    }
+
+    public function getPropsCombi(){
+        return $this->hasMany(Propscombi::className(),['goods_id'=>'id'])->orderBy(['sale_price'=>SORT_ASC]);
     }
 }

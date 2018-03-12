@@ -21,15 +21,33 @@ $this->params['breadcrumbs'][] = $this->title;
             'seo_keyword',
             'seo_content',
             'good_no',
-            'weight',
-            'good_cate',
-            'good_brand',
-            'recommend',
-            'show',
+            [
+                'attribute' => 'weight',
+                'value' => $model->weight.'(KG)',
+            ],
+            'category.name',
+            'brand.name',
+            [
+                'attribute' => 'recommend',
+                'value' => $model->recommend == 0 ? '不推荐' : '首页推荐',
+            ],
+            [
+                'attribute' => 'show',
+                'value' => $model->recommend == 0 ? '上架' : '不上架',
+            ],
             'freight',
-            'market_price',
-            'sale_price',
-            'cost',
+            [
+                'attribute' => 'market_price',
+                'value' => $model->market_price.'(￥)',
+            ],
+            [
+                'attribute' => 'sale_price',
+                'value' => $model->sale_price.'(￥)',
+            ],
+            [
+                'attribute' => 'cost',
+                'value' => $model->cost.'(￥)',
+            ],
             'stock',
             'alert',
             'sort',
@@ -40,11 +58,11 @@ $this->params['breadcrumbs'][] = $this->title;
     ]) ?>
 
     <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
+        <?= Html::a('修改', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('删除', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
+                'confirm' => '确定删除该商品么?',
                 'method' => 'post',
             ],
         ]) ?>
