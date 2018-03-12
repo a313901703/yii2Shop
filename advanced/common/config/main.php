@@ -13,9 +13,9 @@ return [
         ],
         'db' => [
             'class' => 'yii\db\Connection',
-            'dsn' => 'mysql:host=localhost;dbname=yii2adv',
-            'username' => 'root',
-            'password' => 'root',
+            'dsn' => 'mysql:host=localhost;dbname=',
+            'username' => '',
+            'password' => '',
             'charset' => 'utf8',
         ],
         'redis' => [
@@ -34,8 +34,8 @@ return [
         ],
         'mongodb' => [
             'class' => '\yii\mongodb\Connection',
-            'dsn' => 'mongodb://127.0.0.1:27017/adptest',
-            'dsn' => 'mongodb://adptest:adpT123@61.174.12.205:27017/adptest',
+            'dsn' => '',
+            'dsn' => '',
         ],
         'urlManager' => [
             'enablePrettyUrl' => true,

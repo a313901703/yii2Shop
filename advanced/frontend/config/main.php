@@ -11,7 +11,7 @@ return [
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'controllerNamespace' => 'frontend\controllers',
-    'name' =>'WTF+',        //平台名称
+    'name' =>'Yii-shop',        //平台名称
     'aliases' => [
         '@goods' => '@app/modules/goods',
         '@api' => '@app/modules/api',
@@ -119,25 +119,13 @@ return [
                 'goods/categories' => 'goods/category',
             ],
         ],
-        // //七牛存储
-        'qiniu'=> [ 
-            'class' => 'crazyfd\qiniu\Qiniu', 
-            'accessKey' => 'K4tHKc648cdBO1phJLb-WZue7viQfJ39bcXXvzqP', 
-            'secretKey' => 'tdNASIfXJtAkDaoF7nYjihU7uUJ6YQYyEUsQXRUK', 
-            'domain' => '', 
-            'bucket' => 'app-shop', 
-        ],
     ],
     'as access' => [
         'class' => 'mdm\admin\components\AccessControl',
         'allowActions' => [
             //这里是允许访问的action
-            'site/login',
-            'site/signup',
-            'site/logout',
-            // 'api/*',
-            //'estest/*',
-            //'admin/*'
+            //'site/login',
+            '*',
         ]
     ],
     'params' => $params,

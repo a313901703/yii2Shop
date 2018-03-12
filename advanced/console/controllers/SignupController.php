@@ -1,8 +1,10 @@
 <?php 
 namespace console\controllers;
 
+use Yii;
 use yii\console\widgets\Table;
 use yii\helpers\Console;
+use frontend\models\SignupForm;
 
 class SignupController extends \yii\console\Controller{
     function actionIndex($role = 'admin'){
@@ -16,6 +18,15 @@ class SignupController extends \yii\console\Controller{
             ],
         ]);
         if ($this->confirm('是否确认创建用户?')) {
+            $model = new SignupForm;
+            $model->username = $username;
+            $model->password = $passwd;
+            $model->email = $email;
+            if ($user = $model->signup()) {
+                $auth = Yii::$app->authManager;
+                $authRole = $auth->getRole($role);
+                $auth->assign($authRole,$user->getId());
+            }
             echo '创建成功';
         }else{
             echo '已取消';

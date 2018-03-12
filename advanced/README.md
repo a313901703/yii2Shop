@@ -1,4 +1,4 @@
-Yii 2 Advanced Project Template
+Yii 2 商城
 ===============================
 
 Yii 2 Advanced Project Template is a skeleton [Yii 2](http://www.yiiframework.com/) application best for
@@ -16,7 +16,78 @@ Documentation is at [docs/guide/README.md](docs/guide/README.md).
 [![Total Downloads](https://poser.pugx.org/yiisoft/yii2-app-advanced/downloads.png)](https://packagist.org/packages/yiisoft/yii2-app-advanced)
 [![Build Status](https://travis-ci.org/yiisoft/yii2-app-advanced.svg?branch=master)](https://travis-ci.org/yiisoft/yii2-app-advanced)
 
-DIRECTORY STRUCTURE
+安装
+-------------------
+```
+./init                          初始化
+
+composer update                 安装扩展
+
+./yii migrate                   安装数据库
+./yii migrate --migrationPath=@mdm/admin/migrations
+./yii yii migrate --migrationPath=@yii/rbac/migrations
+
+./yii signup     创建admin角色账号
+
+```
+
+配置
+-------------------
+```
+# common/config/main.php
+...
+'components' => [
+    ...
+    'db' => [
+        'class' => 'yii\db\Connection',
+        'dsn' => 'mysql:host=localhost;dbname=',
+        'username' => '',
+        'password' => '',
+        'charset' => '',
+    ],
+    #redis 必填
+    'redis' => [
+        'class' => 'yii\redis\Connection',
+        'hostname' => '127.0.0.1',
+        'port' => 6379,
+        'database' => '0',
+    ],
+    /**
+    # 搭配ELK使用
+    'elasticsearch' => [
+        'class' => 'yii\elasticsearch\Connection',
+        'nodes' => [
+            ['http_address' => 'localhost:9200'],
+        ],
+    ],
+    'mongodb' => [
+        'class' => '\yii\mongodb\Connection',
+        'dsn' => '',
+    ],
+    'qiniu'=> [ 
+        'class' => 'crazyfd\qiniu\Qiniu', 
+        'accessKey' => '', 
+        'secretKey' => '', 
+        'domain' => '', 
+        'bucket' => 'app-shop', 
+    ],
+    */   
+    ...
+],
+
+# frontend/config/main.php
+as access' => [
+    'class' => 'mdm\admin\components\AccessControl',
+    'allowActions' => [
+        //未登录状态可以访问的路径
+        '*',
+    ]
+],
+...
+```
+
+
+目录
 -------------------
 
 ```
