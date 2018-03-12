@@ -19,9 +19,6 @@ composer update
 ./yii migrate --migrationPath=@mdm/admin/migrations
 ./yii yii migrate --migrationPath=@yii/rbac/migrations
 
-#hosts
-127.0.0.1   www.dev.com
-
 #创建admin角色账号
 ./yii signup 
 
