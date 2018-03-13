@@ -6,6 +6,7 @@ use Yii;
 use yii\base\InlineAction;
 use yii\data\ActiveDataProvider;
 use yii\helpers\{Url,Json,ArrayHelper};
+use yii\filters\{VerbFilter,AccessControl};
 use yii\web\{Controller as baseController,Response};
 use yii\web\{NotFoundHttpException,BadRequestHttpException};
 
@@ -18,6 +19,20 @@ class Controller extends baseController
 	const ACTIVE_STATUS = 0;
 	const PAUSE_STATUS  = 1;
 
+    /**
+     * @inheritdoc
+     */
+    public function behaviors()
+    {
+        return [
+            'verbs' => [
+                'class' => VerbFilter::className(),
+                'actions' => [
+                    'delete' => ['POST'],
+                ],
+            ],
+        ];
+    }
     /**
      * controller初始化
      */
@@ -74,7 +89,7 @@ class Controller extends baseController
      * @return [obj]         ActiveDataprovider
      */
     public function getActiveDataprovider($query,$pagination = [],$sort = []){
-        $pagination = ArrayHelper::merge(['pageSize' => 20],$pagination);
+        $pagination = ArrayHelper::merge(['pageSize' => 15],$pagination);
         $sort = ArrayHelper::merge(['defaultOrder'=>['id' => SORT_DESC]],$sort);
         $provider = new ActiveDataProvider([
             'query' => $query,

@@ -15,6 +15,7 @@ return [
     'aliases' => [
         '@goods' => '@app/modules/goods',
         '@api' => '@app/modules/api',
+        '@orders' => '@app/modules/orders',
         '@v1' => '@app/modules/api/modules/v1',
     ],
     'modules' => [
@@ -32,11 +33,15 @@ return [
         ], 
         //商品管理
         'goods'=>[
-            'class'=>'app\Modules\goods\Module',
+            'class'=>'app\modules\goods\Module',
         ],
         //restful api
         'api'=>[
-            'class'=>'app\Modules\api\Module',
+            'class'=>'app\modules\api\Module',
+        ],
+        //订单模块
+        'orders' => [
+            'class'=>'app\modules\orders\Module',
         ],
     ],
 

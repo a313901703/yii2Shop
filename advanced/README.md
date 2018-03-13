@@ -2,25 +2,25 @@ Yii 2 商城
 ===============================
 
 Yii2-shop
-手机端参考(React-native) https://github.com/a313901703/AwesomeProject.git
-WEB端参考(Vue) https://github.com/a313901703/vue-shop.git
+#### 手机端参考(React-native) https://github.com/a313901703/AwesomeProject
+#### WEB端参考(Vue) https://github.com/a313901703/vue-shop
 
 安装
 -------------------
 ```
 #初始化
-./init                          
+init                          
 
 #安装扩展
 composer update   
 
 #安装数据库
-./yii migrate                   
-./yii migrate --migrationPath=@mdm/admin/migrations
-./yii yii migrate --migrationPath=@yii/rbac/migrations
+yii migrate                   
+yii migrate --migrationPath=@mdm/admin/migrations
+yii yii migrate --migrationPath=@yii/rbac/migrations
 
 #创建admin角色账号
-./yii signup 
+yii signup 
 
 #参考文档
 http://www.yiiframework.com/doc-2.0/guide-index.html

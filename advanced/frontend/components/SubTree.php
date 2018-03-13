@@ -5,6 +5,20 @@ use yii\helpers\Json;
 
 final class SubTree
 {
+    public static function getSubTree1($data){
+        $subTree = [];
+        foreach ($data as $_data) {
+            if ($_data['children']) {
+                $subTree[$_data['name']] = [];
+                foreach ($_data['children'] as $child) {
+                    $subTree[$_data['name']][$child['id']] = $child['name'];
+                }
+            }        
+        }
+        return $subTree;
+    }
+
+
     public static function getSubTree($data = array(), $space=false,$pid = 0)
     {
         if (empty($data))

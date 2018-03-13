@@ -9,11 +9,7 @@ use yii\helpers\ArrayHelper;
 
 use app\models\Category;
 
-
-/* @var $this yii\web\View */
-/* @var $model app\models\Category */
-/* @var $form yii\widgets\ActiveForm */
-$categories = ArrayHelper::map(Category::getSubTree(true),'id','name');
+$categories = ArrayHelper::map(Category::find()->where(['pid'=>0])->all(),'id','name');
 ?>
 
 <div class="category-form">

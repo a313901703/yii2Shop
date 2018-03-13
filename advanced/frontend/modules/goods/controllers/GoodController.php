@@ -7,9 +7,6 @@ use app\models\Goods;
 use app\models\search\Goods as GoodsSearch;
 use frontend\components\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\AccessControl;
-use yii\filters\VerbFilter;
-
 
 
 /**
@@ -17,21 +14,6 @@ use yii\filters\VerbFilter;
  */
 class GoodController extends Controller
 {
-    /**
-     * @inheritdoc
-     */
-    public function behaviors()
-    {
-        return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['POST'],
-                ],
-            ],
-        ];
-    }
-
     /**
      * Lists all Goods models.
      * @return mixed

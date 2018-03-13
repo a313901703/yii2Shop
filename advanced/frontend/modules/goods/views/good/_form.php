@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use kartik\select2\Select2;
 use yii\helpers\ArrayHelper;
+use frontend\components\SubTree;
 
 use app\models\Category;
 use app\models\Brand;
@@ -13,7 +14,7 @@ use app\models\FreightTemp;
 /* @var $model app\models\Goods */
 /* @var $form yii\widgets\ActiveForm */
 $inputClass = 'form-control';
-$categories = ArrayHelper::map(Category::getSubTree(true),'id','name');
+$categories = Category::getSubTree1();
 $brands = ArrayHelper::map(Brand::find()->where(['status'=>0])->all(),'id','name');
 $freights = ArrayHelper::map(FreightTemp::find()->select('id,name')->all(),'id','name');
 $model->market_price = $model->market_price / 100;
