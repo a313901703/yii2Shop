@@ -257,7 +257,7 @@ $products = Goods::find()->limit(4)->orderBy('id desc')->asArray()->all();
                 <!-- <a href="javascript:void(0)" class="btn btn-sm btn-info btn-flat pull-left">
                     Place New Order
                 </a> -->
-                <a href="javascript:void(0)" class="btn btn-sm btn-info btn-flat pull-right">
+                <a href="/orders.html" class="btn btn-sm btn-info btn-flat pull-right">
                     查看所有订单
                 </a>
             </div>

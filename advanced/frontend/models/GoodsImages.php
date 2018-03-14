@@ -35,7 +35,7 @@ class GoodsImages extends \app\components\ActiveRecord
             [['thumb', 'carousels'], 'string', 'max' => 255],
 
             ['_thumb', 'image', 'extensions' => ['png', 'jpg'], 'maxSize' => 1024*1024,'maxWidth'=>200,'maxHeight'=>150],
-            ['_carousels', 'image', 'extensions' => ['png', 'jpg'], 'maxSize' => 1024*1024,'maxWidth'=>800,'maxHeight'=>200,'maxFiles'=>5],
+            ['_carousels', 'image', 'extensions' => ['png', 'jpg'], 'maxSize' => 1024*1024,'maxWidth'=>600,'maxHeight'=>500,'maxFiles'=>5],
         ];
     }
 

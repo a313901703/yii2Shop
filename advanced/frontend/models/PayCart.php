@@ -100,6 +100,7 @@ class PayCart extends ActiveRecord
                 $cartItem['cost'] = $product['cost'];
                 $cartItem['stock'] = $product['stock'];
             }
+            $cartItem['thumb'] = $product['images']['thumb'];
             $cartItems[$_id] = $cartItem;
         }
         $count = ['nums'=>0,'price'=>0];
