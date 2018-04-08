@@ -4,6 +4,7 @@ return [
     'language' =>'zh-CN',  //增加此行，默认使用中文
     'timeZone'=>'Asia/Shanghai',
     'charset'=>'utf-8',
+    
     'components' => [
         'cache' => [
             'class' => 'yii\caching\FileCache',
@@ -13,29 +14,28 @@ return [
         ],
         'db' => [
             'class' => 'yii\db\Connection',
-            'dsn' => 'mysql:host=localhost;dbname=yii2adv',
-            'username' => 'root',
-            'password' => 'root',
+            'dsn' => 'mysql:host=localhost;dbname=',
+            'username' => '',
+            'password' => '',
             'charset' => 'utf8',
         ],
         'redis' => [
             'class' => 'yii\redis\Connection',
             'hostname' => '127.0.0.1',
             'port' => 6379,
-            'database' => '0',
+            'database' => '0', //db1：elasticSearch db2:邮件
         ],
         'elasticsearch' => [
             'class' => 'yii\elasticsearch\Connection',
+            'autodetectCluster' => false,
             'nodes' => [
                 ['http_address' => 'localhost:9200'],
-                // configure more hosts if you have a cluster
             ],
-            //'autodetectCluster' => false
         ],
         'mongodb' => [
             'class' => '\yii\mongodb\Connection',
-            'dsn' => 'mongodb://127.0.0.1:27017/adptest',
-            'dsn' => 'mongodb://adptest:adpT123@61.174.12.205:27017/adptest',
+            'dsn' => '',
+            'dsn' => '',
         ],
         'urlManager' => [
             'enablePrettyUrl' => true,

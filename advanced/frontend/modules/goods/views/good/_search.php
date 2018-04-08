@@ -7,7 +7,8 @@ use yii\helpers\ArrayHelper;
 
 use app\models\Category;
 use app\models\Brand;
-$categories = ArrayHelper::map(Category::getSubTree(true),'id','name');
+
+$categories = Category::getSubTree1();
 $brands = ArrayHelper::map(Brand::find()->where(['status'=>0])->all(),'id','name');
 
 /* @var $this yii\web\View */
@@ -34,15 +35,6 @@ $brands = ArrayHelper::map(Brand::find()->where(['status'=>0])->all(),'id','name
 
         <?= $form->field($model, 'good_no')->textInput(['class'=>'form-flex3 form-control']) ?>
         
-        <?= $form->field($model, 'good_cate')->widget(Select2::classname(), [
-                'data' => $categories,
-                'options' => ['placeholder' => '请选择'],
-                'pluginOptions' => [
-                    'allowClear' => true
-                ],
-            ]);
-        ?>
-
         <?= $form->field($model, 'good_brand')->widget(Select2::classname(), [
                 'data' => $brands,
                 'options' => ['placeholder' => '请选择'],
@@ -54,8 +46,15 @@ $brands = ArrayHelper::map(Brand::find()->where(['status'=>0])->all(),'id','name
     </div>
 
     <div class="form-groups flex">
+        <?= $form->field($model, 'good_cate')->widget(Select2::classname(), [
+                'data' => $categories,
+                'options' => ['placeholder' => '请选择'],
+                'pluginOptions' => [
+                    'allowClear' => true
+                ],
+            ]);
+        ?>
 
-    <!-- <div class="form-inline-group"> -->
         <?= $form->field($model, 'recommend')->widget(Select2::classname(), [
                 'data' => [0=>'不推荐','1'=>'首页推荐'],
                 'options' => ['placeholder' => '请选择'],
@@ -73,8 +72,6 @@ $brands = ArrayHelper::map(Brand::find()->where(['status'=>0])->all(),'id','name
                 ],
             ]);
         ?>
-        <div class="form-group flex"></div>
-        <div class="form-group flex"></div>
     </div>
 
     <div class="form-group btn-group">

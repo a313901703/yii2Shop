@@ -1,4 +1,6 @@
 <?php
+use common\models\User;
+use app\models\Goods;
 use frontend\assets\AppAsset;
 use yii\helpers\Url;
 
@@ -6,6 +8,11 @@ $this->title = '首页';
 
 AppAsset::addScript($this,Yii::$app->request->baseUrl."/js/echarts.min.js");
 AppAsset::addScript($this,Yii::$app->request->baseUrl."/js/index.js");
+
+$newUsersIds = Yii::$app->authManager->getUserIdsByRole('api_vi_登录');
+$newUsers = User::find()->where(['id'=>$newUsersIds])->limit(8)->orderBy('id desc')->asArray()->all();
+
+$products = Goods::find()->limit(4)->orderBy('id desc')->asArray()->all();
 ?>
 
 <div class="row">
@@ -17,9 +24,9 @@ AppAsset::addScript($this,Yii::$app->request->baseUrl."/js/index.js");
                 <p>新增订单</p>
             </div>
             <div class="icon">
-                <i class="fa fa-shopping-cart"></i>
+                <i class="fa fa-shopping-bag"></i>
             </div>
-            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="#" class="small-box-footer">更多信息 <i class="fa fa-arrow-circle-right"></i></a>
         </div>
     </div>
 
@@ -31,9 +38,9 @@ AppAsset::addScript($this,Yii::$app->request->baseUrl."/js/index.js");
                 <p>新增用户</p>
             </div>
             <div class="icon">
-                <i class="fa fa-shopping-cart"></i>
+                <i class="fa fa-user-o"></i>
             </div>
-            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="#" class="small-box-footer">更多信息 <i class="fa fa-arrow-circle-right"></i></a>
         </div>
     </div>
 
@@ -44,9 +51,9 @@ AppAsset::addScript($this,Yii::$app->request->baseUrl."/js/index.js");
                 <p>消息</p>
             </div>
             <div class="icon">
-                <i class="fa fa-shopping-cart"></i>
+                <i class="fa fa-commenting"></i>
             </div>
-            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="#" class="small-box-footer">更多信息 <i class="fa fa-arrow-circle-right"></i></a>
         </div>
     </div>
 
@@ -60,7 +67,7 @@ AppAsset::addScript($this,Yii::$app->request->baseUrl."/js/index.js");
             <div class="icon">
                 <i class="fa fa-money"></i>
             </div>
-            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="#" class="small-box-footer">更多信息 <i class="fa fa-arrow-circle-right"></i></a>
         </div>
     </div>
 </div>
@@ -226,11 +233,11 @@ AppAsset::addScript($this,Yii::$app->request->baseUrl."/js/index.js");
                                     </a>
                                 </td>
                                 <td>
-                                    Call of Duty IV
+                                    ￥<?= $order['total'] / 100?>
                                 </td>
                                 <td>
-                                    <span class="label label-success">
-                                        <?='订单完成' ?>
+                                    <span class="label label-<?=$order['orderStatus']['status']?>">
+                                        <?= $order['orderStatus']['value'] ?>
                                     </span>
                                 </td>
                                 <td>
@@ -240,106 +247,6 @@ AppAsset::addScript($this,Yii::$app->request->baseUrl."/js/index.js");
                                 </td>
                             </tr>
                             <?php endforeach ?>
-                            <tr>
-                                <td>
-                                    <a href="pages/examples/invoice.html">
-                                        OR7429
-                                    </a>
-                                </td>
-                                <td>
-                                    iPhone 6 Plus
-                                </td>
-                                <td>
-                                    <span class="label label-danger">
-                                        Delivered
-                                    </span>
-                                </td>
-                                <td>
-                                    <div class="sparkbar" data-color="#f56954" data-height="20">
-                                        90,-80,90,70,-61,83,63
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <a href="pages/examples/invoice.html">
-                                        OR7429
-                                    </a>
-                                </td>
-                                <td>
-                                    Samsung Smart TV
-                                </td>
-                                <td>
-                                    <span class="label label-info">
-                                        Processing
-                                    </span>
-                                </td>
-                                <td>
-                                    <div class="sparkbar" data-color="#00c0ef" data-height="20">
-                                        90,80,-90,70,-61,83,63
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <a href="pages/examples/invoice.html">
-                                        OR1848
-                                    </a>
-                                </td>
-                                <td>
-                                    Samsung Smart TV
-                                </td>
-                                <td>
-                                    <span class="label label-warning">
-                                        Pending
-                                    </span>
-                                </td>
-                                <td>
-                                    <div class="sparkbar" data-color="#f39c12" data-height="20">
-                                        90,80,-90,70,61,-83,68
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <a href="pages/examples/invoice.html">
-                                        OR7429
-                                    </a>
-                                </td>
-                                <td>
-                                    iPhone 6 Plus
-                                </td>
-                                <td>
-                                    <span class="label label-danger">
-                                        Delivered
-                                    </span>
-                                </td>
-                                <td>
-                                    <div class="sparkbar" data-color="#f56954" data-height="20">
-                                        90,-80,90,70,-61,83,63
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <a href="pages/examples/invoice.html">
-                                        OR9842
-                                    </a>
-                                </td>
-                                <td>
-                                    Call of Duty IV
-                                </td>
-                                <td>
-                                    <span class="label label-success">
-                                        Shipped
-                                    </span>
-                                </td>
-                                <td>
-                                    <div class="sparkbar" data-color="#00a65a" data-height="20">
-                                        90,80,90,-70,61,-83,63
-                                    </div>
-                                </td>
-                            </tr>
                         </tbody>
                     </table>
                 </div>
@@ -347,11 +254,11 @@ AppAsset::addScript($this,Yii::$app->request->baseUrl."/js/index.js");
             </div>
             <!-- /.box-body -->
             <div class="box-footer clearfix">
-                <a href="javascript:void(0)" class="btn btn-sm btn-info btn-flat pull-left">
+                <!-- <a href="javascript:void(0)" class="btn btn-sm btn-info btn-flat pull-left">
                     Place New Order
-                </a>
-                <a href="javascript:void(0)" class="btn btn-sm btn-default btn-flat pull-right">
-                    View All Orders
+                </a> -->
+                <a href="/orders.html" class="btn btn-sm btn-info btn-flat pull-right">
+                    查看所有订单
                 </a>
             </div>
             <!-- /.box-footer -->
@@ -410,13 +317,13 @@ AppAsset::addScript($this,Yii::$app->request->baseUrl."/js/index.js");
                         <input type="checkbox" value="">
                         <!-- todo text -->
                         <span class="text">
-                            Design a nice theme
+                            一些需要添加的待办理表
                         </span>
                         <!-- Emphasis label -->
                         <small class="label label-danger">
                             <i class="fa fa-clock-o">
                             </i>
-                            2 mins
+                            2 分钟
                         </small>
                         <!-- General tools such as edit or delete-->
                         <div class="tools">
@@ -426,114 +333,28 @@ AppAsset::addScript($this,Yii::$app->request->baseUrl."/js/index.js");
                             </i>
                         </div>
                     </li>
+
                     <li>
+                        <!-- drag handle -->
                         <span class="handle">
                             <i class="fa fa-ellipsis-v">
                             </i>
                             <i class="fa fa-ellipsis-v">
                             </i>
                         </span>
+                        <!-- checkbox -->
                         <input type="checkbox" value="">
+                        <!-- todo text -->
                         <span class="text">
-                            Make the theme responsive
+                            一些需要添加的待办理表2
                         </span>
-                        <small class="label label-info">
-                            <i class="fa fa-clock-o">
-                            </i>
-                            4 hours
-                        </small>
-                        <div class="tools">
-                            <i class="fa fa-edit">
-                            </i>
-                            <i class="fa fa-trash-o">
-                            </i>
-                        </div>
-                    </li>
-                    <li>
-                        <span class="handle">
-                            <i class="fa fa-ellipsis-v">
-                            </i>
-                            <i class="fa fa-ellipsis-v">
-                            </i>
-                        </span>
-                        <input type="checkbox" value="">
-                        <span class="text">
-                            Let theme shine like a star
-                        </span>
-                        <small class="label label-warning">
-                            <i class="fa fa-clock-o">
-                            </i>
-                            1 day
-                        </small>
-                        <div class="tools">
-                            <i class="fa fa-edit">
-                            </i>
-                            <i class="fa fa-trash-o">
-                            </i>
-                        </div>
-                    </li>
-                    <li>
-                        <span class="handle">
-                            <i class="fa fa-ellipsis-v">
-                            </i>
-                            <i class="fa fa-ellipsis-v">
-                            </i>
-                        </span>
-                        <input type="checkbox" value="">
-                        <span class="text">
-                            Let theme shine like a star
-                        </span>
+                        <!-- Emphasis label -->
                         <small class="label label-success">
                             <i class="fa fa-clock-o">
                             </i>
-                            3 days
+                            2 分钟
                         </small>
-                        <div class="tools">
-                            <i class="fa fa-edit">
-                            </i>
-                            <i class="fa fa-trash-o">
-                            </i>
-                        </div>
-                    </li>
-                    <li>
-                        <span class="handle">
-                            <i class="fa fa-ellipsis-v">
-                            </i>
-                            <i class="fa fa-ellipsis-v">
-                            </i>
-                        </span>
-                        <input type="checkbox" value="">
-                        <span class="text">
-                            Check your messages and notifications
-                        </span>
-                        <small class="label label-primary">
-                            <i class="fa fa-clock-o">
-                            </i>
-                            1 week
-                        </small>
-                        <div class="tools">
-                            <i class="fa fa-edit">
-                            </i>
-                            <i class="fa fa-trash-o">
-                            </i>
-                        </div>
-                    </li>
-                    <li>
-                        <span class="handle">
-                            <i class="fa fa-ellipsis-v">
-                            </i>
-                            <i class="fa fa-ellipsis-v">
-                            </i>
-                        </span>
-                        <input type="checkbox" value="">
-                        <span class="text">
-                            Let theme shine like a star
-                        </span>
-                        <small class="label label-default">
-                            <i class="fa fa-clock-o">
-                            </i>
-                            1 month
-                        </small>
+                        <!-- General tools such as edit or delete-->
                         <div class="tools">
                             <i class="fa fa-edit">
                             </i>
@@ -548,7 +369,7 @@ AppAsset::addScript($this,Yii::$app->request->baseUrl."/js/index.js");
                 <button type="button" class="btn btn-default pull-right">
                     <i class="fa fa-plus">
                     </i>
-                    Add item
+                    添加新项目
                 </button>
             </div>
         </div>
@@ -559,11 +380,11 @@ AppAsset::addScript($this,Yii::$app->request->baseUrl."/js/index.js");
         <div class="box box-danger">
             <div class="box-header with-border">
                 <h3 class="box-title">
-                    Latest Members
+                    新用户
                 </h3>
                 <div class="box-tools pull-right">
                     <span class="label label-danger">
-                        8 New Members
+                        <?= count($newUsers) ?>个新用户
                     </span>
                     <button type="button" class="btn btn-box-tool" data-widget="collapse">
                         <i class="fa fa-minus">
@@ -578,16 +399,19 @@ AppAsset::addScript($this,Yii::$app->request->baseUrl."/js/index.js");
             <!-- /.box-header -->
             <div class="box-body no-padding">
                 <ul class="users-list clearfix">
+                    <?php foreach ($newUsers as $key => $newUser): ?>
+                        
+                    <?php endforeach ?>
                     <li>
                         <img src="/imgs/user1-128x128.jpg" alt="User Image">
                         <a class="users-list-name" href="#">
-                            Alexander Pierce
+                            <?= $newUser['username'] ?>
                         </a>
                         <span class="users-list-date">
                             Today
                         </span>
                     </li>
-                    <li>
+                    <!-- <li>
                         <img src="/imgs/user8-128x128.jpg" alt="User Image">
                         <a class="users-list-name" href="#">
                             Norman
@@ -649,14 +473,14 @@ AppAsset::addScript($this,Yii::$app->request->baseUrl."/js/index.js");
                         <span class="users-list-date">
                             15 Jan
                         </span>
-                    </li>
+                    </li> -->
                 </ul>
                 <!-- /.users-list -->
             </div>
             <!-- /.box-body -->
             <div class="box-footer text-center">
                 <a href="javascript:void(0)" class="uppercase">
-                    View All Users
+                    查看全部用户
                 </a>
             </div>
             <!-- /.box-footer -->
@@ -665,7 +489,7 @@ AppAsset::addScript($this,Yii::$app->request->baseUrl."/js/index.js");
         <div class="box box-primary">
             <div class="box-header with-border">
                 <h3 class="box-title">
-                    Recently Added Products
+                    新添加的商品
                 </h3>
                 <div class="box-tools pull-right">
                     <button type="button" class="btn btn-box-tool" data-widget="collapse">
@@ -681,76 +505,30 @@ AppAsset::addScript($this,Yii::$app->request->baseUrl."/js/index.js");
             <!-- /.box-header -->
             <div class="box-body">
                 <ul class="products-list product-list-in-box">
+                    <?php foreach ($products as $key => $product): ?>
                     <li class="item">
                         <div class="product-img">
                             <img src="/imgs/default-50x50.gif" alt="Product Image">
                         </div>
                         <div class="product-info">
                             <a href="javascript:void(0)" class="product-title">
-                                Samsung TV
+                                <?= $product['name']?>
                                 <span class="label label-warning pull-right">
-                                    $1800
+                                    ￥<?= $product['sale_price'] / 100 ?>
                                 </span>
                             </a>
                             <span class="product-description">
-                                Samsung 32" 1080p 60Hz LED Smart HDTV.
+                                商品描述
                             </span>
                         </div>
-                    </li>
-                    <li class="item">
-                        <div class="product-img">
-                            <img src="/imgs/default-50x50.gif" alt="Product Image">
-                        </div>
-                        <div class="product-info">
-                            <a href="javascript:void(0)" class="product-title">
-                                Samsung TV
-                                <span class="label label-warning pull-right">
-                                    $1800
-                                </span>
-                            </a>
-                            <span class="product-description">
-                                Samsung 32" 1080p 60Hz LED Smart HDTV.
-                            </span>
-                        </div>
-                    </li>
-                    <li class="item">
-                        <div class="product-img">
-                            <img src="/imgs/default-50x50.gif" alt="Product Image">
-                        </div>
-                        <div class="product-info">
-                            <a href="javascript:void(0)" class="product-title">
-                                Samsung TV
-                                <span class="label label-warning pull-right">
-                                    $1800
-                                </span>
-                            </a>
-                            <span class="product-description">
-                                Samsung 32" 1080p 60Hz LED Smart HDTV.
-                            </span>
-                        </div>
-                    </li>
-                    <li class="item">
-                        <div class="product-img">
-                            <img src="/imgs/default-50x50.gif" alt="Product Image">
-                        </div>
-                        <div class="product-info">
-                            <a href="javascript:void(0)" class="product-title">
-                                Samsung TV
-                                <span class="label label-warning pull-right">
-                                    $1800
-                                </span>
-                            </a>
-                            <span class="product-description">
-                                Samsung 32" 1080p 60Hz LED Smart HDTV.
-                            </span>
-                        </div>
-                    </li>
+                    </li>      
+                    <?php endforeach ?>    
                 </ul>
             </div>
             <!-- /.box-body -->
             <div class="box-footer text-center">
-                <a href="javascript:void(0)" class="uppercase">
-                    View All Products
+                <a href="/goods/good.html" class="uppercase">
+                    查看全部商品
                 </a>
             </div>
             <!-- /.box-footer -->

@@ -54,6 +54,19 @@ class Orders extends ActiveRecord
         ];
     }
 
+    public function getOrderStatus(){
+        $status = [
+            0=>['value'=>'未支付','status'=>'default'],
+            1=>['value'=>'待发货','status'=>'warning'],
+            2=>['value'=>'已发货','status'=>'warning'],
+            3=>['value'=>'待确认','status'=>'warning'],
+            4=>['value'=>'已确认','status'=>'success'],
+            5=>['value'=>'退货','status'=>'danger'],
+            '-1'=>['value'=>'删除','status'=>'danger'],
+        ];
+        return $status[$this->status];
+    }
+
     /**
      * @inheritdoc
      */

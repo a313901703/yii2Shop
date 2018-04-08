@@ -11,10 +11,11 @@ return [
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'controllerNamespace' => 'frontend\controllers',
-    'name' =>'WTF+',        //平台名称
+    'name' =>'Yii-shop',        //平台名称
     'aliases' => [
         '@goods' => '@app/modules/goods',
         '@api' => '@app/modules/api',
+        '@orders' => '@app/modules/orders',
         '@v1' => '@app/modules/api/modules/v1',
     ],
     'modules' => [
@@ -32,11 +33,15 @@ return [
         ], 
         //商品管理
         'goods'=>[
-            'class'=>'app\Modules\goods\Module',
+            'class'=>'app\modules\goods\Module',
         ],
         //restful api
         'api'=>[
-            'class'=>'app\Modules\api\Module',
+            'class'=>'app\modules\api\Module',
+        ],
+        //订单模块
+        'orders' => [
+            'class'=>'app\modules\orders\Module',
         ],
     ],
 
@@ -56,23 +61,42 @@ return [
         // 'view'=>[
         //     'class'=>'app\components\View',
         // ],
+        'sentry' => [
+            'class' => 'mito\sentry\Component',
+            'dsn' => 'http://9dcf5ef60ca5466b958b10d22c5612c8:57887b713705411a86a98265bd08e658@192.144.132.75:9000/2', // private DSN
+            'environment' => 'production', // if not set, the default is `production`
+            // 'jsNotifier' => true, // to collect JS errors. Default value is `false`
+            // 'jsOptions' => [ // raven-js config parameter
+            //     'whitelistUrls' => [ // collect JS errors from these urls
+            //         'http://staging.my-product.com',
+            //         'https://my-product.com',
+            //     ],
+            // ],
+        ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
             'targets' => [
+                // [
+                //     'class' => 'yii\log\FileTarget',
+                //     //'class' => 'app\components\FileTarget',
+                //     'categories' => ['yii\*'],
+                //     'levels' => ['error', 'warning'],
+                //     'logVars' => [],
+                //     'except' => [
+                //         'yii\db\*'
+                //     ],
+                //     'prefix' => function ($message) {
+                //         $user = Yii::$app->has('user', true) ? Yii::$app->get('user') : null;
+                //         $userID = $user ? $user->getId(false) : '-';
+                //         return "[$userID]";
+                //     }
+                // ],
                 [
-                    'class' => 'yii\log\FileTarget',
-                    //'class' => 'app\components\FileTarget',
-                    'categories' => ['yii\*'],
+                    'class' => 'mito\sentry\Target',
                     'levels' => ['error', 'warning'],
-                    'logVars' => [],
                     'except' => [
-                        'yii\db\*'
+                        'yii\web\HttpException:404',
                     ],
-                    'prefix' => function ($message) {
-                        $user = Yii::$app->has('user', true) ? Yii::$app->get('user') : null;
-                        $userID = $user ? $user->getId(false) : '-';
-                        return "[$userID]";
-                    }
                 ],
             ],
         ],
@@ -119,25 +143,13 @@ return [
                 'goods/categories' => 'goods/category',
             ],
         ],
-        // //七牛存储
-        'qiniu'=> [ 
-            'class' => 'crazyfd\qiniu\Qiniu', 
-            'accessKey' => 'K4tHKc648cdBO1phJLb-WZue7viQfJ39bcXXvzqP', 
-            'secretKey' => 'tdNASIfXJtAkDaoF7nYjihU7uUJ6YQYyEUsQXRUK', 
-            'domain' => '', 
-            'bucket' => 'app-shop', 
-        ],
     ],
     'as access' => [
         'class' => 'mdm\admin\components\AccessControl',
         'allowActions' => [
             //这里是允许访问的action
-            'site/login',
-            'site/signup',
-            'site/logout',
-            // 'api/*',
-            //'estest/*',
-            //'admin/*'
+            //'site/login',
+            '*',
         ]
     ],
     'params' => $params,

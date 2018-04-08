@@ -95,7 +95,11 @@ class Category extends \app\components\ActiveRecord
      * @param  [type] $format [添加format]
      * @return [Array]        [分类树]
      */
-    public static function getSubTree($format = false){
-        return SubTree::getSubTree(static::find()->asArray()->all(),$format);
+    public static function getSubTree(){
+        return SubTree::getSubTree(static::find()->asArray()->all());
+    }
+
+    public static function getSubTree1(){
+        return SubTree::getSubTree1(static::find()->where(['pid'=>0])->with('children')->asArray()->all());
     }
 }

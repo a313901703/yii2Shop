@@ -2,18 +2,27 @@
 namespace app\components;
 
 use Yii;
-use yii\log\{Logger};
+use yii\log\{Logger,FileTarget as BaseFileTarget};
 use yii\helpers\{ArrayHelper,VarDumper,Json};
 use yii\helpers\StringHelper;
 
-class FileTarget extends \yii\log\FileTarget
+class FileTarget extends BaseFileTarget
 {
-    public $logTag;
+    public $logTag = null;
+    public $beforeActionMsectime;
+    public $endActionMsectime;
 
     /**
      * @param \yii\debug\Module $module
      * @param array $config
      */
+
+    private function getTagId(){
+        if (!$this->logTag) {
+            $this->logTag = Yii::$app->has('user',true) ? Yii::$app->user->opt_id : uniqid().'_'.time();
+        }
+        return $this->logTag;
+    }
 
     public function formatMessage($message)
     {
@@ -33,14 +42,15 @@ class FileTarget extends \yii\log\FileTarget
                 $traces[] = "in {$trace['file']}:{$trace['line']}";
             }
         }
-
+        
         $prefix = $this->getMessagePrefix($message);
         $logs = [
-            //'tag'=>$this->logTag,
-            'tag'=>Yii::$app->params['logTag'],
-            'from'=>Yii::$app->id,
-            'user'=>$prefix,
-            'date'=>date('Y-m-d H:i:s', $timestamp),
+            'tag'=>$this->getTagId(),
+            //'tag'=>Yii::$app->params['logTag'],
+            'app_id'=>Yii::$app->id,
+            'user_id'=>$prefix,
+            'date'=> $message['3'] ? date('Y-m-d H:i:s',(int)$message['3']) : date('Y-m-d H:i:s', $timestamp),
+            'msectime'=>$message['3'],
             'level'=>$level,
             'category'=>$category,
             'text'=>$text,
@@ -48,18 +58,21 @@ class FileTarget extends \yii\log\FileTarget
         ];
         $logs = $this->setLogs($category,$logs);
         return json_encode($logs);
-        // return date('Y-m-d H:i:s', $timestamp) . " {$prefix}[$level][$category] $text"
-        //     . (empty($traces) ? '' : "\n    " . implode("\n    ", $traces));
     }
 
     private function setLogs($category,$logs){
         $_logs = [];
         if (StringHelper::startsWith($category,'yii\web\Application')) {
             $_logs = $this->getRequestInfo();
-        }elseif(StringHelper::startsWith($category,'yii\db\\')){
-            $_logs = [
-                'type'=>'db',
-            ];
+        }elseif($logs['text'] == '_beforeAction'){
+            $_logs = $this->getRequestInfo();
+            $this->beforeActionMsectime = $logs['msectime'];
+        }elseif($logs['text'] == '_afterAction'){
+            $this->endActionMsectime = $logs['msectime'];
+            $_logs = $this->getRequestInfo();
+            $_logs['duration'] = $this->beforeActionMsectime ? ($this->endActionMsectime - $this->beforeActionMsectime) * 1000: 0;
+            //$_logs['db_duration'] = $this->getTimings();
+            //print_r($this->getTimings());exit;
         }
         return ArrayHelper::merge($logs,$_logs);
     }
@@ -92,9 +105,13 @@ class FileTarget extends \yii\log\FileTarget
         } else {
             $action = null;
         }
-
+        $request = Yii::$app->request;
         return [
-            'type'=>'request',
+            'absoluteUrl'=>$request->absoluteUrl,
+            'hostInfo'=>$request->hostInfo,
+            'userHost' =>  $request->userHost,
+            'IP' =>  $request->userIP,
+            'isAjax'=>$request->isAjax ? 1 : 0,
             'statusCode' => Yii::$app->getResponse()->getStatusCode(),
             'route' => Yii::$app->requestedAction ? Yii::$app->requestedAction->getUniqueId() : Yii::$app->requestedRoute,
             'action' => $action,
@@ -111,7 +128,19 @@ class FileTarget extends \yii\log\FileTarget
             'SESSION' => empty($_SESSION) ? [] : $_SESSION,
         ];
     }
+
+    private function getTimings()
+    {
+        $timings = Yii::getLogger()->calculateTimings(isset($this->messages) ? $this->messages : []);
+        $models = [];
+        foreach ($timings as $seq => $profileTiming) {
+            $models[] =  [
+                'duration' => $profileTiming['duration'] * 1000, // in milliseconds
+                'category' => $profileTiming['category'],
+                'info' => $profileTiming['info'],
+            ];
+        }
+        return $models;
+    }
 }
-
-
  ?>

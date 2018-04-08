@@ -50,7 +50,7 @@ https://github.com/mdmsoft/yii2-admin
         'database' => '0',
     ],
     /**
-    # elasticsearch
+    # 搭配ELK使用
     'elasticsearch' => [
         'class' => 'yii\elasticsearch\Connection',
         'nodes' => [

@@ -71,7 +71,7 @@ class Goods extends \app\components\ActiveRecord
                 return (int)($value * 100);
             }],
             [['good_cate', 'good_brand', 'recommend', 'show', 'freight', 'stock', 'alert', 'sort', 'integral', 'virtual_nums', 'volume'], 'integer'],
-            [['name', 'seo_title', 'seo_keyword', 'good_no'], 'string', 'max' => 50],
+            [[ 'seo_title', 'seo_keyword', 'good_no'], 'string', 'max' => 50],
             [['volume','virtual_nums','integral','status','freight','alert','sort'],'default','value' => 0],
             ['good_no','default','value' =>  function ($model, $attribute) {
                 return chr(rand(65, 90)).chr(rand(65, 90)).time();

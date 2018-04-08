@@ -7,7 +7,7 @@ use yii\widgets\Pjax;
 /* @var $searchModel app\models\search\Goods */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Goods';
+$this->title = '商品列表';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="table-content">

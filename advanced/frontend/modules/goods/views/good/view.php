@@ -7,7 +7,7 @@ use yii\widgets\DetailView;
 /* @var $model app\models\Goods */
 
 $this->title = $model->name;
-$this->params['breadcrumbs'][] = ['label' => 'Goods', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => '商品列表', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="table-content">

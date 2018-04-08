@@ -45,18 +45,24 @@
                             ],
                             ['label' => '商品分类', 'icon' => 'table', 'url' => ['/goods/category']],
                             ['label' => '商品品牌', 'icon' => 'list', 'url' => ['/goods/brand']],
-                            ['label' => '经销商', 'icon' => 'user-secret', 'url' => '#'],
-                            [
-                                'label' => '运费模板', 
-                                'icon' => 'truck', 
-                                'url' => ['/goods/freight'],
-                                'active'=>$this->context->id == 'freight'? 'active' : '' ],
                         ],
                     ],
-                    ['label' => '订单', 'icon' => 'cny', 'url' => '#'],
-                    ['label' => '文章', 'icon' => 'newspaper-o', 'url' => '#'],
                     [
-                        'label' => '用户管理',
+                        'label' => '订单',
+                        'icon' => 'cny', 
+                        'url' => ['/orders'],
+                        'active' => $this->context->module->id == 'orders',
+                    ],
+                    [
+                        'label' => '运费模板',
+                        'icon' => 'truck', 
+                        'url' => ['/goods/freight'],
+                        'active' => $this->context->id == 'freight',
+                    ],
+                    //['label' => '文章', 'icon' => 'newspaper-o', 'url' => '#'],
+                    //['label' => '经销商', 'icon' => 'newspaper-o', 'url' => '#'],
+                    [
+                        'label' => '权限管理',
                         'icon' => 'users',
                         'url' => '#',
                         'items' => [

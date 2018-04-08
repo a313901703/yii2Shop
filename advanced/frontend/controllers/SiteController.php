@@ -68,8 +68,9 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
+        //echo 1/0;
         //最新订单
-        $orders = Orders::find()->asArray()->orderBy('id desc')->limit(6)->asArray()->all();
+        $orders = Orders::find()->orderBy('id desc')->limit(6)->all();
         return $this->render('index',[
             'orders'=>$orders,
         ]);

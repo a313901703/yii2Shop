@@ -30,7 +30,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'label' => '缩略图',
                 'format'=>'html',
                 'value'=>function($model){
-                    return Html::img("@web".$model->thumb,['width' =>70,'height'=>70]);
+                    return Html::img($model->thumb,['width' =>70,'height'=>70]);
                 }
             ],
             'sort',

@@ -30,6 +30,7 @@ class Goods extends \app\models\Goods
             'thumb'=>function($model){
                 return $model['images'] ? $model['images']['thumb'] : '';
             },
+            'good_note',
             'carousels'=>function($model){
                 return $model['images'] ? json_decode($model['images']['carousels'],true) : [];
             },
