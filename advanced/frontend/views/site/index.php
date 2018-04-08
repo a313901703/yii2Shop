@@ -26,7 +26,7 @@ $products = Goods::find()->limit(4)->orderBy('id desc')->asArray()->all();
             <div class="icon">
                 <i class="fa fa-shopping-bag"></i>
             </div>
-            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="#" class="small-box-footer">更多信息 <i class="fa fa-arrow-circle-right"></i></a>
         </div>
     </div>
 
@@ -40,7 +40,7 @@ $products = Goods::find()->limit(4)->orderBy('id desc')->asArray()->all();
             <div class="icon">
                 <i class="fa fa-user-o"></i>
             </div>
-            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="#" class="small-box-footer">更多信息 <i class="fa fa-arrow-circle-right"></i></a>
         </div>
     </div>
 
@@ -53,7 +53,7 @@ $products = Goods::find()->limit(4)->orderBy('id desc')->asArray()->all();
             <div class="icon">
                 <i class="fa fa-commenting"></i>
             </div>
-            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="#" class="small-box-footer">更多信息 <i class="fa fa-arrow-circle-right"></i></a>
         </div>
     </div>
 
@@ -67,7 +67,7 @@ $products = Goods::find()->limit(4)->orderBy('id desc')->asArray()->all();
             <div class="icon">
                 <i class="fa fa-money"></i>
             </div>
-            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="#" class="small-box-footer">更多信息 <i class="fa fa-arrow-circle-right"></i></a>
         </div>
     </div>
 </div>

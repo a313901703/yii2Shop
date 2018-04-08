@@ -33,6 +33,22 @@ class Controller extends baseController
             ],
         ];
     }
+
+    public function beforeAction($action){
+        if (parent::beforeAction($action)) {
+
+        }
+        Yii::getLogger()->log('_beforeAction', \yii\log\Logger::LEVEL_INFO,'yii\*');
+    }
+
+    public function afterAction($action,$result){
+        if (parent::afterAction($action,$result)) {
+           
+        }
+        Yii::getLogger()->log('_afterAction', \yii\log\Logger::LEVEL_INFO,'yii\*');
+        return $result;
+        //return true;
+    }
     /**
      * controller初始化
      */

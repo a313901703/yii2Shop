@@ -3,13 +3,12 @@ namespace frontend\controllers;
 
 use Yii;
 use yii\web\Controller;
-use app\models\esmodels\Book; 
+use app\models\esmodels\Products; 
 /**
  * Site controller
  */
 class EstestController extends Controller
 {
-
     /**
      * Displays homepage.
      *
@@ -17,19 +16,36 @@ class EstestController extends Controller
      */
     public function actionIndex()
     {
-        $res = Book::mget([1,2,4]);
-        print_r($res);
+        $res = Products::find()
+            ->query([
+                'multi_match'=>[
+                    'query'=>'骁龙',
+                    'fields'=>['name','desc'],
+                ]
+            ])
+            ->all();
+        return Yii::$app->mailer->process();
     }
 
     public function actionCreate()
     {
-        $book = new Book;
-        // Book::createIndex();
-        $book->primaryKey = 1; // in this case equivalent to $customer->id = 1;
-        $book->name = 'name_test';
-        $book->type = '1';
-        //$book->attributes = ['name'=>'name_test_1'];
-        $book->save();
+        $models = \app\models\Goods::find()
+            ->select('id,name,good_note,created_at,updated_at,status,good_brand,good_cate')
+            ->asArray()->all();
+        foreach ($models as $model) {
+            $product = Products::get($model['id']);
+            //$product = new Products;
+            $product->name = $model['name'];
+            $product->desc = $model['good_note'];
+            $product->product_id = $model['id'];
+            $product->created_at = $model['created_at'];
+            $product->updated_at = $model['updated_at'];
+            $product->status = $model['status'];
+            $product->brand = $model['good_brand'];
+            $product->cate = $model['good_cate'];
+            $product->save();
+        }
+        echo 'success';
     }
 
 }

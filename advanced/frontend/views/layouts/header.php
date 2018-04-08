@@ -108,10 +108,10 @@ use yii\helpers\Html;
                         <span class="label label-warning">10</span>
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                        <li class="header">You have 10 notifications</li>
+                        <li class="header">一些信息</li>
                         <li>
                             <!-- inner menu: contains the actual data -->
-                            <ul class="menu">
+                            <!-- <ul class="menu">
                                 <li>
                                     <a href="#">
                                         <i class="fa fa-users text-aqua"></i> 5 new members joined today
@@ -139,7 +139,7 @@ use yii\helpers\Html;
                                         <i class="fa fa-user text-red"></i> You changed your username
                                     </a>
                                 </li>
-                            </ul>
+                            </ul> -->
                         </li>
                         <li class="footer"><a href="#">View all</a></li>
                     </ul>
@@ -151,7 +151,7 @@ use yii\helpers\Html;
                         <span class="label label-danger">9</span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li class="header">You have 9 tasks</li>
+                        <li class="header">一些信息</li>
                         <li>
                             <!-- inner menu: contains the actual data -->
                             <ul class="menu">
@@ -240,8 +240,8 @@ use yii\helpers\Html;
                                  alt="User Image"/>
 
                             <p>
-                                Alexander Pierce - Web Developer
-                                <small>Member since Nov. 2012</small>
+                                <?= Yii::$app->user->identity->username ?? ''?>
+                               <!--  <small>Member since Nov. 2012</small> -->
                             </p>
                         </li>
                         <!-- Menu Body -->
@@ -258,9 +258,9 @@ use yii\helpers\Html;
                         </li>
                         <!-- Menu Footer-->
                         <li class="user-footer">
-                            <div class="pull-left">
+                            <!-- <div class="pull-left">
                                 <a href="#" class="btn btn-default btn-flat">Profile</a>
-                            </div>
+                            </div> -->
                             <div class="pull-right">
                                 <?= Html::a(
                                     'Sign out',

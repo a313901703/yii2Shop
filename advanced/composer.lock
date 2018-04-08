@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "5d5aa5388bd25074305a6521bcec7460",
+    "content-hash": "97bb5a1668ad41c7ef72411d9caa4bd3",
     "packages": [
         {
             "name": "almasaeed2010/adminlte",
@@ -48,6 +48,63 @@
                 "web"
             ],
             "time": "2018-02-04T12:54:57+00:00"
+        },
+        {
+            "name": "amphp/amp",
+            "version": "v1.2.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/amphp/amp.git",
+                "reference": "4f2161da5f68f274f116985635aea63b5c0f54d2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://files.phpcomposer.com/files/amphp/amp/4f2161da5f68f274f116985635aea63b5c0f54d2.zip",
+                "reference": "4f2161da5f68f274f116985635aea63b5c0f54d2",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5"
+            },
+            "require-dev": {
+                "fabpot/php-cs-fixer": "~1.9",
+                "phpunit/phpunit": "~4.8"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Amp\\": "lib/"
+                },
+                "files": [
+                    "lib/functions.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Daniel Lowrey",
+                    "email": "rdlowrey@php.net",
+                    "role": "Creator / Lead Developer"
+                }
+            ],
+            "description": "A non-blocking concurrency framework for PHP applications",
+            "homepage": "https://github.com/amphp/amp",
+            "keywords": [
+                "async",
+                "concurrency",
+                "event",
+                "non-blocking",
+                "promise"
+            ],
+            "time": "2016-05-12T12:54:59+00:00"
         },
         {
             "name": "arogachev/yii2-excel",
@@ -267,6 +324,40 @@
                     "package.json"
                 ]
             }
+        },
+        {
+            "name": "bower-asset/raven-js",
+            "version": "3.24.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/getsentry/raven-js.git",
+                "reference": "e002e4f1ab05fd629925d0ea40e79910e8c33d96"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/getsentry/raven-js/zipball/e002e4f1ab05fd629925d0ea40e79910e8c33d96",
+                "reference": "e002e4f1ab05fd629925d0ea40e79910e8c33d96",
+                "shasum": ""
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": "dist/raven.js",
+                "bower-asset-ignore": [
+                    "**/.*",
+                    "AUTHORS",
+                    "CHANGELOG.md",
+                    "CONTRIBUTING.md",
+                    "Gruntfile.js",
+                    "Makefile",
+                    "README.md",
+                    "docs",
+                    "package.json",
+                    "example",
+                    "test",
+                    "dist/sri.json"
+                ]
+            },
+            "time": "2018-03-23T09:35:22+00:00"
         },
         {
             "name": "bower-asset/yii2-pjax",
@@ -834,16 +925,16 @@
         },
         {
             "name": "kartik-v/yii2-date-range",
-            "version": "1.6.8",
+            "version": "v1.6.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/kartik-v/yii2-date-range.git",
-                "reference": "908e8175f3f8c091d425bcaba6e18871d63291a0"
+                "reference": "ed12260339f4699c363360465a22a46c714eb6be"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://files.phpcomposer.com/files/kartik-v/yii2-date-range/908e8175f3f8c091d425bcaba6e18871d63291a0.zip",
-                "reference": "908e8175f3f8c091d425bcaba6e18871d63291a0",
+                "url": "https://files.phpcomposer.com/files/kartik-v/yii2-date-range/ed12260339f4699c363360465a22a46c714eb6be.zip",
+                "reference": "ed12260339f4699c363360465a22a46c714eb6be",
                 "shasum": ""
             },
             "require": {
@@ -884,7 +975,7 @@
                 "widget",
                 "yii2"
             ],
-            "time": "2017-08-08T04:26:22+00:00"
+            "time": "2018-03-15T08:22:53+00:00"
         },
         {
             "name": "kartik-v/yii2-krajee-base",
@@ -1104,6 +1195,104 @@
             "time": "2017-10-04T02:54:53+00:00"
         },
         {
+            "name": "mito/yii2-sentry",
+            "version": "1.0.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/hellowearemito/yii2-sentry.git",
+                "reference": "a754ab1bf2f7262a6637341b534a4638a787dd6e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://files.phpcomposer.com/files/hellowearemito/yii2-sentry/a754ab1bf2f7262a6637341b534a4638a787dd6e.zip",
+                "reference": "a754ab1bf2f7262a6637341b534a4638a787dd6e",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/raven-js": "~3.17",
+                "php": ">=5.6.0",
+                "sentry/sentry": "~1.8",
+                "yiisoft/yii2": "~2.0.0"
+            },
+            "require-dev": {
+                "codeception/codeception": "~2.3",
+                "codeception/mockery-module": "^0.2.2",
+                "codeception/specify": " *",
+                "codeception/verify": " *",
+                "mito/yii2-coding-standards": "~2.0.0@beta",
+                "satooshi/php-coveralls": "~1.0",
+                "yiisoft/yii2-codeception": "~2.0"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "mito\\sentry\\": "src/",
+                    "mito\\sentry\\tests\\": "tests/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Albert Borsos",
+                    "email": "a.borsos@mito.hu"
+                }
+            ],
+            "description": "Yii 2 extension for Sentry",
+            "keywords": [
+                "extension",
+                "sentry",
+                "yii2"
+            ],
+            "time": "2017-11-28T16:52:35+00:00"
+        },
+        {
+            "name": "nmred/kafka-php",
+            "version": "v0.2.0.8",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/weiboad/kafka-php.git",
+                "reference": "d5b395aeb9d069dce49fc1dceff0a6f45750d981"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://files.phpcomposer.com/files/weiboad/kafka-php/d5b395aeb9d069dce49fc1dceff0a6f45750d981.zip",
+                "reference": "d5b395aeb9d069dce49fc1dceff0a6f45750d981",
+                "shasum": ""
+            },
+            "require": {
+                "amphp/amp": "v1.2.2",
+                "php": ">=5.5",
+                "psr/log": "1.0.2"
+            },
+            "require-dev": {
+                "kmelia/monolog-stdout-handler": "1.2.1",
+                "monolog/monolog": "1.22.1",
+                "phpunit/phpcov": "*",
+                "phpunit/phpunit": "~4.0",
+                "satooshi/php-coveralls": "dev-master"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Kafka\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "description": "Kafka client for php",
+            "homepage": "http://www.swanlinux.net",
+            "keywords": [
+                "client",
+                "kafka"
+            ],
+            "time": "2017-10-23T09:33:08+00:00"
+        },
+        {
             "name": "phpoffice/phpexcel",
             "version": "1.8.1",
             "source": {
@@ -1162,6 +1351,53 @@
             "time": "2015-05-01T07:00:55+00:00"
         },
         {
+            "name": "psr/log",
+            "version": "1.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-fig/log.git",
+                "reference": "4ebe3a8bf773a19edfe0a84b6585ba3d401b724d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://files.phpcomposer.com/files/php-fig/log/4ebe3a8bf773a19edfe0a84b6585ba3d401b724d.zip",
+                "reference": "4ebe3a8bf773a19edfe0a84b6585ba3d401b724d",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Psr\\Log\\": "Psr/Log/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "PHP-FIG",
+                    "homepage": "http://www.php-fig.org/"
+                }
+            ],
+            "description": "Common interface for logging libraries",
+            "homepage": "https://github.com/php-fig/log",
+            "keywords": [
+                "log",
+                "psr",
+                "psr-3"
+            ],
+            "time": "2016-10-10T12:19:37+00:00"
+        },
+        {
             "name": "rmrevin/yii2-fontawesome",
             "version": "2.17.1",
             "source": {
@@ -1212,6 +1448,70 @@
                 "yii"
             ],
             "time": "2017-01-11T14:05:47+00:00"
+        },
+        {
+            "name": "sentry/sentry",
+            "version": "1.8.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/getsentry/sentry-php.git",
+                "reference": "643ec20d181ca55317d4ccda6ad658b9a8b4f06a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://files.phpcomposer.com/files/getsentry/sentry-php/643ec20d181ca55317d4ccda6ad658b9a8b4f06a.zip",
+                "reference": "643ec20d181ca55317d4ccda6ad658b9a8b4f06a",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "php": "^5.3|^7.0"
+            },
+            "conflict": {
+                "raven/raven": "*"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^1.8.0",
+                "monolog/monolog": "*",
+                "phpunit/phpunit": "^4.8.35 || ^5.7"
+            },
+            "suggest": {
+                "ext-hash": "*",
+                "ext-json": "*",
+                "ext-mbstring": "*",
+                "monolog/monolog": "Automatically capture Monolog events as breadcrumbs"
+            },
+            "bin": [
+                "bin/sentry"
+            ],
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.9.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Raven_": "lib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "David Cramer",
+                    "email": "dcramer@gmail.com"
+                }
+            ],
+            "description": "A PHP client for Sentry (http://getsentry.com)",
+            "homepage": "http://getsentry.com",
+            "keywords": [
+                "log",
+                "logging"
+            ],
+            "time": "2018-03-20T12:52:10+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -1313,16 +1613,16 @@
         },
         {
             "name": "yiisoft/yii2",
-            "version": "2.0.14.1",
+            "version": "2.0.15.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-framework.git",
-                "reference": "d99969394c66dc3606134af092b8ec561ea5d7c6"
+                "reference": "ed3a9e1c4abe206e1c3ce48a6b3624119b79850d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://files.phpcomposer.com/files/yiisoft/yii2-framework/d99969394c66dc3606134af092b8ec561ea5d7c6.zip",
-                "reference": "d99969394c66dc3606134af092b8ec561ea5d7c6",
+                "url": "https://files.phpcomposer.com/files/yiisoft/yii2-framework/ed3a9e1c4abe206e1c3ce48a6b3624119b79850d.zip",
+                "reference": "ed3a9e1c4abe206e1c3ce48a6b3624119b79850d",
                 "shasum": ""
             },
             "require": {
@@ -1409,7 +1709,7 @@
                 "framework",
                 "yii2"
             ],
-            "time": "2018-02-24T20:23:06+00:00"
+            "time": "2018-03-21T18:36:53+00:00"
         },
         {
             "name": "yiisoft/yii2-bootstrap",
@@ -1473,16 +1773,16 @@
         },
         {
             "name": "yiisoft/yii2-composer",
-            "version": "2.0.5",
+            "version": "2.0.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-composer.git",
-                "reference": "3f4923c2bde6caf3f5b88cc22fdd5770f52f8df2"
+                "reference": "163419f1f197e02f015713b0d4f85598d8f8aa80"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://files.phpcomposer.com/files/yiisoft/yii2-composer/3f4923c2bde6caf3f5b88cc22fdd5770f52f8df2.zip",
-                "reference": "3f4923c2bde6caf3f5b88cc22fdd5770f52f8df2",
+                "url": "https://files.phpcomposer.com/files/yiisoft/yii2-composer/163419f1f197e02f015713b0d4f85598d8f8aa80.zip",
+                "reference": "163419f1f197e02f015713b0d4f85598d8f8aa80",
                 "shasum": ""
             },
             "require": {
@@ -1511,6 +1811,10 @@
                 {
                     "name": "Qiang Xue",
                     "email": "qiang.xue@gmail.com"
+                },
+                {
+                    "name": "Carsten Brandt",
+                    "email": "mail@cebe.cc"
                 }
             ],
             "description": "The composer plugin for Yii extension installer",
@@ -1519,25 +1823,25 @@
                 "extension installer",
                 "yii2"
             ],
-            "time": "2016-12-20T13:26:02+00:00"
+            "time": "2018-03-21T16:15:55+00:00"
         },
         {
             "name": "yiisoft/yii2-elasticsearch",
-            "version": "2.0.4",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-elasticsearch.git",
-                "reference": "c752e9ef2eb0bf6807f6b3a4fadc885f6f7fef59"
+                "reference": "1cb386bee610541526d68ebafe236ed4edca61e0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://files.phpcomposer.com/files/yiisoft/yii2-elasticsearch/c752e9ef2eb0bf6807f6b3a4fadc885f6f7fef59.zip",
-                "reference": "c752e9ef2eb0bf6807f6b3a4fadc885f6f7fef59",
+                "url": "https://files.phpcomposer.com/files/yiisoft/yii2-elasticsearch/1cb386bee610541526d68ebafe236ed4edca61e0.zip",
+                "reference": "1cb386bee610541526d68ebafe236ed4edca61e0",
                 "shasum": ""
             },
             "require": {
                 "ext-curl": "*",
-                "yiisoft/yii2": "*"
+                "yiisoft/yii2": "~2.0.14"
             },
             "type": "yii2-extension",
             "extra": {
@@ -1568,7 +1872,7 @@
                 "search",
                 "yii2"
             ],
-            "time": "2016-03-17T04:45:15+00:00"
+            "time": "2018-03-20T11:35:14+00:00"
         },
         {
             "name": "yiisoft/yii2-imagine",
@@ -1669,20 +1973,23 @@
         },
         {
             "name": "yiisoft/yii2-redis",
-            "version": "2.0.7",
+            "version": "2.0.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-redis.git",
-                "reference": "3891bb19f3ddc7ad744b439fe1d656ebb5b60a99"
+                "reference": "ffe6bff8dc6be4bb84c9495cd3ef7ef1161c1314"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://files.phpcomposer.com/files/yiisoft/yii2-redis/3891bb19f3ddc7ad744b439fe1d656ebb5b60a99.zip",
-                "reference": "3891bb19f3ddc7ad744b439fe1d656ebb5b60a99",
+                "url": "https://files.phpcomposer.com/files/yiisoft/yii2-redis/ffe6bff8dc6be4bb84c9495cd3ef7ef1161c1314.zip",
+                "reference": "ffe6bff8dc6be4bb84c9495cd3ef7ef1161c1314",
                 "shasum": ""
             },
             "require": {
-                "yiisoft/yii2": "~2.0.13"
+                "yiisoft/yii2": "~2.0.14"
+            },
+            "require-dev": {
+                "yiisoft/yii2-dev": "~2.0.14"
             },
             "type": "yii2-extension",
             "extra": {
@@ -1692,7 +1999,7 @@
             },
             "autoload": {
                 "psr-4": {
-                    "yii\\redis\\": ""
+                    "yii\\redis\\": "src"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -1713,7 +2020,7 @@
                 "session",
                 "yii2"
             ],
-            "time": "2017-12-11T21:17:34+00:00"
+            "time": "2018-03-20T11:01:04+00:00"
         },
         {
             "name": "yiisoft/yii2-swiftmailer",
@@ -1944,16 +2251,16 @@
         },
         {
             "name": "codeception/phpunit-wrapper",
-            "version": "6.0.5",
+            "version": "6.0.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Codeception/phpunit-wrapper.git",
-                "reference": "44e2100c300413a6b40cf8874ad402695010f443"
+                "reference": "e18f3ea1f841bfd2cecaf6e183e584127b9d467b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://files.phpcomposer.com/files/Codeception/phpunit-wrapper/44e2100c300413a6b40cf8874ad402695010f443.zip",
-                "reference": "44e2100c300413a6b40cf8874ad402695010f443",
+                "url": "https://files.phpcomposer.com/files/Codeception/phpunit-wrapper/e18f3ea1f841bfd2cecaf6e183e584127b9d467b.zip",
+                "reference": "e18f3ea1f841bfd2cecaf6e183e584127b9d467b",
                 "shasum": ""
             },
             "require": {
@@ -1961,6 +2268,13 @@
                 "phpunit/phpunit": ">=4.8.28 <5.0.0 || >=5.6.3 <7.0",
                 "sebastian/comparator": ">1.1 <3.0",
                 "sebastian/diff": ">=1.4 <4.0"
+            },
+            "replace": {
+                "codeception/phpunit-wrapper": "*"
+            },
+            "require-dev": {
+                "codeception/specify": "*",
+                "vlucas/phpdotenv": "^2.4"
             },
             "type": "library",
             "autoload": {
@@ -1979,7 +2293,7 @@
                 }
             ],
             "description": "PHPUnit classes used by Codeception",
-            "time": "2018-02-19T13:24:40+00:00"
+            "time": "2018-03-16T10:17:47+00:00"
         },
         {
             "name": "codeception/stub",
@@ -3111,53 +3425,6 @@
                 "response"
             ],
             "time": "2016-08-06T14:39:51+00:00"
-        },
-        {
-            "name": "psr/log",
-            "version": "1.0.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/php-fig/log.git",
-                "reference": "4ebe3a8bf773a19edfe0a84b6585ba3d401b724d"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://files.phpcomposer.com/files/php-fig/log/4ebe3a8bf773a19edfe0a84b6585ba3d401b724d.zip",
-                "reference": "4ebe3a8bf773a19edfe0a84b6585ba3d401b724d",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.0"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.0.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Psr\\Log\\": "Psr/Log/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "PHP-FIG",
-                    "homepage": "http://www.php-fig.org/"
-                }
-            ],
-            "description": "Common interface for logging libraries",
-            "homepage": "https://github.com/php-fig/log",
-            "keywords": [
-                "log",
-                "psr",
-                "psr-3"
-            ],
-            "time": "2016-10-10T12:19:37+00:00"
         },
         {
             "name": "sebastian/code-unit-reverse-lookup",
@@ -4481,7 +4748,8 @@
     "stability-flags": {
         "kartik-v/yii2-widget-fileinput": 20,
         "kartik-v/yii2-widget-select2": 20,
-        "crazyfd/yii2-qiniu": 20
+        "crazyfd/yii2-qiniu": 20,
+        "yiisoft/yii2-elasticsearch": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
