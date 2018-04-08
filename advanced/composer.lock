@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "97bb5a1668ad41c7ef72411d9caa4bd3",
+    "content-hash": "121f306e321b9a389769aa5dc80618d6",
     "packages": [
         {
             "name": "almasaeed2010/adminlte",
@@ -763,6 +763,51 @@
                 "html"
             ],
             "time": "2018-02-23T01:58:20+00:00"
+        },
+        {
+            "name": "feehi/yii2-swoole",
+            "version": "0.1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/liufee/yii2-swoole.git",
+                "reference": "9d3c81671e7622b277264742872aaff8fc3cc7b4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://files.phpcomposer.com/files/liufee/yii2-swoole/9d3c81671e7622b277264742872aaff8fc3cc7b4.zip",
+                "reference": "9d3c81671e7622b277264742872aaff8fc3cc7b4",
+                "shasum": ""
+            },
+            "suggest": {
+                "feehi/yii2-swoole": "Need extension swoole version >= 1.9;Recommend with php >= 7"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "feehi\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "liufee",
+                    "email": "job@feehi.com",
+                    "homepage": "http://blog.feehi.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "yii2 swoole,让yii2跑在swoole上",
+            "homepage": "http://blog.feehi.com",
+            "keywords": [
+                "swoole",
+                "yii2",
+                "yii2 swoole",
+                "yii2-swoole"
+            ],
+            "time": "2017-12-28T03:01:40+00:00"
         },
         {
             "name": "fortawesome/font-awesome",

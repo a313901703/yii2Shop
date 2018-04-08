@@ -32,7 +32,8 @@
         "yiisoft/yii2-mongodb": "^2.1",
         "kartik-v/yii2-date-range": "*",
         "mito/yii2-sentry": "~1.0.0",
-        "nmred/kafka-php": "v0.2.0.8"
+        "nmred/kafka-php": "v0.2.0.8",
+        "feehi/yii2-swoole": "^0.1.2"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",
