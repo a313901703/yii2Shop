@@ -400,8 +400,6 @@ $products = Goods::find()->limit(4)->orderBy('id desc')->asArray()->all();
             <div class="box-body no-padding">
                 <ul class="users-list clearfix">
                     <?php foreach ($newUsers as $key => $newUser): ?>
-                        
-                    <?php endforeach ?>
                     <li>
                         <img src="/imgs/user1-128x128.jpg" alt="User Image">
                         <a class="users-list-name" href="#">
@@ -410,7 +408,9 @@ $products = Goods::find()->limit(4)->orderBy('id desc')->asArray()->all();
                         <span class="users-list-date">
                             Today
                         </span>
-                    </li>
+                    </li>  
+                    <?php endforeach ?>
+                    
                     <!-- <li>
                         <img src="/imgs/user8-128x128.jpg" alt="User Image">
                         <a class="users-list-name" href="#">
